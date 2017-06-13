@@ -25,6 +25,7 @@ Scene1::Scene1(Input* input) : Superscene(input)
 
       light = new Light();
       light->position = glm::vec3(5,15,5);
+      light->setPosition(light->getPosition());
       this->addLight(light);
 
       time->timer.start();

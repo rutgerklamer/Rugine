@@ -9,8 +9,8 @@
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
 
-#include "Shader.h"
-#include "Camera.h"
+#include "Engine/Shader.h"
+#include "Engine/Camera.h"
 
 class ResourceManager
 {
@@ -18,6 +18,7 @@ class ResourceManager
         ResourceManager();
         virtual ~ResourceManager();
         void updateShaders(Shader* shader, Camera* camera);
+        void setProjectionMatrix(Shader* shader, Camera* camera);
     private:
 
 

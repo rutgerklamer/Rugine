@@ -3,7 +3,7 @@
 Light::Light() : Entity()
 {
   std::cout << "Light initialized" << std::endl;
-  this->lightColor = glm::vec3(1,1,1);
+  this->lightData.lightColor = glm::vec3(1,1,1);
 }
 
 Light::~Light()
@@ -11,12 +11,22 @@ Light::~Light()
 
 }
 
-glm::vec3 Light::getLightColor()
+LightData Light::getLightData()
 {
-  return this->lightColor;
+  return this->lightData;
 }
 
 void Light::setLightColor(glm::vec3 color)
 {
-  this->lightColor = color;
+  this->lightData.lightColor = color;
+}
+
+void Light::setStrength(int strength)
+{
+  this->lightData.lightStrength = strength;
+}
+
+void Light::setPosition(glm::vec3 position)
+{
+  this->lightData.lightPosition = position;
 }

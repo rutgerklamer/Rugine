@@ -11,36 +11,31 @@ Renderer::~Renderer()
 
 }
 
-void Renderer::render(double currentTime, Shader* shader, Camera* camera, Mesh* mesh, Light* light)
+void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity* entity, Light* light)
 {
   glm::mat4 model;
-  glm::mat4 quaternation;
-  //Make the perspective projection
-
   if (light != NULL) {
+    LightData lightData = light->getLightData();
     //Send lights position;
-    glUniform3f(glGetUniformLocation(shader->shaderProgram, "lightPos"), light->getPosition().x, light->getPosition().y, light->getPosition().z);
+    glUniform3f(glGetUniformLocation(shader->shaderProgram, "lightPos"), lightData.lightPosition.x, lightData.lightPosition.y, lightData.lightPosition.z);
     //Send cameras position
 
     glUniform3f(glGetUniformLocation(shader->shaderProgram, "camPos"), camera->getPosition().x,camera->getPosition().y,camera->getPosition().z);
 
-    //Send light color (rgb) + brightness (w)
-    glUniform4f(glGetUniformLocation(shader->shaderProgram, "lightColor"), light->getLightColor().x, light->getLightColor().y, light->getLightColor().z, 50);
-    
+    //Send light color (rgb)
+    glUniform3f(glGetUniformLocation(shader->shaderProgram, "lightColor"), lightData.lightColor.x, lightData.lightColor.y, lightData.lightColor.z);
   }
 //Manipulate model matrix
-  model =  mesh->getModelMatrix();
+  model =  entity->getModelMatrix();
   //Send to vertex shader
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
-  //Send a texture to the fragment shader
+  //Send a texture
   glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D, mesh->getTexture());
-  glUniform1i(glGetUniformLocation( shader->shaderProgram, "texture"),0);
+  glBindTexture(GL_TEXTURE_2D, entity->getTexture());
 
-  glUniform1f(glGetUniformLocation( shader->shaderProgram, "time"),glfwGetTime());
-  mesh->Draw();
+  //Bind the VAO of the mesh
+  entity->Draw();
 
   //Draw the mesh
-  glDrawArrays(GL_TRIANGLES, 0, mesh->getSize());
-  glDepthFunc(GL_LEQUAL);
+  glDrawArrays(GL_TRIANGLES, 0, entity->getSize());
 }

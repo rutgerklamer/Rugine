@@ -29,6 +29,8 @@ Display::Display()
   scenes[currentscene]->input->setCamera(scenes[currentscene]->camera);
   //We want to run this atleast once.
   //Get the projection matrix
+  resourcemanager->setProjectionMatrix(shaderNormals, scenes[currentscene]->camera);
+  resourcemanager->setProjectionMatrix(shader, scenes[currentscene]->camera);
 
   do {
     //Clear window with a red-"ish" color
@@ -46,18 +48,16 @@ Display::Display()
     }
     scenes[currentscene]->Update(dtime->getDeltatime());
     resourcemanager->updateShaders(shader, scenes[currentscene]->camera);
-    for (int i = 0; i < scenes[currentscene]->meshes.size(); i++) {
+    for (int i = 0; i < scenes[currentscene]->entities.size(); i++) {
       if (scenes[currentscene]->lights.size() > 0) {
-         renderer->render(glfwGetTime(), shader, scenes[currentscene]->camera, scenes[currentscene]->meshes[i], scenes[currentscene]->light);
+         renderer->render(glfwGetTime(), shader, scenes[currentscene]->camera, scenes[currentscene]->entities[i], scenes[currentscene]->light);
        } else {
-         renderer->render(glfwGetTime(), shader, scenes[currentscene]->camera, scenes[currentscene]->meshes[i]);
+         renderer->render(glfwGetTime(), shader, scenes[currentscene]->camera, scenes[currentscene]->entities[i]);
        }
-    }
-    resourcemanager->updateShaders(shaderNormals, scenes[currentscene]->camera);
-    for (int i = 0; i < scenes[currentscene]->meshes.size(); i++) {
-      if (scenes[currentscene]->meshes[i]->showNormals) {
-         renderer->render(glfwGetTime(), shaderNormals, scenes[currentscene]->camera, scenes[currentscene]->meshes[i]);
-       }
+       if (scenes[currentscene]->entities[i]->showNormals) {
+          resourcemanager->updateShaders(shaderNormals, scenes[currentscene]->camera);
+          renderer->render(glfwGetTime(), shaderNormals, scenes[currentscene]->camera, scenes[currentscene]->entities[i]);
+        }
     }
 
     //Get deltatime and fps

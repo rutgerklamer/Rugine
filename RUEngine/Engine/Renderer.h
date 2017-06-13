@@ -9,18 +9,19 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "Shader.h"
-#include "Camera.h"
-#include "Mesh.h"
-#include "Texture.h"
-#include "Light.h"
+#include "Engine/Shader.h"
+#include "Engine/Camera.h"
+#include "Engine/Mesh.h"
+#include "Engine/Texture.h"
+#include "Engine/Light.h"
+#include "Engine/Entity.h"
 
 class Renderer
 {
     public:
         Renderer();
         virtual ~Renderer();
-        void render(double currentTime, Shader* shader, Camera* camera, Mesh* mesh, Light* light = NULL);
+        void render(double currentTime, Shader* shader, Camera* camera, Entity* entity, Light* light = NULL);
     private:
 
 };

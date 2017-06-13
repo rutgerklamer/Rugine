@@ -9,16 +9,24 @@
 
 #include "Entity.h"
 
+struct LightData
+{
+  glm::vec3 lightColor;
+  glm::vec3 lightPosition;
+  int lightStrength;
+};
+
 class Light : public Entity
 {
     public:
         Light();
         virtual ~Light();
-        glm::vec3 getLightColor();
+        LightData getLightData();
         void setLightColor(glm::vec3 color);
+        void setStrength(int strength);
+        void setPosition(glm::vec3 position);
     private:
-      glm::vec3 lightColor;
-
+      LightData lightData;
 
 };
 

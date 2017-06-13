@@ -13,14 +13,14 @@ Superscene::~Superscene()
   delete camera;
 }
 
-void Superscene::addChild(Mesh* mesh)
+void Superscene::addChild(Entity* mesh)
 {
-  meshes.push_back(mesh);
+  entities.push_back(mesh);
 }
 
 void Superscene::addLight(Light* light)
 {
-  meshes.push_back(light);
+  entities.push_back(light);
   lights.push_back(light);
 }
 

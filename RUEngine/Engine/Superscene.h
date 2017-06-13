@@ -17,14 +17,20 @@
 #include "Engine/Entity.h"
 #include "Engine/Light.h"
 
+struct SceneData
+{
+  int gamma;
+  int exposure;
+};
+
 class Superscene
 {
     public:
         Superscene(Input* input);
         virtual ~Superscene();
-        void addChild(Mesh* mesh);
+        void addChild(Entity* mesh);
         void addLight(Light* light);
-        std::vector<Mesh*> meshes;
+        std::vector<Entity*> entities;
         std::vector<Light*> lights;
         Input* input;
         Camera* camera;

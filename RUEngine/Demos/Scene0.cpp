@@ -15,6 +15,7 @@ Scene0::Scene0(Input* input) : Superscene(input)
 
       light = new Light();
       light->position = glm::vec3(0,15,0);
+      light->setPosition(light->getPosition());
       this->addLight(light);
 }
 

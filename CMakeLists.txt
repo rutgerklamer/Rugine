@@ -128,6 +128,8 @@ IF(MAKE_RUENGINE)
     RUEngine/Engine/Entity.cpp
     RUEngine/Engine/ResourceManager.cpp
     RUEngine/Engine/Light.cpp
+    RUEngine/Engine/OBJloader.cpp
+
     )
 
     add_executable(ruengine ${SOURCES})
