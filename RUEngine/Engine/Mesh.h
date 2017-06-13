@@ -14,6 +14,14 @@
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
 
+
+struct MeshData
+{
+  GLfloat* vertices;
+  int size;
+  GLuint texture;
+};
+
 class Mesh
 {
     public:
@@ -30,19 +38,8 @@ class Mesh
         virtual glm::vec3 getPosition();
     private:
       GLuint VAO, VBO, EBO;
-      unsigned int size;
+      MeshData meshData;
       int lighting = 1;
-      GLuint texture;
-      std::vector<glm::vec3> temp_vertices;
-      std::vector<glm::vec2> temp_textures;
-      std::vector<glm::vec3> temp_normals;
-
-      std::vector<int> vertexIndices;
-      std::vector<int> uvIndices;
-      std::vector<int> normalIndices;
-
-      FILE* file;
-
 };
 
 #endif // MESH_H
