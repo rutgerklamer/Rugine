@@ -13,12 +13,14 @@
 #include "Camera.h"
 #include "Mesh.h"
 #include "Texture.h"
+#include "Light.h"
+
 class Renderer
 {
     public:
         Renderer();
         virtual ~Renderer();
-        void render(double currentTime, Shader* shader, Camera* camera, Mesh* mesh, Mesh* light = NULL);
+        void render(double currentTime, Shader* shader, Camera* camera, Mesh* mesh, Light* light = NULL);
     private:
 
 };

@@ -23,7 +23,7 @@ Scene1::Scene1(Input* input) : Superscene(input)
       this->addChild(mesh2);
 
 
-      light = new Entity();
+      light = new Light();
       light->position = glm::vec3(5,15,5);
       this->addLight(light);
 

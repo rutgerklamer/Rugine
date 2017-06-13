@@ -11,7 +11,7 @@ Renderer::~Renderer()
 
 }
 
-void Renderer::render(double currentTime, Shader* shader, Camera* camera, Mesh* mesh, Mesh* light)
+void Renderer::render(double currentTime, Shader* shader, Camera* camera, Mesh* mesh, Light* light)
 {
   glm::mat4 model;
   glm::mat4 quaternation;
@@ -23,10 +23,12 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Mesh* 
     //Send cameras position
 
     glUniform3f(glGetUniformLocation(shader->shaderProgram, "camPos"), camera->getPosition().x,camera->getPosition().y,camera->getPosition().z);
+
+    //Send light color (rgb) + brightness (w)
+    glUniform4f(glGetUniformLocation(shader->shaderProgram, "lightColor"), light->getLightColor().x, light->getLightColor().y, light->getLightColor().z, 50);
+    
   }
-  //Send light color (rgb) + brightness (w)
-  glUniform4f(glGetUniformLocation(shader->shaderProgram, "lightColor"), 1, 1, 1, 50);
-  //Manipulate model matrix
+//Manipulate model matrix
   model =  mesh->getModelMatrix();
   //Send to vertex shader
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));

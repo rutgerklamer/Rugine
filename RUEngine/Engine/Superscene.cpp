@@ -18,7 +18,7 @@ void Superscene::addChild(Mesh* mesh)
   meshes.push_back(mesh);
 }
 
-void Superscene::addLight(Mesh* light)
+void Superscene::addLight(Light* light)
 {
   meshes.push_back(light);
   lights.push_back(light);

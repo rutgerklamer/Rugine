@@ -34,7 +34,13 @@ void main(void)
   	float extinction = 1.0 / (1.1 * pow(distanceToLight, 2));
 
   	result += vec4(diffuseTexture.rgb * (ambient + extinction * (diffuse + specular)), diffuseTexture.a);
-    color = result;
+
+    const float gamma = 1.8;
+
+    vec3 mapped = vec3(1.0) - exp(-result.rgb * 0.25);
+    mapped = pow(mapped, vec3(1.0 / gamma));
+
+    color = vec4(mapped,1);
   } else {
     color = vec4(diffuseTexture);
   }

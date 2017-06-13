@@ -48,7 +48,7 @@ Display::Display()
     resourcemanager->updateShaders(shader, scenes[currentscene]->camera);
     for (int i = 0; i < scenes[currentscene]->meshes.size(); i++) {
       if (scenes[currentscene]->lights.size() > 0) {
-         renderer->render(glfwGetTime(), shader, scenes[currentscene]->camera, scenes[currentscene]->meshes[i], scenes[currentscene]->lights[0]);
+         renderer->render(glfwGetTime(), shader, scenes[currentscene]->camera, scenes[currentscene]->meshes[i], scenes[currentscene]->light);
        } else {
          renderer->render(glfwGetTime(), shader, scenes[currentscene]->camera, scenes[currentscene]->meshes[i]);
        }

@@ -11,6 +11,7 @@
 #include "Engine/Entity.h"
 #include "Engine/Superscene.h"
 #include "Engine/Texture.h"
+#include "Engine/Light.h"
 
 class Scene0 : public Superscene
 {
@@ -20,7 +21,6 @@ class Scene0 : public Superscene
         void Update(float deltaTime);
     private:
       Entity* mesh;
-      Entity* light;
 };
 
 #endif // SCENE0_H

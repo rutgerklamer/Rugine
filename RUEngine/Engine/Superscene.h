@@ -15,6 +15,7 @@
 #include "Mesh.h"
 #include "Input.h"
 #include "Engine/Entity.h"
+#include "Engine/Light.h"
 
 class Superscene
 {
@@ -22,12 +23,13 @@ class Superscene
         Superscene(Input* input);
         virtual ~Superscene();
         void addChild(Mesh* mesh);
-        void addLight(Mesh* light);
+        void addLight(Light* light);
         std::vector<Mesh*> meshes;
-        std::vector<Mesh*> lights;
+        std::vector<Light*> lights;
         Input* input;
         Camera* camera;
         virtual void Update(float deltaTime);
+        Light* light;
     private:
 
 };

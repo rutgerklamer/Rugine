@@ -13,8 +13,9 @@ Scene::Scene(Input* input) : Superscene(input)
       //Add a child to the stage
       this->addChild(mesh);
 
-      light = new Entity();
+      light = new Light();
       light->position = glm::vec3(5,5,5);
+      light->setLightColor(glm::vec3(1,1,0));
       this->addLight(light);
 }
 

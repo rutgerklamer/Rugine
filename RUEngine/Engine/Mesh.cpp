@@ -137,8 +137,6 @@ glm::vec3 Mesh::getPosition()
 
 }
 
-
-
 void Mesh::LoadObject(const char* objectPath)
 {
   file = fopen(objectPath, "r");

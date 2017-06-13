@@ -13,7 +13,7 @@ Scene0::Scene0(Input* input) : Superscene(input)
       //Add a child to the stage
       this->addChild(mesh);
 
-      light = new Entity();
+      light = new Light();
       light->position = glm::vec3(0,15,0);
       this->addLight(light);
 }

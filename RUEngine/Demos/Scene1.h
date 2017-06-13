@@ -12,7 +12,7 @@
 #include "Engine/Superscene.h"
 #include "Engine/Texture.h"
 #include "Maths/Time.h"
-
+#include "Engine/Light.h"
 class Scene1 : public Superscene
 {
     public:
@@ -23,7 +23,6 @@ class Scene1 : public Superscene
     private:
       Entity* mesh;
       Entity* mesh2;
-      Entity* light;
       Time* time = new Time();
 };
 
