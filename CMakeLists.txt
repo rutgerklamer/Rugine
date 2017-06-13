@@ -127,6 +127,7 @@ IF(MAKE_RUENGINE)
     RUEngine/Maths/Time.cpp
     RUEngine/Engine/Entity.cpp
     RUEngine/Engine/ResourceManager.cpp
+    RUEngine/Engine/Light.cpp
     )
 
     add_executable(ruengine ${SOURCES})
