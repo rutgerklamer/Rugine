@@ -13,6 +13,7 @@ struct LightData
   vec3 lightColor;
   vec3 lightPos;
   float lightStrength;
+  int isLight;
 };
 
 out vec4 color;
@@ -20,12 +21,31 @@ in vec2 texCoords;
 in vec3 worldPos;
 in vec3 normals;
 
-uniform vec3 lightPos;
 uniform vec3 camPos;
 uniform vec3 lightColor;
 uniform SceneData sceneData;
 uniform LightData lightData[maxLights];
 uniform sampler2D texture;
+
+vec4 getLight(LightData lightdata, vec3 camPosition, vec3 norms, vec3 worldPosition, vec4 texture, vec3 ambient)
+{
+  vec3 norm = normalize(norms);
+  vec3 lightDir = normalize(lightdata.lightPos - worldPosition);
+  float diff = max(dot(norm, lightDir), 0.0);
+  vec3 diffuse = diff * lightdata.lightStrength * lightdata.lightColor;
+
+  float specularStrength = 0.8;
+  vec3 viewDir = normalize(camPosition - worldPos);
+  vec3 reflectDir = reflect(-lightDir, norm);
+  float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
+  vec3 specular = specularStrength * spec * lightdata.lightStrength * lightdata.lightColor;
+
+  float distanceToLight = length(lightdata.lightPos - worldPosition);
+
+  float extinction = 100.0 / (1.1 * pow(distanceToLight, 2));
+
+  return vec4(texture.rgb * (ambient + extinction * (diffuse + specular)), texture.a);
+}
 
 void main(void)
 {
@@ -36,22 +56,9 @@ void main(void)
   vec4 result = vec4(diffuseTexture.rgb * ambient, diffuseTexture.a);
 
   for (int i = 0; i < maxLights; i++) {
-    vec3 norm = normalize(normals);
-  	vec3 lightDir = normalize(lightData[i].lightPos - worldPos);
-  	float diff = max(dot(norm, lightDir), 0.0);
-  	vec3 diffuse = diff * lightData[i].lightStrength * lightData[i].lightColor;
-
-  	float specularStrength = 0.8;
-  	vec3 viewDir = normalize(camPos - worldPos);
-  	vec3 reflectDir = reflect(-lightDir, norm);
-  	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
-  	vec3 specular = specularStrength * spec * lightData[i].lightStrength * lightData[i].lightColor;
-
-  	float distanceToLight = length(lightData[i].lightPos - worldPos);
-
-  	float extinction = 100.0 / (1.1 * pow(distanceToLight, 2));
-
-  	result += vec4(diffuseTexture.rgb * (ambient + extinction * (diffuse + specular)), diffuseTexture.a);
+    if (lightData[i].isLight > 0.5f) {
+      result += getLight(lightData[i], camPos, normals, worldPos, diffuseTexture, ambient);
+    }
   }
 
   vec3 mapped = vec3(1.0) - exp(-result.rgb * sceneData.exposure);

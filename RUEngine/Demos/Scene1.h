@@ -19,11 +19,9 @@ class Scene1 : public Superscene
         Scene1(Input* ip);
         virtual ~Scene1();
         void Update(float deltaTime);
-        bool shooting = false;;
     private:
       Entity* mesh;
-      Entity* mesh2;
-      Time* time = new Time();
+      Light* light;
 };
 
 #endif // SCENE1_H

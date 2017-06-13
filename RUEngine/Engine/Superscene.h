@@ -38,7 +38,6 @@ class Superscene
         Input* input;
         Camera* camera;
         virtual void Update(float deltaTime);
-        Light* light;
     private:
       SceneData sceneData;
 
