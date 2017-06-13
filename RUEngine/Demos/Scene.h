@@ -21,6 +21,7 @@ class Scene : public Superscene
         void Update(float deltaTime);
     private:
       Entity* mesh;
+      Light* light2;
 };
 
 #endif // SCENE_H

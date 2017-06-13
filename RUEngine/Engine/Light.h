@@ -13,7 +13,7 @@ struct LightData
 {
   glm::vec3 lightColor;
   glm::vec3 lightPosition;
-  int lightStrength;
+  float lightStrength;
 };
 
 class Light : public Entity

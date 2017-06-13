@@ -34,7 +34,7 @@ Display::Display()
 
   do {
     //Clear window with a red-"ish" color
-    glClearColor(1,1,1,1);
+    glClearColor(0.3,0.3,0.3,1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     if (input->isDown(93) && currentscene < scenes.size() - 1) {
       currentscene++;
@@ -50,7 +50,7 @@ Display::Display()
     resourcemanager->updateShaders(shader, scenes[currentscene]->camera);
     for (int i = 0; i < scenes[currentscene]->entities.size(); i++) {
       if (scenes[currentscene]->lights.size() > 0) {
-         renderer->render(glfwGetTime(), shader, scenes[currentscene]->camera, scenes[currentscene]->entities[i], scenes[currentscene]->getSceneData(), scenes[currentscene]->light);
+         renderer->render(glfwGetTime(), shader, scenes[currentscene]->camera, scenes[currentscene]->entities[i], scenes[currentscene]->getSceneData(), &scenes[currentscene]->lights);
        } else {
          renderer->render(glfwGetTime(), shader, scenes[currentscene]->camera, scenes[currentscene]->entities[i], scenes[currentscene]->getSceneData());
        }

@@ -4,6 +4,8 @@ Light::Light() : Entity()
 {
   std::cout << "Light initialized" << std::endl;
   this->lightData.lightColor = glm::vec3(1,1,1);
+  this->lightData.lightPosition = glm::vec3(1,1,1);
+  this->lightData.lightStrength = 1.0f;
 }
 
 Light::~Light()

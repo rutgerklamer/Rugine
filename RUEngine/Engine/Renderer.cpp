@@ -11,23 +11,26 @@ Renderer::~Renderer()
 
 }
 
-void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity* entity, SceneData scenedata, Light* light)
+void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity* entity, SceneData scenedata, std::vector<Light*>* lights)
 {
   glm::mat4 model;
-  if (light != NULL) {
-    LightData lightData = light->getLightData();
-    //Send lights position;
-    glUniform3f(glGetUniformLocation(shader->shaderProgram, "lightPos"), lightData.lightPosition.x, lightData.lightPosition.y, lightData.lightPosition.z);
-    //Send cameras position
+  if (lights != nullptr) {
+    std::vector<Light*>& lightPointer = *lights;
+    for (unsigned int i = 0; i < lightPointer.size(); i++) {
+      LightData lightData = lightPointer[i]->getLightData();
+      //Send lights position;
+      glUniform3f(glGetUniformLocation(shader->shaderProgram, ("lightData[" + std::to_string(i) + "].lightPos").c_str()), lightData.lightPosition.x, lightData.lightPosition.y, lightData.lightPosition.z);
+      //Send cameras position
 
-    glUniform3f(glGetUniformLocation(shader->shaderProgram, "camPos"), camera->getPosition().x,camera->getPosition().y,camera->getPosition().z);
+      glUniform3f(glGetUniformLocation(shader->shaderProgram, "camPos"), camera->getPosition().x,camera->getPosition().y,camera->getPosition().z);
 
-    //Send light color (rgb)
-    glUniform3f(glGetUniformLocation(shader->shaderProgram, "lightColor"), lightData.lightColor.x, lightData.lightColor.y, lightData.lightColor.z);
-    //Send scene data
-    glUniform1f(glGetUniformLocation(shader->shaderProgram, "sceneData.gamma"), scenedata.gamma);
-    glUniform1f(glGetUniformLocation(shader->shaderProgram, "sceneData.exposure"), scenedata.exposure);
-
+      //Send light color (rgb)
+      glUniform3f(glGetUniformLocation(shader->shaderProgram, ("lightData[" + std::to_string(i) + "].lightColor").c_str()),  lightData.lightColor.x, lightData.lightColor.y, lightData.lightColor.z);
+      glUniform1f(glGetUniformLocation(shader->shaderProgram, ("lightData[" + std::to_string(i) + "].lightStrength").c_str()),  lightData.lightStrength);
+      //Send scene data
+      glUniform1f(glGetUniformLocation(shader->shaderProgram, "sceneData.gamma"), scenedata.gamma);
+      glUniform1f(glGetUniformLocation(shader->shaderProgram, "sceneData.exposure"), scenedata.exposure);
+    }
   }
 //Manipulate model matrix
   model =  entity->getModelMatrix();

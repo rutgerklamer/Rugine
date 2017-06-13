@@ -19,8 +19,16 @@ Scene0::Scene0(Input* input) : Superscene(input)
       light->setLightColor(glm::vec3(0.4,0.1,0.2));
       this->addLight(light);
 
-      setGamma(1.4f);
-      setExposure(1.5f);
+      for (int i = 0; i < 8; i++) {
+        Light* light2 = new Light();
+        light2->position = glm::vec3(-35 + (i * 10),2,0);
+        light2->setPosition(light2->getPosition());
+        light2->setLightColor(glm::vec3(sin(i * 16.0f),cos(i*16.0f),i/16.0f));
+        this->addLight(light2);
+      }
+
+      setGamma(0.8f);
+      setExposure(0.25f);
 }
 
 Scene0::~Scene0()

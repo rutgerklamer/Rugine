@@ -4,6 +4,7 @@
 #include <iostream>
 #include <GL/glew.h>
 #include "glfw3.h"
+#include <vector>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -22,7 +23,7 @@ class Renderer
     public:
         Renderer();
         virtual ~Renderer();
-        void render(double currentTime, Shader* shader, Camera* camera, Entity* entity, SceneData scenedata, Light* light = NULL);
+        void render(double currentTime, Shader* shader, Camera* camera, Entity* entity, SceneData scenedata, std::vector<Light*>* lights = nullptr);
     private:
 
 };
