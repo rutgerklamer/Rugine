@@ -50,13 +50,13 @@ Display::Display()
     resourcemanager->updateShaders(shader, scenes[currentscene]->camera);
     for (int i = 0; i < scenes[currentscene]->entities.size(); i++) {
       if (scenes[currentscene]->lights.size() > 0) {
-         renderer->render(glfwGetTime(), shader, scenes[currentscene]->camera, scenes[currentscene]->entities[i], scenes[currentscene]->light);
+         renderer->render(glfwGetTime(), shader, scenes[currentscene]->camera, scenes[currentscene]->entities[i], scenes[currentscene]->getSceneData(), scenes[currentscene]->light);
        } else {
-         renderer->render(glfwGetTime(), shader, scenes[currentscene]->camera, scenes[currentscene]->entities[i]);
+         renderer->render(glfwGetTime(), shader, scenes[currentscene]->camera, scenes[currentscene]->entities[i], scenes[currentscene]->getSceneData());
        }
        if (scenes[currentscene]->entities[i]->showNormals) {
           resourcemanager->updateShaders(shaderNormals, scenes[currentscene]->camera);
-          renderer->render(glfwGetTime(), shaderNormals, scenes[currentscene]->camera, scenes[currentscene]->entities[i]);
+          renderer->render(glfwGetTime(), shaderNormals, scenes[currentscene]->camera, scenes[currentscene]->entities[i], scenes[currentscene]->getSceneData());
         }
     }
 

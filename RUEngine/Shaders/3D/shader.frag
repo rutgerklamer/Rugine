@@ -1,5 +1,11 @@
 #version 410 core
 
+struct SceneData
+{
+  float gamma;
+  float exposure;
+};
+
 out vec4 color;
 in vec2 texCoords;
 in vec3 worldPos;
@@ -7,7 +13,8 @@ in vec3 normals;
 
 uniform vec3 lightPos;
 uniform vec3 camPos;
-uniform vec4 lightColor;
+uniform vec3 lightColor;
+uniform SceneData sceneData;
 uniform sampler2D texture;
 
 void main(void)
@@ -21,24 +28,22 @@ void main(void)
     vec3 norm = normalize(normals);
   	vec3 lightDir = normalize(lightPos - worldPos);
   	float diff = max(dot(norm, lightDir), 0.0);
-  	vec3 diffuse = diff * lightColor.a * lightColor.rgb;
+  	vec3 diffuse = diff * 1 * lightColor.rgb;
 
   	float specularStrength = 0.8;
   	vec3 viewDir = normalize(camPos - worldPos);
   	vec3 reflectDir = reflect(-lightDir, norm);
   	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
-  	vec3 specular = specularStrength * spec * lightColor.a * lightColor.rgb;
+  	vec3 specular = specularStrength * spec * 1 * lightColor.rgb;
 
   	float distanceToLight = length(lightPos - worldPos);
 
-  	float extinction = 1.0 / (1.1 * pow(distanceToLight, 2));
+  	float extinction = 100.0 / (1.1 * pow(distanceToLight, 2));
 
   	result += vec4(diffuseTexture.rgb * (ambient + extinction * (diffuse + specular)), diffuseTexture.a);
 
-    const float gamma = 1.8;
-
-    vec3 mapped = vec3(1.0) - exp(-result.rgb * 0.25);
-    mapped = pow(mapped, vec3(1.0 / gamma));
+    vec3 mapped = vec3(1.0) - exp(-result.rgb * sceneData.exposure);
+    mapped = pow(mapped, vec3(1.0 / sceneData.gamma));
 
     color = vec4(mapped,1);
   } else {

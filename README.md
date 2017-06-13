@@ -8,44 +8,21 @@ Compiling
 
 Use cmake to create your project files in a separate `build` directory.
 
-> You should always be able to delete the `build` directory without losing your work! Whatever you do, work in the `src` directory!
+When changing I'd suggest making them in source directory and run CMake after you want to test, Otherwise CMake will write over the shaders in the build directory.
 
 Documentation
 -------------
 
 Documentation will be added soon using doxygen.
 
-Linux
+Building
 -----
 
 On Debian-based Linux, install the following libraries:
-
 	sudo apt-get install -y git cmake doxygen g++ libgl1-mesa-dev libglu1-mesa-dev libxrandr-dev libxi-dev
-
-Run `bootstrap.sh` or:
-
-	mkdir build
-	cd build
-	cmake -Wno-dev ..
-	make
-
-Then you can run the demo:
-
-	./ruengine
-
-Make sure to add any new files you create to the `CMakeLists.txt` file.
-
-Mac OS X
---------
-
-Install the following:
-
-- XCode + commandline developer tools
-- git
-- cmake
-- doxygen
-
-Run `bootstrap.sh` or:
+On Windows and MacOS:
+	Install make and cmake, and make sure you have atleast the C++11 compiler installed.
+Use those command to build:
 
 	mkdir build
 	cd build
@@ -56,12 +33,6 @@ Then you can run the demo:
 
 	./ruengine
 
-Make sure to add any new files you create to the `CMakeLists.txt` file.
-
-MS Windows (VS2015)
--------------------
-
-No support yet! I'll update it as soon as possible.
 
 Libraries
 ---------
@@ -81,4 +52,4 @@ License
 Copyright 2017 Rutger Klamer <rutger.klamer@gmail.com>
 
 This project is provided as opensource. If you decide to use this projects I'd like to recieve some credits but it's not needed.
-# RUEngine
+#Rugine

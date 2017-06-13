@@ -15,13 +15,14 @@
 #include "Engine/Texture.h"
 #include "Engine/Light.h"
 #include "Engine/Entity.h"
+#include "Engine/Superscene.h"
 
 class Renderer
 {
     public:
         Renderer();
         virtual ~Renderer();
-        void render(double currentTime, Shader* shader, Camera* camera, Entity* entity, Light* light = NULL);
+        void render(double currentTime, Shader* shader, Camera* camera, Entity* entity, SceneData scenedata, Light* light = NULL);
     private:
 
 };

@@ -11,7 +11,7 @@ Renderer::~Renderer()
 
 }
 
-void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity* entity, Light* light)
+void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity* entity, SceneData scenedata, Light* light)
 {
   glm::mat4 model;
   if (light != NULL) {
@@ -24,6 +24,10 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
 
     //Send light color (rgb)
     glUniform3f(glGetUniformLocation(shader->shaderProgram, "lightColor"), lightData.lightColor.x, lightData.lightColor.y, lightData.lightColor.z);
+    //Send scene data
+    glUniform1f(glGetUniformLocation(shader->shaderProgram, "sceneData.gamma"), scenedata.gamma);
+    glUniform1f(glGetUniformLocation(shader->shaderProgram, "sceneData.exposure"), scenedata.exposure);
+
   }
 //Manipulate model matrix
   model =  entity->getModelMatrix();

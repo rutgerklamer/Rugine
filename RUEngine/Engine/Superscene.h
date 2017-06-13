@@ -19,8 +19,8 @@
 
 struct SceneData
 {
-  int gamma;
-  int exposure;
+  float gamma;
+  float exposure;
 };
 
 class Superscene
@@ -30,6 +30,9 @@ class Superscene
         virtual ~Superscene();
         void addChild(Entity* mesh);
         void addLight(Light* light);
+        void setGamma(float gamma);
+        void setExposure(float exposure);
+        SceneData getSceneData();
         std::vector<Entity*> entities;
         std::vector<Light*> lights;
         Input* input;
@@ -37,6 +40,7 @@ class Superscene
         virtual void Update(float deltaTime);
         Light* light;
     private:
+      SceneData sceneData;
 
 };
 

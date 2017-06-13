@@ -5,6 +5,8 @@ Superscene::Superscene(Input* input)
   this->input = input;
   camera = new Camera();
   std::cout << "Superscene initialized" << std::endl;
+  sceneData.gamma = 1.6f;
+  sceneData.exposure = 0.1f;
 }
 
 Superscene::~Superscene()
@@ -27,4 +29,18 @@ void Superscene::addLight(Light* light)
 void Superscene::Update(float deltaTime)
 {
 
+}
+
+SceneData Superscene::getSceneData()
+{
+  return this->sceneData;
+}
+
+void Superscene::setGamma(float gamma)
+{
+  this->sceneData.gamma = gamma;
+}
+void Superscene::setExposure(float exposure)
+{
+  this->sceneData.exposure = exposure;
 }
