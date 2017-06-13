@@ -7,9 +7,8 @@ Scene0::Scene0(Input* input) : Superscene(input)
       mesh = new Entity();
       mesh->LoadObject("Assets/sponza.obj");
       //Set a texture to it
-      mesh->setTexture(tex::loadTexture("Assets/snbadi.png"));
+      mesh->setTexture(tex::loadTexture("Assets/szclcdi.png"));
       mesh->position = glm::vec3(0,0,0);
-      mesh->showNormals = false;
       mesh->scale = glm::vec3(30,30,30);
       //Add a child to the stage
       this->addChild(mesh);
