@@ -13,6 +13,7 @@ struct LightData
   vec3 lightColor;
   vec3 lightPos;
   float lightStrength;
+  float specularStrength;
   int isLight;
 };
 
@@ -34,15 +35,15 @@ vec4 getLight(LightData lightdata, vec3 camPosition, vec3 norms, vec3 worldPosit
   float diff = max(dot(norm, lightDir), 0.0);
   vec3 diffuse = diff * lightdata.lightStrength * lightdata.lightColor;
 
-  float specularStrength = 0.8;
+  float specularStrength = lightdata.specularStrength;
   vec3 viewDir = normalize(camPosition - worldPos);
   vec3 reflectDir = reflect(-lightDir, norm);
   float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
-  vec3 specular = specularStrength * spec * lightdata.lightStrength * lightdata.lightColor;
+  vec3 specular = specularStrength * spec * lightdata.lightColor;
 
   float distanceToLight = length(lightdata.lightPos - worldPosition);
 
-  float extinction = 100.0 / (1.1 * pow(distanceToLight, 2));
+  float extinction = 100.0 / (1.1 * pow(distanceToLight, 2)) * lightdata.lightStrength;
 
   return vec4(texture.rgb * (ambient + extinction * (diffuse + specular)), texture.a);
 }
@@ -56,7 +57,7 @@ void main(void)
   vec4 result = vec4(diffuseTexture.rgb * ambient, diffuseTexture.a);
 
   for (int i = 0; i < maxLights; i++) {
-    if (lightData[i].isLight > 0.5f) {
+    if (lightData[i].isLight == 1) {
       result += getLight(lightData[i], camPos, normals, worldPos, diffuseTexture, ambient);
     }
   }

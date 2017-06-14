@@ -40,11 +40,13 @@ Display::Display()
       currentscene++;
       input->setKey(93, false);
       scenes[currentscene]->input->setCamera(scenes[currentscene]->camera);
+      resourcemanager->removeLights(shader);
     }
     if (input->isDown(91) && currentscene > 0) {
       currentscene--;
       input->setKey(91, false);
       scenes[currentscene]->input->setCamera(scenes[currentscene]->camera);
+      resourcemanager->removeLights(shader);
     }
     scenes[currentscene]->Update(dtime->getDeltatime());
     resourcemanager->updateShaders(shader, scenes[currentscene]->camera);
@@ -138,6 +140,7 @@ void Display::initGlew()
   //Enable depth testing
   glEnable(GL_DEPTH_TEST);
   glDepthFunc(GL_LESS);
+  glDepthRange( 0.0, 0.5 );
   //Enable backface culling
   glEnable(GL_CULL_FACE);
 }

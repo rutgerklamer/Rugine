@@ -17,6 +17,8 @@ Scene0::Scene0(Input* input) : Superscene(input)
       light->position = glm::vec3(0,15,0);
       light->setPosition(light->getPosition());
       light->setLightColor(glm::vec3(0.4,0.1,0.2));
+      light->setStrength(3.0f);
+      light->setSpecularStrength(3.0f);
       this->addLight(light);
 
       for (int i = 0; i < 8; i++) {
@@ -24,11 +26,12 @@ Scene0::Scene0(Input* input) : Superscene(input)
         light2->position = glm::vec3(-35 + (i * 10),2,0);
         light2->setPosition(light2->getPosition());
         light2->setLightColor(glm::vec3(sin(i * 16.0f),cos(i*16.0f),i/16.0f));
+        light2->setSpecularStrength(2.0f);
         this->addLight(light2);
       }
 
-      setGamma(0.8f);
-      setExposure(0.25f);
+      setGamma(1.2f);
+      setExposure(0.20f);
 }
 
 Scene0::~Scene0()

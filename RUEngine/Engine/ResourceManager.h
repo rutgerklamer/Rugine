@@ -19,6 +19,7 @@ class ResourceManager
         virtual ~ResourceManager();
         void updateShaders(Shader* shader, Camera* camera);
         void setProjectionMatrix(Shader* shader, Camera* camera);
+        void removeLights(Shader* shader);
     private:
 
 
