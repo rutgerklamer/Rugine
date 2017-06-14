@@ -1,5 +1,4 @@
 #version 410 core
-
 #define maxLights 15
 
 struct SceneData

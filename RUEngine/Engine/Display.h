@@ -22,10 +22,12 @@ class Display
         virtual ~Display();
         void initGlfw();
         void initGlew();
+        void gameLoop();
+        void addScene(Superscene* scene);
         GLFWwindow* getWindow();
+        Input* input;
     private:
       GLFWwindow* window;
-      Input* input;
       Renderer* renderer;
       Shader* shader;
       Shader* shaderNormals;

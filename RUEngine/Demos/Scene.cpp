@@ -9,22 +9,21 @@ Scene::Scene(Input* input) : Superscene(input)
       //Set a texture to it
       mesh->setTexture(tex::loadTexture("Assets/wall.jpg"));
       mesh->position = glm::vec3(0,0,0);
-      mesh->showNormals = true;
       //Add a child to the stage
       this->addChild(mesh);
 
       light = new Light();
       light->position = glm::vec3(5,5,5);
       light->setPosition(light->getPosition());
-      light->setLightColor(glm::vec3(1,0,1));
-      light->setStrength(1.5f);
+      light->setLightColor(glm::vec3(0.42f,0.55,0.09));
+      light->setStrength(2.5f);
       light->setSpecularStrength(2.0f);
       this->addLight(light);
 
       light2 = new Light();
       light2->position = glm::vec3(-5,5,5);
       light2->setPosition(light2->getPosition());
-      light2->setLightColor(glm::vec3(0,1,0));
+      light2->setLightColor(glm::vec3(0.80, 0.36, 0.36));
       light2->setStrength(1.5f);
       this->addLight(light2);
 

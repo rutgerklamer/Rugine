@@ -112,7 +112,7 @@ IF(MAKE_RUENGINE)
   external/SOIL2/stbi_pvr.h
   ##END SOIL IMAGE LOADER
 
-  	RUEngine/Engine/main.cpp
+  	RUEngine/Demos/main.cpp
   	RUEngine/Engine/Display.cpp
     RUEngine/Engine/Input.cpp
     RUEngine/Engine/Renderer.cpp

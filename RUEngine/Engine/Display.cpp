@@ -18,20 +18,26 @@ Display::Display()
   shader = new Shader("Shaders/3D/shader.vert", "Shaders/3D/shader.frag","","","");
   shaderNormals = new Shader("Shaders/Normals/shader.vert", "Shaders/Normals/shader.frag","","","Shaders/Normals/shader.geom");
   shaderExplode = new Shader("Shaders/Explode/shader.vert", "Shaders/Explode/shader.frag","","","Shaders/Explode/shader.geom");
-  scene = new Scene(input);
-  scene0 = new Scene0(input);
-  scene1 = new Scene1(input);
-  scenes.push_back(scene);
-  scenes.push_back(scene0);
-  scenes.push_back(scene1);
   dtime = new Time();
   std::cout << "Display initialized" << std::endl;
-  scenes[currentscene]->input->setCamera(scenes[currentscene]->camera);
   //We want to run this atleast once.
   //Get the projection matrix
+
+
+}
+
+void Display::addScene(Superscene* scene)
+{
+  scenes.push_back(scene);
+}
+
+
+void Display::gameLoop()
+{
+  std::cout<< "hello" << std::endl;
+  scenes[currentscene]->input->setCamera(scenes[currentscene]->camera);
   resourcemanager->setProjectionMatrix(shaderNormals, scenes[currentscene]->camera);
   resourcemanager->setProjectionMatrix(shader, scenes[currentscene]->camera);
-
   do {
     //Clear window with a red-"ish" color
     glClearColor(0.3,0.3,0.3,1);
@@ -140,7 +146,6 @@ void Display::initGlew()
   //Enable depth testing
   glEnable(GL_DEPTH_TEST);
   glDepthFunc(GL_LESS);
-  glDepthRange( 0.0, 0.5 );
   //Enable backface culling
   glEnable(GL_CULL_FACE);
 }

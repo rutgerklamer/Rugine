@@ -23,6 +23,7 @@ MeshData OBJloader::loadModel(const char* modelPath)
   FILE* file = fopen(modelPath, "r");
   if( file == NULL ){
     std::cout << "failed to open: " << modelPath << std::endl;
+    fclose(file);
   }
 while( 1 ){
     char lineHeader[256];

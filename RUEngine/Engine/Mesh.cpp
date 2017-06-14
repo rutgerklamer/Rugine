@@ -3,7 +3,7 @@
 
 Mesh::Mesh()
 {
-LoadObject("Assets/untitled.obj");
+  LoadObject("Assets/untitled.obj");
 }
 
 Mesh::~Mesh()
