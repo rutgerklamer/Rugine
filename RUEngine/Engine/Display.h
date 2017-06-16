@@ -14,6 +14,7 @@
 #include "Demos/Scene1.h"
 #include "Maths/Time.h"
 #include "ResourceManager.h"
+#include "SceneManager.h"
 
 class Display
 {

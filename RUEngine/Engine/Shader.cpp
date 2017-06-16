@@ -124,5 +124,5 @@ void Shader::Use()
 {
 	//Bind this shader program
   glUseProgram(shaderProgram);
-	
+
 }

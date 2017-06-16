@@ -129,7 +129,7 @@ IF(MAKE_RUENGINE)
     RUEngine/Engine/ResourceManager.cpp
     RUEngine/Engine/Light.cpp
     RUEngine/Engine/OBJloader.cpp
-
+    RUEngine/Engine/Superscene.cpp
     )
 
     add_executable(ruengine ${SOURCES})

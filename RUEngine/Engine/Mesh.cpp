@@ -54,7 +54,6 @@ glm::vec3 Mesh::getPosition()
 void Mesh::LoadObject(const char* objectPath)
 {
    meshData = OBJloader::loadModel(objectPath);
-   std::cout << "size ::::" << meshData.size << std::endl;
 
    //See Plane() for more information
    glGenVertexArrays(1, &VAO);
