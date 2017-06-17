@@ -90,6 +90,7 @@ while( 1 ){
      vertices[i * multiplier + 7] = temp_normals[ normalIndex-1 ].z;
 
      if (isNormalMap) {
+       if ((float)i /3 == floor((float)i/3)) {
        unsigned int vertexIndexTang = vertexIndices[i];
        glm::vec3 v0 = glm::vec3(temp_vertices[ vertexIndexTang-1 ]);
        glm::vec3 v1;
@@ -165,6 +166,7 @@ while( 1 ){
          vertices[i * multiplier + 12 + multiplier + multiplier] = bitangent.y;
          vertices[i * multiplier + 13 + multiplier + multiplier] = bitangent.z;
        }
+     }
      }
    }
    MeshData meshData;
