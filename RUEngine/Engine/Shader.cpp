@@ -46,7 +46,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath,const char* tess
 	{
 			glGetShaderInfoLog(tessellationcontrol, 512, NULL, infoLog);
 			std::cout << "Error compiling tessellationcontrol shader: " << infoLog << std::endl;
-	}\
+	}
 	//Compile tessellation evaluation shader
 	tessellationevaluation = glCreateShader(GL_TESS_EVALUATION_SHADER);
 		char const* TessellationEvaluationSourcePointer = tessellationEvaluationCode.c_str();

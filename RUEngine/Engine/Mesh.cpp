@@ -36,6 +36,18 @@ GLuint Mesh::getTexture()
   return this->meshData.texture;
 }
 
+void Mesh::setNormalMap(GLuint tex)
+{
+  //Set the texture
+  this->meshData.normalMap = tex;
+}
+
+GLuint Mesh::getNormalMap()
+{
+  //Give texture to anybody that asks for it
+  return this->meshData.normalMap;
+}
+
 int Mesh::hasLighting()
 {
   return this->lighting;

@@ -62,11 +62,12 @@ class Camera
           return this->position;
         }
 
-        glm::vec3 setPosition(glm::vec3 pos)
+        void setPosition(glm::vec3 pos)
         {
           //Set position
           this->position = pos;
         }
+
         float getYaw(){
           return this->yaw;
         }

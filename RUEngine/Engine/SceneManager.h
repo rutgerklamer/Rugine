@@ -1,18 +1,21 @@
-#ifndef SUPERSCENE_H
-#define SUPERSCENE_H
+#ifndef SCENEMANAGER_H
+#define SCENEMANAGER_H
 
 #include <iostream>
 #include <vector>
 
-#include "Superscene.h"
+#include "Engine/Superscene.h"
+#include "Engine/Input.h"
 
 class SceneManager
 {
     public:
-        SceneManager();
+        SceneManager(Input* input);
         virtual ~SceneManager();
+        void checkUpdate();
+        std::vector<Superscene*> scenes;
     private:
-
+      Input* input;
 };
 
-#endif // SUPERSCENE_H
+#endif // SCENEMANAGER_H

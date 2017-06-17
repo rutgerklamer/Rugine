@@ -2,6 +2,11 @@
 
 Entity::Entity() : Mesh()
 {
+  eularAngles = glm::vec3(0,0,0);
+  position = glm::vec3(0,0,0);
+  scale = glm::vec3(1,1,1);
+  quaternation = glm::mat4(1);
+
   std::cout << "Entity initialized" << std::endl;
 }
 

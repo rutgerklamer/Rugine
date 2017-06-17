@@ -21,7 +21,6 @@ void Time::update()
       fps = 0;
       lastTime = glfwGetTime();
   }
-
 }
 
 int Time::getFPS()

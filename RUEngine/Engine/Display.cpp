@@ -19,6 +19,7 @@ Display::Display()
   shaderNormals = new Shader("Shaders/Normals/shader.vert", "Shaders/Normals/shader.frag","","","Shaders/Normals/shader.geom");
   shaderExplode = new Shader("Shaders/Explode/shader.vert", "Shaders/Explode/shader.frag","","","Shaders/Explode/shader.geom");
   dtime = new Time();
+  scenemanager = new SceneManager(input);
   std::cout << "Display initialized" << std::endl;
   //We want to run this atleast once.
   //Get the projection matrix
@@ -28,43 +29,42 @@ Display::Display()
 
 void Display::addScene(Superscene* scene)
 {
-  scenes.push_back(scene);
+  scenemanager->scenes.push_back(scene);
 }
 
 
 void Display::gameLoop()
 {
-  std::cout<< "hello" << std::endl;
-  scenes[currentscene]->input->setCamera(scenes[currentscene]->camera);
-  resourcemanager->setProjectionMatrix(shaderNormals, scenes[currentscene]->camera);
-  resourcemanager->setProjectionMatrix(shader, scenes[currentscene]->camera);
+  scenemanager->scenes[currentscene]->input->setCamera(scenemanager->scenes[currentscene]->camera);
+  resourcemanager->setProjectionMatrix(shaderNormals, scenemanager->scenes[currentscene]->camera);
+  resourcemanager->setProjectionMatrix(shader, scenemanager->scenes[currentscene]->camera);
   do {
     //Clear window with a red-"ish" color
     glClearColor(0.3,0.3,0.3,1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    if (input->isDown(93) && currentscene < scenes.size() - 1) {
+    if (input->isDown(93) && currentscene < scenemanager->scenes.size() - 1) {
       currentscene++;
       input->setKey(93, false);
-      scenes[currentscene]->input->setCamera(scenes[currentscene]->camera);
+      scenemanager->scenes[currentscene]->input->setCamera(scenemanager->scenes[currentscene]->camera);
       resourcemanager->removeLights(shader);
     }
     if (input->isDown(91) && currentscene > 0) {
       currentscene--;
       input->setKey(91, false);
-      scenes[currentscene]->input->setCamera(scenes[currentscene]->camera);
+      scenemanager->scenes[currentscene]->input->setCamera(scenemanager->scenes[currentscene]->camera);
       resourcemanager->removeLights(shader);
     }
-    scenes[currentscene]->Update(dtime->getDeltatime());
-    resourcemanager->updateShaders(shader, scenes[currentscene]->camera);
-    for (int i = 0; i < scenes[currentscene]->entities.size(); i++) {
-      if (scenes[currentscene]->lights.size() > 0) {
-         renderer->render(glfwGetTime(), shader, scenes[currentscene]->camera, scenes[currentscene]->entities[i], scenes[currentscene]->getSceneData(), &scenes[currentscene]->lights);
+    scenemanager->scenes[currentscene]->Update(dtime->getDeltatime());
+    resourcemanager->updateShaders(shader, scenemanager->scenes[currentscene]->camera);
+    for (int i = 0; i < scenemanager->scenes[currentscene]->entities.size(); i++) {
+      if (scenemanager->scenes[currentscene]->lights.size() > 0) {
+         renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(), &scenemanager->scenes[currentscene]->lights);
        } else {
-         renderer->render(glfwGetTime(), shader, scenes[currentscene]->camera, scenes[currentscene]->entities[i], scenes[currentscene]->getSceneData());
+         renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
        }
-       if (scenes[currentscene]->entities[i]->showNormals) {
-          resourcemanager->updateShaders(shaderNormals, scenes[currentscene]->camera);
-          renderer->render(glfwGetTime(), shaderNormals, scenes[currentscene]->camera, scenes[currentscene]->entities[i], scenes[currentscene]->getSceneData());
+       if (scenemanager->scenes[currentscene]->entities[i]->showNormals) {
+          resourcemanager->updateShaders(shaderNormals, scenemanager->scenes[currentscene]->camera);
+          renderer->render(glfwGetTime(), shaderNormals, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
         }
     }
 
@@ -96,6 +96,7 @@ Display::~Display() {
   delete dtime;
   delete window;
   delete resourcemanager;
+  delete scenemanager;
 }
 
 void Display::initGlfw()

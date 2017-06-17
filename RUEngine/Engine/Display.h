@@ -38,6 +38,7 @@ class Display
       Scene0* scene0;
       Scene1* scene1;
       Time* dtime;
+      SceneManager* scenemanager;
       ResourceManager* resourcemanager;
       int currentscene;
       std::vector<Superscene*> scenes;

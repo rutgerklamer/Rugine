@@ -49,7 +49,7 @@ vec4 getLight(LightData lightdata, vec3 camPosition, vec3 norms, vec3 worldPosit
 
 void main(void)
 {
-  vec4 diffuseTexture = texture2D(texture, texCoords);
+  vec4 diffuseTexture = texture2D(texture, vec2(texCoords.x, 1-texCoords.y));
   color = vec4(diffuseTexture);
 
   vec3 ambient = vec3(0.09, 0.09, 0.09);

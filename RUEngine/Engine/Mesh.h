@@ -20,6 +20,7 @@ struct MeshData
   GLfloat* vertices;
   int size;
   GLuint texture;
+  GLuint normalMap;
 };
 
 class Mesh
@@ -31,6 +32,8 @@ class Mesh
         int getSize();
         void setTexture(GLuint tex);
         GLuint getTexture();
+        void setNormalMap(GLuint tex);
+        GLuint getNormalMap();
         void LoadObject(const char* objectPath);
         int hasLighting();
         bool showNormals = false;

@@ -22,8 +22,6 @@ GLuint tex::loadTexture(const char* path) {
   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 
   //Enable alpha
-  glEnable(GL_BLEND);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
   //Make a mipmap
   glGenerateMipmap(GL_TEXTURE_2D);

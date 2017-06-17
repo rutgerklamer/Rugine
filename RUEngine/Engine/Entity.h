@@ -19,7 +19,7 @@ class Entity : public Mesh
         glm::mat4 getModelMatrix();
         glm::vec3 getPosition();
         glm::vec3 position;
-        glm::vec3 scale = glm::vec3(1,1,1);
+        glm::vec3 scale;
         glm::vec3 eularAngles;
         glm::quat quaternation;
     private:

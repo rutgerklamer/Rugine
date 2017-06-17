@@ -124,12 +124,14 @@ IF(MAKE_RUENGINE)
     RUEngine/Demos/Scene.cpp
     RUEngine/Demos/Scene0.cpp
     RUEngine/Demos/Scene1.cpp
+    RUEngine/Demos/Scene2.cpp
     RUEngine/Maths/Time.cpp
     RUEngine/Engine/Entity.cpp
     RUEngine/Engine/ResourceManager.cpp
     RUEngine/Engine/Light.cpp
     RUEngine/Engine/OBJloader.cpp
     RUEngine/Engine/Superscene.cpp
+    RUEngine/Engine/SceneManager.cpp
     )
 
     add_executable(ruengine ${SOURCES})
