@@ -10,8 +10,15 @@ OBJloader::~OBJloader()
 
 }
 
-MeshData OBJloader::loadModel(const char* modelPath)
+MeshData OBJloader::loadModel(const char* modelPath, bool isNormalMap)
 {
+  int multiplier;
+  if (isNormalMap)
+  {
+    multiplier = 14;
+  } else {
+    multiplier = 8;
+  }
   std::vector<glm::vec3> temp_vertices;
   std::vector<glm::vec2> temp_textures;
   std::vector<glm::vec3> temp_normals;
@@ -67,24 +74,72 @@ while( 1 ){
       normalIndices.push_back(normalIndex[2]);
     }
   }
-  GLfloat *vertices = new GLfloat[vertexIndices.size()* 8];
+  GLfloat *vertices = new GLfloat[vertexIndices.size()* multiplier];
   GLfloat *indices[vertexIndices.size()];
    for( unsigned int i=0; i<vertexIndices.size(); i++ ) {
      //push vertices/uv's and normals to correct place in vertices
      unsigned int vertexIndex = vertexIndices[i];
-     vertices[i * 8] = temp_vertices[ vertexIndex-1 ].x;
-     vertices[i * 8 + 1] = temp_vertices[ vertexIndex-1 ].y;
-     vertices[i * 8 + 2] = temp_vertices[ vertexIndex-1 ].z;
+     vertices[i * multiplier] = temp_vertices[ vertexIndex-1 ].x;
+     vertices[i * multiplier + 1] = temp_vertices[ vertexIndex-1 ].y;
+     vertices[i * multiplier + 2] = temp_vertices[ vertexIndex-1 ].z;
      unsigned int uvIndex = uvIndices[i];
-     vertices[i * 8 + 3] = temp_textures[ uvIndex-1 ].x;
-     vertices[i * 8 + 4] = temp_textures[ uvIndex-1 ].y;
+     vertices[i * multiplier + 3] = temp_textures[ uvIndex-1 ].x;
+     vertices[i * multiplier + 4] = temp_textures[ uvIndex-1 ].y;
      unsigned int normalIndex = normalIndices[i];
-     vertices[i * 8 + 5] = temp_normals[ normalIndex-1 ].x;
-     vertices[i * 8 + 6] = temp_normals[ normalIndex-1 ].y;
-     vertices[i * 8 + 7] = temp_normals[ normalIndex-1 ].z;
+     vertices[i * multiplier + 5] = temp_normals[ normalIndex-1 ].x;
+     vertices[i * multiplier + 6] = temp_normals[ normalIndex-1 ].y;
+     vertices[i * multiplier + 7] = temp_normals[ normalIndex-1 ].z;
+
+     if (isNormalMap) {
+       unsigned int vertexIndexTang = vertexIndices[i];
+       glm::vec3 v0 = glm::vec3(temp_vertices[ vertexIndexTang-1 ]);
+       glm::vec3 v1;
+       glm::vec3 v2;
+       if (i < vertexIndices.size() - 3) {
+         vertexIndexTang = vertexIndices[i + 1];
+         v1 = glm::vec3(temp_vertices[ vertexIndexTang-1 ]);
+         vertexIndexTang = vertexIndices[i + 2];
+         v2 = glm::vec3(temp_vertices[ vertexIndexTang-1 ]);
+       } else {
+         v1 = glm::vec3(1,1,1);
+         v2 = glm::vec3(1,1,1);
+       }
+
+       unsigned int uvIndexTang = uvIndices[i];
+       glm::vec2 uv0 = glm::vec2(temp_textures[ uvIndexTang-1 ]);
+       glm::vec2 uv1;
+       glm::vec2 uv2;
+       if (i < vertexIndices.size() - 3) {
+         uvIndexTang = uvIndices[i + 1];
+         uv1 = glm::vec2(temp_textures[ uvIndexTang-1 ]);
+         uvIndexTang = uvIndices[i + 2];
+         uv2 = glm::vec2(temp_textures[ uvIndexTang-1 ]);
+       } else {
+         uv1 = glm::vec2(1,1);
+         uv2 = glm::vec2(1,1);
+       }
+
+       glm::vec3 deltaPos1 = v1-v0;
+       glm::vec3 deltaPos2 = v2-v0;
+
+       glm::vec2 deltaUV1 = uv1-uv0;
+       glm::vec2 deltaUV2 = uv2-uv0;
+
+       float r = 1.0f / (deltaUV1.x * deltaUV2.y - deltaUV1.y * deltaUV2.x);
+       glm::vec3 tangent = (deltaPos1 * deltaUV2.y - deltaPos2 * deltaUV1.y)*r;
+       glm::vec3 bitangent = (deltaPos2 * deltaUV1.x   - deltaPos1 * deltaUV2.x)*r;
+
+       vertices[i * multiplier + 8] = tangent.x;
+       vertices[i * multiplier + 9] = tangent.y;
+       vertices[i * multiplier + 10] = tangent.z;
+
+       vertices[i * multiplier + 11] = bitangent.x;
+       vertices[i * multiplier + 12] = bitangent.y;
+       vertices[i * multiplier + 13] = bitangent.z;
+     }
    }
    MeshData meshData;
-   meshData.size = vertexIndices.size() * 8 * sizeof(GLfloat);
+   meshData.size = vertexIndices.size() * multiplier * sizeof(GLfloat);
    meshData.vertices = vertices;
    return meshData;
 }

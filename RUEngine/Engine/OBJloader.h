@@ -17,7 +17,7 @@ class OBJloader
     public:
         OBJloader();
         ~OBJloader();
-        static MeshData loadModel(const char* modelPath);
+        static MeshData loadModel(const char* modelPath, bool isNormalMap);
     private:
 
 };

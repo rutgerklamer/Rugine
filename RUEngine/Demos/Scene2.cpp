@@ -5,10 +5,10 @@ Scene2::Scene2(Input* input) : Superscene(input)
       std::cout << "Scene2 initialized" << std::endl;
       //Create a mesh
       mesh = new Entity();
-      mesh->LoadObject("Assets/head.obj");
+      mesh->LoadObject("Assets/head.obj", true);
       //Set a texture to it
       mesh->setTexture(tex::loadTexture("Assets/lambertian.jpg"));
-      mesh->setNormalMap(tex::loadTexture("Assets/bump.png"));
+      mesh->setNormalMap(tex::loadTexture("Assets/bumps.jpg"));
       mesh->position = glm::vec3(0,0,0);
       //Add a child to the stage
       this->addChild(mesh);

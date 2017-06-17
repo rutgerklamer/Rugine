@@ -44,7 +44,15 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
   //Send a texture
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, entity->getTexture());
-
+  glUniform1i(glGetUniformLocation(shader->shaderProgram, "texture"), 0);
+  if (entity->getNormalMap() != NULL) {
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, entity->getNormalMap());
+    glUniform1i(glGetUniformLocation(shader->shaderProgram, "normalMap"), 1);
+    glUniform1i(glGetUniformLocation(shader->shaderProgram, "hasNormalMap"), 1);
+  } else {
+    glUniform1i(glGetUniformLocation(shader->shaderProgram, "hasNormalMap"), 0);
+  }
   //Bind the VAO of the mesh
   entity->Draw();
 

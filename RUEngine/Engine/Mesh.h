@@ -34,7 +34,7 @@ class Mesh
         GLuint getTexture();
         void setNormalMap(GLuint tex);
         GLuint getNormalMap();
-        void LoadObject(const char* objectPath);
+        void LoadObject(const char* objectPath, bool isNormalMap);
         int hasLighting();
         bool showNormals = false;
         virtual glm::mat4 getModelMatrix();

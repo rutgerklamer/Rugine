@@ -3,7 +3,7 @@
 
 Mesh::Mesh()
 {
-  LoadObject("Assets/untitled.obj");
+  LoadObject("Assets/untitled.obj", false);
 }
 
 Mesh::~Mesh()
@@ -63,9 +63,17 @@ glm::vec3 Mesh::getPosition()
 
 }
 
-void Mesh::LoadObject(const char* objectPath)
+void Mesh::LoadObject(const char* objectPath, bool isNormalMap)
 {
-   meshData = OBJloader::loadModel(objectPath);
+   int multiplier;
+   if (isNormalMap)
+   {
+     multiplier = 14;
+   } else {
+     multiplier = 8;
+   }
+
+   meshData = OBJloader::loadModel(objectPath, isNormalMap);
 
    //See Plane() for more information
    glGenVertexArrays(1, &VAO);
@@ -73,12 +81,18 @@ void Mesh::LoadObject(const char* objectPath)
    glBindVertexArray(VAO);
    glBindBuffer(GL_ARRAY_BUFFER, VBO);
    glBufferData(GL_ARRAY_BUFFER, meshData.size, meshData.vertices, GL_STATIC_DRAW);
-   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *) 0);
+   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, multiplier * sizeof(GLfloat), (GLvoid *) 0);
    glEnableVertexAttribArray(0);
-   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)(3 * sizeof(GLfloat)));
+   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, multiplier * sizeof(GLfloat), (GLvoid *)(3 * sizeof(GLfloat)));
    glEnableVertexAttribArray(1);
-   glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)(5 * sizeof(GLfloat)));
+   glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, multiplier * sizeof(GLfloat), (GLvoid *)(5 * sizeof(GLfloat)));
    glEnableVertexAttribArray(2);
+   if (isNormalMap) {
+     glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, multiplier * sizeof(GLfloat), (GLvoid *)(8 * sizeof(GLfloat)));
+     glEnableVertexAttribArray(3);
+     glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, multiplier * sizeof(GLfloat), (GLvoid *)(11 * sizeof(GLfloat)));
+     glEnableVertexAttribArray(4);
+   }
    glBindVertexArray(0);
    delete meshData.vertices;
 }

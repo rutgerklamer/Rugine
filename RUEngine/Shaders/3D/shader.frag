@@ -20,12 +20,15 @@ out vec4 color;
 in vec2 texCoords;
 in vec3 worldPos;
 in vec3 normals;
+in mat3 TBN;
 
 uniform vec3 camPos;
 uniform vec3 lightColor;
+uniform int hasNormalMap;
 uniform SceneData sceneData;
 uniform LightData lightData[maxLights];
 uniform sampler2D texture;
+uniform sampler2D normalMap;
 
 vec4 getLight(LightData lightdata, vec3 camPosition, vec3 norms, vec3 worldPosition, vec4 texture, vec3 ambient)
 {
@@ -51,13 +54,17 @@ void main(void)
 {
   vec4 diffuseTexture = texture2D(texture, vec2(texCoords.x, 1-texCoords.y));
   color = vec4(diffuseTexture);
-
+  vec3 normalmap = normalize(texture2D(normalMap, vec2(texCoords.x, 1-texCoords.y)).rgb * 2.0 - 1.0);
   vec3 ambient = vec3(0.09, 0.09, 0.09);
   vec4 result = vec4(diffuseTexture.rgb * ambient, diffuseTexture.a);
 
   for (int i = 0; i < maxLights; i++) {
     if (lightData[i].isLight == 1) {
-      result += getLight(lightData[i], camPos, normals, worldPos, diffuseTexture, ambient);
+      if (hasNormalMap == 1) {
+        result += getLight(lightData[i], camPos, normalmap, worldPos, diffuseTexture, ambient);
+      } else {
+        result += getLight(lightData[i], camPos, normals, worldPos, diffuseTexture, ambient);
+      }
     }
   }
 

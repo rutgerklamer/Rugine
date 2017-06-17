@@ -5,7 +5,7 @@ Scene0::Scene0(Input* input) : Superscene(input)
   std::cout << "Scene0 initialized" << std::endl;
   //Create a mesh
       mesh = new Entity();
-      mesh->LoadObject("Assets/sponza.obj");
+      mesh->LoadObject("Assets/sponza.obj", false);
       //Set a texture to it
       mesh->setTexture(tex::loadTexture("Assets/szclcdi.png"));
       mesh->position = glm::vec3(0,0,0);
