@@ -14,6 +14,8 @@ out vec2 texCoords;
 out vec3 worldPos;
 out vec3 normals;
 out mat3 TBN;
+out mat4 MV;
+out mat4 V;
 
 void main(void)
 {
@@ -21,11 +23,13 @@ void main(void)
   normalMatrix = transpose(normalMatrix);
   normals = normalize(Normals * normalMatrix);
   worldPos = vec3(model*vec4(Vertices,1)).xyz;
+  MV = model * view;
+  V = view;
+  vec4 N = MV * normalize(vec4(Normals,0));
+  vec4 T = MV * normalize(vec4(Tangents,0));
+  vec4 B = MV * normalize(vec4(BitTangent,0));
+  TBN = transpose(mat3(vec3(T), vec3(B), vec3(N)));
 
-  vec3 T = normalize(vec3(model * vec4(Tangents,   0.0)));
-  vec3 B = normalize(vec3(model * vec4(BitTangent, 0.0)));
-  vec3 N = normalize(vec3(model * vec4(Normals,    0.0)));
-  TBN = mat3(T, B, N);
 
   gl_Position = proj* view * model * vec4(Vertices,1);
   texCoords = TexCoords;
