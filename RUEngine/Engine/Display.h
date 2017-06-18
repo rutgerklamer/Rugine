@@ -9,9 +9,6 @@
 #include "Shader.h"
 #include "Camera.h"
 #include "Mesh.h"
-#include "Demos/Scene.h"
-#include "Demos/Scene0.h"
-#include "Demos/Scene1.h"
 #include "Maths/Time.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
@@ -34,9 +31,6 @@ class Display
       Shader* shaderNormals;
       Shader* shaderExplode;
       Camera camera;
-      Scene* scene;
-      Scene0* scene0;
-      Scene1* scene1;
       Time* dtime;
       SceneManager* scenemanager;
       ResourceManager* resourcemanager;

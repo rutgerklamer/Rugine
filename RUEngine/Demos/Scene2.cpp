@@ -5,7 +5,7 @@ Scene2::Scene2(Input* input) : Superscene(input)
       std::cout << "Scene2 initialized" << std::endl;
       //Create a mesh
       mesh = new Entity();
-      mesh->LoadObject("Assets/detailedHead.obj", true);
+      mesh->LoadObject("Assets/head.obj", true);
       //Set a texture to it
       mesh->setTexture(tex::loadTexture("Assets/HeadColour.jpg"));
       mesh->setNormalMap(tex::loadTexture("Assets/Head_Level2_Normal.jpg"));
@@ -34,5 +34,4 @@ Scene2::~Scene2()
 
 void Scene2::Update(float deltaTime)
 {
-  mesh->eularAngles.y += 0.1* deltaTime;
 }

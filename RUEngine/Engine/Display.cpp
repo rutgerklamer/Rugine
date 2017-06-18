@@ -91,8 +91,6 @@ Display::~Display() {
   delete shader;
   delete shaderNormals;
   delete shaderExplode;
-  delete scene;
-  delete scene0;
   delete dtime;
   delete window;
   delete resourcemanager;

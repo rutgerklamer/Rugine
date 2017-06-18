@@ -137,10 +137,10 @@ while( 1 ){
              tangent = deltaPos / deltaUV1.s;
          else
              tangent = deltaPos / 1.0f;
-         float r = 1.0f / (deltaUV1.x * deltaUV2.y - deltaUV1.y * deltaUV2.x);
-         tangent = glm::normalize(tangent - glm::dot(normal,tangent)*normal) * r;
 
-         bitangent = glm::normalize(glm::cross(tangent, normal)) * r;
+         tangent = glm::normalize(tangent - glm::dot(normal,tangent)*normal) ;
+
+         bitangent = glm::normalize(glm::cross(tangent, normal));
 
          vertices[i * multiplier + 8] = tangent.x;
          vertices[i * multiplier + 9] = tangent.y;
