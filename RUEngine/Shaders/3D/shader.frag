@@ -32,9 +32,9 @@ uniform LightData lightData[maxLights];
 uniform sampler2D texture;
 uniform sampler2D normalMap;
 
-vec4 getLight(LightData lightdata, vec3 camPosition, vec3 norms, vec3 worldPosition, vec4 texture, vec3 ambient, mat3 tangentSpace, vec3 lightDirection, int isNM)
+vec4 getLight(LightData lightdata, vec3 eyedir, vec3 norms, vec3 worldPosition, vec4 texture, vec3 ambient, mat3 tangentSpace, vec3 lightDirection, int isNM)
 {
-  vec3 E = normalize(camPosition);
+  vec3 E = normalize(eyedir);
 
   vec3 N = norms;
 
@@ -45,18 +45,18 @@ vec4 getLight(LightData lightdata, vec3 camPosition, vec3 norms, vec3 worldPosit
 
     L = normalize(lightDirection);
     H = normalize(E + L);
-    ambientTerm += ambient;
+    ambientTerm += lightdata.lightColor;
     diffuseTerm += lightdata.lightColor * max(dot(L, N), 0);
     if (isNM > 0.5) {
-    specularTerm += lightdata.specularStrength * lightdata.lightColor * pow(max(dot(H, N), 0), 1);
+      specularTerm += lightdata.specularStrength * 2.0 * lightdata.lightColor * pow(max(dot(H, N), 0), 32);
     } else {
       vec3 reflectDir = reflect(-lightDirection, norms);
-      specularTerm += lightdata.specularStrength * lightdata.lightColor * pow(max(dot(E, reflectDir), 0), 32);
+      specularTerm += lightdata.specularStrength* lightdata.lightColor * pow(max(dot(E, reflectDir), 0), 32);
     }
   float distanceToLight = length(lightdata.lightPos - worldPos);
   float extinction = 100.0 / (1.1 * pow(distanceToLight, 2)) * lightdata.lightStrength;
 
-  vec4 finishedLighting = vec4(texture) * vec4(ambientTerm + extinction * (diffuseTerm + specularTerm), 1);
+  vec4 finishedLighting = vec4(texture) * vec4(ambientTerm * extinction + (diffuseTerm + specularTerm), 1);
 
   return finishedLighting;
 }
@@ -65,7 +65,7 @@ void main(void)
 {
   vec4 diffuseTexture = texture2D(texture, vec2(texCoords.x, 1-texCoords.y));
   color = vec4(diffuseTexture);
-  vec3 normalmap = normalize(texture2D(normalMap, vec2(texCoords.x, 1-texCoords.y)).rgb * 2.0 - 1.0);
+  vec3 normalmap = texture2D(normalMap, vec2(texCoords.x, 1-texCoords.y)).rgb * 2.0 - 1.0;
   vec3 ambient = vec3(0.09, 0.09, 0.09);
   vec4 result = vec4(diffuseTexture.rgb * ambient, diffuseTexture.a);
 
