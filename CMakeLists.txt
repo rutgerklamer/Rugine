@@ -4,7 +4,8 @@ project (ruengine)
 
 # delete CMakeCache.txt from the build directory when you edit these options
 ####################################################################
-OPTION(MAKE_RUENGINE "Create RUEngine" ON)
+OPTION(MAKE_DEMO "Create DEMO" ON)
+OPTION(MAKE_NMHD "Create NormalMap vs HighDetail" ON)
 ####################################################################
 
 if( CMAKE_BINARY_DIR STREQUAL CMAKE_SOURCE_DIR )
@@ -81,13 +82,7 @@ add_definitions(
 	-D_CRT_SECURE_NO_WARNINGS
 )
 
-####################################################################
-# RUEngine                                                         #
-####################################################################
-IF(MAKE_RUENGINE)
-
-  set(SOURCES
-
+set(SOILSOURCE
   ##SOIL IMAGE LOADER
   external/SOIL2/etc1_utils.c
   external/SOIL2/etc1_utils.h
@@ -111,9 +106,10 @@ IF(MAKE_RUENGINE)
   external/SOIL2/stbi_pvr_c.h
   external/SOIL2/stbi_pvr.h
   ##END SOIL IMAGE LOADER
+)
 
-  	RUEngine/Demos/main.cpp
-  	RUEngine/Engine/Display.cpp
+set(RUGINESOURCE
+    RUEngine/Engine/Display.cpp
     RUEngine/Engine/Input.cpp
     RUEngine/Engine/Renderer.cpp
     RUEngine/Engine/Shader.cpp
@@ -121,10 +117,6 @@ IF(MAKE_RUENGINE)
     RUEngine/Engine/Mesh.cpp
     RUEngine/Engine/Superscene.cpp
     RUEngine/Engine/Texture.cpp
-    RUEngine/Demos/Scene.cpp
-    RUEngine/Demos/Scene0.cpp
-    RUEngine/Demos/Scene1.cpp
-    RUEngine/Demos/Scene2.cpp
     RUEngine/Maths/Time.cpp
     RUEngine/Engine/Entity.cpp
     RUEngine/Engine/ResourceManager.cpp
@@ -132,18 +124,55 @@ IF(MAKE_RUENGINE)
     RUEngine/Engine/OBJloader.cpp
     RUEngine/Engine/Superscene.cpp
     RUEngine/Engine/SceneManager.cpp
-    )
+  )
 
-    add_executable(ruengine ${SOURCES})
+####################################################################
+# Rugine DEMO                                                        #
+####################################################################
+IF(MAKE_DEMO)
+  set(SOURCES
+    RUEngine/Demos/main.cpp
+    RUEngine/Demos/Scene.cpp
+    RUEngine/Demos/Scene0.cpp
+    RUEngine/Demos/Scene1.cpp
+    RUEngine/Demos/Scene2.cpp
+  )
 
-  target_link_libraries(ruengine ${ALL_GRAPHICS_LIBS}   )
+  add_executable(demo ${SOURCES} ${SOILSOURCE} ${RUGINESOURCE})
+
+  target_link_libraries(demo ${ALL_GRAPHICS_LIBS}   )
   file(
   	COPY ${CMAKE_SOURCE_DIR}/RUEngine/Shaders
   	DESTINATION ${CMAKE_BINARY_DIR}
   )
 
   file(
-  	COPY ${CMAKE_SOURCE_DIR}/RUEngine/Assets
+  	COPY ${CMAKE_SOURCE_DIR}/RUEngine/Demos/Assets
+  	DESTINATION ${CMAKE_BINARY_DIR}
+  )
+
+ENDIF()
+
+####################################################################
+# Rugine Normalmap vs High Detail                                  #
+####################################################################
+IF(MAKE_NMHD)
+  set(SOURCES
+    RUEngine/NMHD/main.cpp
+    RUEngine/NMHD/Scene.cpp
+    RUEngine/NMHD/Scene0.cpp
+  )
+
+  add_executable(NMHD ${SOURCES} ${SOILSOURCE} ${RUGINESOURCE})
+
+  target_link_libraries(NMHD ${ALL_GRAPHICS_LIBS}   )
+  file(
+  	COPY ${CMAKE_SOURCE_DIR}/RUEngine/Shaders
+  	DESTINATION ${CMAKE_BINARY_DIR}
+  )
+
+  file(
+  	COPY ${CMAKE_SOURCE_DIR}/RUEngine/NMHD/Assets
   	DESTINATION ${CMAKE_BINARY_DIR}
   )
 
