@@ -58,8 +58,6 @@ vec4 getLight(LightData lightdata, vec3 camPosition, vec3 norms, vec3 worldPosit
 
   vec4 finishedLighting = vec4(texture) * vec4(ambientTerm + extinction * (diffuseTerm + specularTerm), 1);
 
-
-
   return finishedLighting;
 }
 
@@ -76,7 +74,7 @@ void main(void)
       if (hasNormalMap == 1) {
         vec3 vertexInCamSpace = (MV * vec4(worldPos, 1.0)).xyz;
         vec3 eyeDir = TBN * normalize( -vertexInCamSpace);
-        vec3 lightInCamSpace = (V * vec4(lightData[i].lightPos, 1.0)).xyz;
+        vec3 lightInCamSpace = (  MV * vec4(lightData[i].lightPos, 1.0)).xyz;
         vec3 lightDir = TBN * normalize((lightInCamSpace - vertexInCamSpace));
         result += getLight(lightData[i], eyeDir, normalmap, worldPos, diffuseTexture, ambient, TBN, lightDir, 1);
       } else {

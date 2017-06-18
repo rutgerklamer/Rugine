@@ -1,14 +1,14 @@
-#include "Scene2.h"
+#include "Scene3.h"
 
-Scene2::Scene2(Input* input) : Superscene(input)
+Scene3::Scene3(Input* input) : Superscene(input)
 {
-      std::cout << "Scene2 initialized" << std::endl;
+      std::cout << "Scene3 initialized" << std::endl;
       //Create a mesh
       mesh = new Entity();
-      mesh->LoadObject("Assets/detailedHead.obj", true);
+      mesh->LoadObject("Assets/africanHead.obj", true);
       //Set a texture to it
-      mesh->setTexture(tex::loadTexture("Assets/HeadColour.jpg"));
-      mesh->setNormalMap(tex::loadTexture("Assets/Head_Level2_Normal.jpg"));
+      mesh->setTexture(tex::loadTexture("Assets/africanHead.tga"));
+      mesh->setNormalMap(tex::loadTexture("Assets/africanHeadNM.tga"));
       mesh->position = glm::vec3(0,0,0);
       mesh->scale = glm::vec3(10,10,10);
       //Add a child to the stage
@@ -19,20 +19,20 @@ Scene2::Scene2(Input* input) : Superscene(input)
       light->setPosition(light->getPosition());
       light->setLightColor(glm::vec3(1,1,1));
       light->setStrength(4.5f);
-      light->setSpecularStrength(0.2f);
+      light->setSpecularStrength(2.0f);
       this->addLight(light);
 
       setGamma(0.8f);
       setExposure(0.3f);
 }
 
-Scene2::~Scene2()
+Scene3::~Scene3()
 {
   delete mesh;
   delete light;
 }
 
-void Scene2::Update(float deltaTime)
+void Scene3::Update(float deltaTime)
 {
   mesh->eularAngles.y += 0.1* deltaTime;
 }
