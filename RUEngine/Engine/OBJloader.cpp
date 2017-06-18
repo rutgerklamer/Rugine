@@ -91,82 +91,81 @@ while( 1 ){
 
      if (isNormalMap) {
        if ((float)i /3 == floor((float)i/3)) {
-       unsigned int vertexIndexTang = vertexIndices[i];
-       glm::vec3 v0 = glm::vec3(temp_vertices[ vertexIndexTang-1 ]);
-       glm::vec3 v1;
-       glm::vec3 v2;
-       if (i < vertexIndices.size() - 3) {
-         vertexIndexTang = vertexIndices[i + 1];
-         v1 = glm::vec3(temp_vertices[ vertexIndexTang-1 ]);
-         vertexIndexTang = vertexIndices[i + 2];
-         v2 = glm::vec3(temp_vertices[ vertexIndexTang-1 ]);
-       } else {
-         v1 = glm::vec3(1,1,1);
-         v2 = glm::vec3(1,1,1);
+         unsigned int vertexIndexTang = vertexIndices[i];
+         glm::vec3 v0 = glm::vec3(temp_vertices[ vertexIndexTang-1 ]);
+         glm::vec3 v1;
+         glm::vec3 v2;
+         if (i < vertexIndices.size() - 3) {
+           vertexIndexTang = vertexIndices[i + 1];
+           v1 = glm::vec3(temp_vertices[ vertexIndexTang-1 ]);
+           vertexIndexTang = vertexIndices[i + 2];
+           v2 = glm::vec3(temp_vertices[ vertexIndexTang-1 ]);
+         } else {
+           v1 = glm::vec3(1,1,1);
+           v2 = glm::vec3(1,1,1);
+         }
+         unsigned int normalIndex = normalIndices[i];
+         glm::vec3 normal = glm::vec3(temp_normals[ normalIndex-1 ]);
+
+         unsigned int uvIndexTang = uvIndices[i];
+         glm::vec2 uv0 = glm::vec2(temp_textures[ uvIndexTang-1 ]);
+         glm::vec2 uv1;
+         glm::vec2 uv2;
+         if (i < vertexIndices.size() - 3) {
+           uvIndexTang = uvIndices[i + 1];
+           uv1 = glm::vec2(temp_textures[ uvIndexTang-1 ]);
+           uvIndexTang = uvIndices[i + 2];
+           uv2 = glm::vec2(temp_textures[ uvIndexTang-1 ]);
+         } else {
+           uv1 = glm::vec2(1,1);
+           uv2 = glm::vec2(1,1);
+         }
+
+         glm::vec3 deltaPos;
+        if(v0 == v1)
+            deltaPos = v2 - v0;
+        else
+            deltaPos = v1 - v0;
+
+         glm::vec2 deltaUV1 = uv1-uv0;
+         glm::vec2 deltaUV2 = uv2-uv0;
+
+         glm::vec3 tangent;
+         glm::vec3 bitangent;
+
+         if(deltaUV1.s != 0)
+             tangent = deltaPos / deltaUV1.s;
+         else
+             tangent = deltaPos / 1.0f;
+
+         tangent = glm::normalize(tangent - glm::dot(normal,tangent)*normal);
+
+         bitangent = glm::normalize(glm::cross(tangent, normal));
+
+         vertices[i * multiplier + 8] = tangent.x;
+         vertices[i * multiplier + 9] = tangent.y;
+         vertices[i * multiplier + 10] = tangent.z;
+
+         vertices[i * multiplier + 11] = bitangent.x;
+         vertices[i * multiplier + 12] = bitangent.y;
+         vertices[i * multiplier + 13] = bitangent.z;
+
+         if (i < vertexIndices.size() - 3) {
+           vertices[i * multiplier + 8 + multiplier] = tangent.x;
+           vertices[i * multiplier + 9 + multiplier] = tangent.y;
+           vertices[i * multiplier + 10 + multiplier] = tangent.z;
+           vertices[i * multiplier + 8 + multiplier + multiplier] = tangent.x;
+           vertices[i * multiplier + 9 + multiplier + multiplier] = tangent.y;
+           vertices[i * multiplier + 10 + multiplier + multiplier] = tangent.z;
+
+           vertices[i * multiplier + 11 + multiplier] = bitangent.x;
+           vertices[i * multiplier + 12 + multiplier] = bitangent.y;
+           vertices[i * multiplier + 13 + multiplier] = bitangent.z;
+           vertices[i * multiplier + 11 + multiplier + multiplier] = bitangent.x;
+           vertices[i * multiplier + 12 + multiplier + multiplier] = bitangent.y;
+           vertices[i * multiplier + 13 + multiplier + multiplier] = bitangent.z;
+         }
        }
-       unsigned int normalIndex = normalIndices[i];
-       glm::vec3 normal = glm::vec3(temp_normals[ normalIndex-1 ]);
-
-       unsigned int uvIndexTang = uvIndices[i];
-       glm::vec2 uv0 = glm::vec2(temp_textures[ uvIndexTang-1 ]);
-       glm::vec2 uv1;
-       glm::vec2 uv2;
-       if (i < vertexIndices.size() - 3) {
-         uvIndexTang = uvIndices[i + 1];
-         uv1 = glm::vec2(temp_textures[ uvIndexTang-1 ]);
-         uvIndexTang = uvIndices[i + 2];
-         uv2 = glm::vec2(temp_textures[ uvIndexTang-1 ]);
-       } else {
-         uv1 = glm::vec2(1,1);
-         uv2 = glm::vec2(1,1);
-       }
-
-       glm::vec3 deltaPos;
-      if(v0 == v1)
-          deltaPos = v2 - v0;
-      else
-          deltaPos = v1 - v0;
-
-       glm::vec2 deltaUV1 = uv1-uv0;
-       glm::vec2 deltaUV2 = uv2-uv0;
-
-       glm::vec3 tangent; // tangents
-       glm::vec3 bitangent; // binormal
-
-       // avoid divion with 0
-       if(deltaUV1.s != 0)
-           tangent = deltaPos / deltaUV1.s;
-       else
-           tangent = deltaPos / 1.0f;
-
-       tangent = glm::normalize(tangent - glm::dot(normal,tangent)*normal);
-
-       bitangent = glm::normalize(glm::cross(tangent, normal));
-
-       vertices[i * multiplier + 8] = tangent.x;
-       vertices[i * multiplier + 9] = tangent.y;
-       vertices[i * multiplier + 10] = tangent.z;
-
-       vertices[i * multiplier + 11] = bitangent.x;
-       vertices[i * multiplier + 12] = bitangent.y;
-       vertices[i * multiplier + 13] = bitangent.z;
-
-       if (i < vertexIndices.size() - 3) {
-         vertices[i * multiplier + 8 + multiplier] = tangent.x;
-         vertices[i * multiplier + 9 + multiplier] = tangent.y;
-         vertices[i * multiplier + 10 + multiplier] = tangent.z;
-         vertices[i * multiplier + 8 + multiplier + multiplier] = tangent.x;
-         vertices[i * multiplier + 9 + multiplier + multiplier] = tangent.y;
-         vertices[i * multiplier + 10 + multiplier + multiplier] = tangent.z;
-
-         vertices[i * multiplier + 11 + multiplier] = bitangent.x;
-         vertices[i * multiplier + 12 + multiplier] = bitangent.y;
-         vertices[i * multiplier + 13 + multiplier] = bitangent.z;
-         vertices[i * multiplier + 11 + multiplier + multiplier] = bitangent.x;
-         vertices[i * multiplier + 12 + multiplier + multiplier] = bitangent.y;
-         vertices[i * multiplier + 13 + multiplier + multiplier] = bitangent.z;
-       }
-     }
      }
    }
    MeshData meshData;

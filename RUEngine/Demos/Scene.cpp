@@ -41,5 +41,4 @@ Scene::~Scene()
 void Scene::Update(float deltaTime)
 {
   mesh->eularAngles.y += 0.1* deltaTime;
-  mesh->quaternation = glm::quat(mesh->eularAngles);
 }

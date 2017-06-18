@@ -21,9 +21,8 @@ class Entity : public Mesh
         glm::vec3 position;
         glm::vec3 scale;
         glm::vec3 eularAngles;
-        glm::quat quaternation;
     private:
-
+      glm::quat quaternation;
 
 };
 

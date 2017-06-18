@@ -25,10 +25,10 @@ void main(void)
   worldPos = vec3(model*vec4(Vertices,1)).xyz;
   MV = model * view;
   V = view;
-  vec4 N = MV * normalize(vec4(Normals,0));
+  vec4 N = MV * normalize(vec4(normals,0));
   vec4 T = MV * normalize(vec4(Tangents,0));
   vec4 B = MV * normalize(vec4(BitTangent,0));
-  TBN = transpose(mat3(vec3(T), vec3(B), vec3(N)));
+  TBN = transpose( mat3(vec3(T), vec3(B), vec3(N)));
 
 
   gl_Position = proj* view * model * vec4(Vertices,1);

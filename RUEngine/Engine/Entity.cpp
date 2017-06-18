@@ -20,6 +20,7 @@ glm::mat4 Entity::getModelMatrix()
   glm::mat4 model;
   model = glm::translate(model, position);
   model = glm::scale(model, scale);
+  quaternation = glm::quat(eularAngles);
   glm::mat4 quat = glm::toMat4(quaternation);
   model = model*quat;
   return model;
