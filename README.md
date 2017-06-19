@@ -1,7 +1,7 @@
-RUEngine
+Rugine
 ====
 
-RUEngine is a framework using the rendering system of openGL.
+Rugine is a framework using the rendering system of openGL.
 
 Compiling
 ---------
@@ -31,7 +31,7 @@ Use those command to build:
 
 Then you can run the demo:
 
-	./ruengine
+	./demo
 
 
 Libraries
