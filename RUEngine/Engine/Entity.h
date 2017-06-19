@@ -16,6 +16,7 @@ class Entity : public Mesh
     public:
         Entity();
         virtual ~Entity();
+        void update(float deltaTime);
         glm::mat4 getModelMatrix();
         glm::vec3 getPosition();
         glm::vec3 position;

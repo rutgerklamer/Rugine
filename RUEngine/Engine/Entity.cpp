@@ -30,3 +30,8 @@ glm::vec3 Entity::getPosition()
 {
   return position;
 }
+
+void Entity::update(float deltaTime)
+{
+
+}

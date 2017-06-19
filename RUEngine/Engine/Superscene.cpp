@@ -28,7 +28,10 @@ void Superscene::addLight(Light* light)
 
 void Superscene::Update(float deltaTime)
 {
-
+  for (unsigned int i = 0; i < entities.size(); i++)
+  {
+    entities[i]->update(deltaTime);
+  }
 }
 
 SceneData Superscene::getSceneData()
