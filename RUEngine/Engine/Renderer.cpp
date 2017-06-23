@@ -21,9 +21,7 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
       //Send lights position;
       glUniform3f(glGetUniformLocation(shader->shaderProgram, ("lightData[" + std::to_string(i) + "].lightPos").c_str()), lightData.lightPosition.x, lightData.lightPosition.y, lightData.lightPosition.z);
       //Send cameras position
-
       glUniform3f(glGetUniformLocation(shader->shaderProgram, "camPos"), camera->getPosition().x,camera->getPosition().y,camera->getPosition().z);
-
       //Send light color (rgb)
       glUniform3f(glGetUniformLocation(shader->shaderProgram, ("lightData[" + std::to_string(i) + "].lightColor").c_str()),  lightData.lightColor.x, lightData.lightColor.y, lightData.lightColor.z);
       //Send light strength
