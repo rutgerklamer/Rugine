@@ -14,10 +14,25 @@
 class Entity : public Mesh
 {
     public:
+      /**
+              *  Constructor
+              */
         Entity();
+        /**
+                *  Deconstructor
+                */
         virtual ~Entity();
+        /**
+                *  called by the Superscene
+                */
         void update(float deltaTime);
+        /**
+            *  Return the modelMatrix by translating, rotating and scaling the model matrix.
+            */
         glm::mat4 getModelMatrix();
+        /**
+            *  Return the 3D position of the mesh.
+            */
         glm::vec3 getPosition();
         glm::vec3 position;
         glm::vec3 scale;

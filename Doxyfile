@@ -1,0 +1,20 @@
+Input configuration is as follows:
+
+INPUT                  = "RUEngine/Engine"
+INPUT_ENCODING         = UTF-8
+FILE_PATTERNS          = *.h \
+                         *.cpp
+RECURSIVE              = YES
+EXCLUDE                =
+EXCLUDE_SYMLINKS       = NO
+EXCLUDE_PATTERNS       =
+EXCLUDE_SYMBOLS        =
+EXAMPLE_PATH           =
+EXAMPLE_PATTERNS       = *
+EXAMPLE_RECURSIVE      = NO
+IMAGE_PATH             =
+INPUT_FILTER           =
+FILTER_PATTERNS        =
+FILTER_SOURCE_FILES    = NO
+FILTER_SOURCE_PATTERNS =
+USE_MDFILE_AS_MAINPAGE =

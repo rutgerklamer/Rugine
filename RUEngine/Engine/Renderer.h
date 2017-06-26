@@ -21,8 +21,23 @@
 class Renderer
 {
     public:
+      /**
+          *  Constructor
+          */
         Renderer();
+        /**
+            *  Destructor
+            */
         virtual ~Renderer();
+        /**
+            *  render the scene
+            *  takes in the current Time //TODO remove <-
+            *  the shader we want to use //TODO improve performance <-
+            *  the camera we want to get the view from //TODO improve performance <-
+            *  the entity we want to render.
+            *  the data of the scene.
+            *  and a vector of light if we want multiple lights.
+            */
         void render(double currentTime, Shader* shader, Camera* camera, Entity* entity, SceneData scenedata, std::vector<Light*>* lights = nullptr);
     private:
 

@@ -34,6 +34,13 @@ Then you can run the demo:
 	./demo
 
 
+  Documentation
+  -----
+    Make sure doxygen is installed
+    the use these commands
+
+      doxygen Doxyfile
+
 Libraries
 ---------
 

@@ -10,8 +10,17 @@
 class SceneManager
 {
     public:
+      /**
+          *  Constructor
+          */
         SceneManager(Input* input);
+        /**
+            *  Destructor
+            */
         virtual ~SceneManager();
+        /**
+            *  //TODO Use this or remove it!
+            */
         void checkUpdate();
         std::vector<Superscene*> scenes;
     private:

@@ -16,12 +16,33 @@
 class Display
 {
     public:
+      /**
+              *  Constructor.
+              */
         Display();
+        /**
+                *  Destructor.
+                */
         virtual ~Display();
+        /**
+                *  Initialize glfw.
+                */
         void initGlfw();
+        /**
+                *  Initialize glew (The OpenGL Extension Wrangler Library)
+                */
         void initGlew();
+        /**
+                *  unlimited loop till we close the glfwWindow.
+                */
         void gameLoop();
+        /**
+                *  Add a scene to the vector off scenes so we can run them.
+                */
         void addScene(Superscene* scene);
+        /**
+                *  return the window we created
+                */
         GLFWwindow* getWindow();
         Input* input;
     private:

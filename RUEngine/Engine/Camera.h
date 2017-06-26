@@ -22,6 +22,10 @@ const GLfloat ZOOM = 45.0f;
 class Camera
 {
     public:
+        /**
+            *  Either set the it automatically or set it manual
+            *  /see Camera::Camera().
+            */
         Camera(glm::vec3 position = glm::vec3( 0.01f, 0.01f, 0.01f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), GLfloat yaw = YAW,
         GLfloat pitch = PITCH): front(glm::vec3(0.0f,0.0f,-1.0f)), movementSpeed(SPEED), mouseSensitivity(SENSITIVITY), zoom(ZOOM)
         {
@@ -31,7 +35,9 @@ class Camera
           this->pitch = pitch;
           this->updateCameraVector();
         }
-
+        /**
+                *  set everything Manually.
+                */
         Camera(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat upX, GLfloat upY, GLfloat upZ, GLfloat yaw, GLfloat pitch) : front(glm::vec3(0.0f, 0.0f, -1.0f)), movementSpeed(SPEED), mouseSensitivity(SENSITIVITY), zoom(ZOOM)
         {
           this->position = glm::vec3(posX, posY, posZ);
@@ -40,60 +46,83 @@ class Camera
           this->pitch = pitch;
           this->updateCameraVector();
         }
-
+        /**
+                *  Destructor.
+                */
         virtual ~Camera()
         {
 
         }
-
+        /**
+                *  Return the view matrix.
+                */
         glm::mat4 getViewMatrix()
         {
-          //Return the view matrix
           return glm::lookAt(this->position, this->position + this->front, this->up);
         }
-
+        /**
+                *  return projection matrix.
+                */
         glm::mat4 getProjectionMatrix()
         {
           return glm::perspective(this->getZoom(), (GLfloat) 1024 / (GLfloat) 720, 0.1f, 1000.0f);
         }
+        /**
+                *  return the position in 3D space.
+                */
         glm::vec3 getPosition()
         {
           //return position
           return this->position;
         }
-
+        /**
+                *  set the position in 3D space.
+                *  takes in a vector3 of a 3D position.
+                */
         void setPosition(glm::vec3 pos)
         {
-          //Set position
           this->position = pos;
         }
 
+        /**
+                *  return yaw.
+                */
         float getYaw(){
           return this->yaw;
         }
+        /**
+                *  return pitch.
+                */
         float getPitch(){
           return this->pitch;
         }
+        /**
+                *  return front/forward vector of the camera.
+                */
         glm::vec3 getFront()
         {
-          //Get front
           return glm::vec3(front);
         }
+        /**
+                *  return the right/side vector of the camera.
+                */
         glm::vec3 getRight()
         {
-          //Get right vector
           return glm::vec3(right);
         }
-
+        /**
+                *  return the up.
+                */
         glm::vec3 getUp()
         {
-          //get up vector
           return this->up;
         }
-
+        /**
+                *  handle keyboard input to move the camera.
+                *  Takes in an enum of CameraMovement.
+                */
         void processKeyboard(CameraMovement direction, GLfloat deltaTime)
         {
-          //Move
           GLfloat velocity = this->movementSpeed * deltaTime;
           if (FORWARD == direction)
           {
@@ -112,10 +141,13 @@ class Camera
             this->position += this->right * 3.0f * velocity;
           }
         }
-
+        /**
+                *  change the yaw and pitch of the camera according to mouse movement.
+                *  Takes in the X and Y offset of the mouse calculated by,
+                *  /see Input::processMouseMovement().
+                */
         void processMouseMovement(GLfloat xOffset, GLfloat yOffset, GLboolean constrainPitch = true)
         {
-          //change pitch and yaw
           xOffset *= 0.05;
           yOffset *= 0.05;
           yOff += yOffset;
@@ -138,9 +170,13 @@ class Camera
           }
           this->updateCameraVector();
         }
+        /**
+                *  set the zoom(FOV) of the camera.
+                *  Takes in the difference calculated by,
+                *  /see Input::processMouseScroll()
+                */
         void processMouseScroll(GLfloat yOffset)
         {
-          //Enable scrolling
           if (this->zoom >= 1.0f && this->zoom <= 45.0f)
           {
             this->zoom -= yOffset;
@@ -154,10 +190,16 @@ class Camera
             this->zoom = 45.0f;
           }
         }
+        /**
+                *  return the zoom(FOV) of the camera
+                */
         GLfloat getZoom()
         {
           return this->zoom;
         }
+        /**
+                *  Invert the pitch, Usefull for reflections of water etc.
+                */
         void invertPitch()
         {
             this->pitch = -this->pitch;
@@ -179,10 +221,12 @@ class Camera
 
       float xOff,
             yOff;
-
+            /**
+                    *  calculate the new front of the camera according to,
+                    *  The pitch and yaw.
+                    */
       void updateCameraVector()
       {
-        //Calculate the right, front and up vectors
         glm::vec3 front;
         front.x = cos(glm::radians(this->yaw)) * cos(glm::radians (this->pitch));
         front.y = sin(glm::radians(this->pitch));

@@ -4,6 +4,8 @@
 Mesh::Mesh()
 {
   LoadObject("Assets/untitled.obj", false);
+  lighting = 1;
+  showNormals = false;
 }
 
 Mesh::~Mesh()
@@ -12,39 +14,31 @@ Mesh::~Mesh()
 }
 
 int Mesh::getSize()
-{
-  //Return size of the "EBO"
-  return this->meshData.size;
+{  return this->meshData.size;
 }
+
 
 void Mesh::Draw()
 {
-  //Bind the VAO of this object
-
   glBindVertexArray(this->VAO);
 }
 
 void Mesh::setTexture(GLuint tex)
-{
-  //Set the texture
-  this->meshData.texture = tex;
+{  this->meshData.texture = tex;
 }
 
 GLuint Mesh::getTexture()
 {
-  //Give texture to anybody that asks for it
   return this->meshData.texture;
 }
 
 void Mesh::setNormalMap(GLuint tex)
 {
-  //Set the texture
   this->meshData.normalMap = tex;
 }
 
 GLuint Mesh::getNormalMap()
 {
-  //Give texture to anybody that asks for it
   return this->meshData.normalMap;
 }
 
@@ -75,7 +69,6 @@ void Mesh::LoadObject(const char* objectPath, bool isNormalMap)
 
    meshData = OBJloader::loadModel(objectPath, isNormalMap);
 
-   //See Plane() for more information
    glGenVertexArrays(1, &VAO);
    glGenBuffers(1, &VBO);
    glBindVertexArray(VAO);

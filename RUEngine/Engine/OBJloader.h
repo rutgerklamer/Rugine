@@ -15,8 +15,18 @@
 class OBJloader
 {
     public:
+      /**
+          *  Constructor
+          */
         OBJloader();
+        /**
+            *  Destructor
+            */
         ~OBJloader();
+        /**
+            *  load a model, Returning the meshdata we created in here.
+            *  takes n the path of the .obj and see if it has a normal map or not.
+            */
         static MeshData loadModel(const char* modelPath, bool isNormalMap);
     private:
 
