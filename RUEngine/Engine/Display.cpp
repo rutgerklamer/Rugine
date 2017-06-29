@@ -23,8 +23,6 @@ Display::Display()
   std::cout << "Display initialized" << std::endl;
   //We want to run this atleast once.
   //Get the projection matrix
-
-
 }
 
 void Display::addScene(Superscene* scene)
