@@ -13,6 +13,14 @@ Superscene::~Superscene()
 {
   delete input;
   delete camera;
+  for (unsigned int i = 0; i < entities.size(); i++)
+  {
+    delete entities[i];
+  }
+  for (unsigned int i = 0; i < lights.size(); i++)
+  {
+    delete lights[i];
+  }
 }
 
 void Superscene::addChild(Entity* mesh)

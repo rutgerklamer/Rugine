@@ -32,6 +32,7 @@ MeshData OBJloader::loadModel(const char* modelPath, bool isNormalMap)
     std::cout << "failed to open: " << modelPath << std::endl;
     fclose(file);
   }
+
 while( 1 ){
     char lineHeader[256];
     // read the first word of the line
@@ -74,6 +75,7 @@ while( 1 ){
       normalIndices.push_back(normalIndex[2]);
     }
   }
+  fclose(file);
   GLfloat *vertices = new GLfloat[vertexIndices.size()* multiplier];
    for( unsigned int i=0; i<vertexIndices.size(); i++ ) {
      //push vertices/uv's and normals to correct place in vertices

@@ -145,4 +145,5 @@ void Display::initGlew()
   glDepthFunc(GL_LESS);
   //Enable backface culling
   glEnable(GL_CULL_FACE);
+  glCullFace(GL_BACK);
 }
