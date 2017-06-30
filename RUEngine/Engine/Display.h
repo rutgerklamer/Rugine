@@ -64,12 +64,6 @@ class Display
         int windowHeight = 720;
         int majorVersion = 3;
         int minorVersion = 3;
-        unsigned int fullscreen  = 1;
-        unsigned int vsync       = 1;
-        unsigned int cursor      = 1;
-        unsigned int stereo      = 1;
-        unsigned int debug       = 1;
-        unsigned int robust      = 1;
       };
       WINDOWINFO windowinfo;
 };
