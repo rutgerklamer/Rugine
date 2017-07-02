@@ -12,6 +12,7 @@
 #include "Engine/Superscene.h"
 #include "Engine/Texture.h"
 #include "Engine/Light.h"
+#include "Maths/Time.h"
 
 class Scene : public Superscene
 {
@@ -22,8 +23,9 @@ class Scene : public Superscene
     private:
       Entity* mesh;
       Light* light;
-      std::vector<Entity*> cells;
+      std::vector<std::vector<Entity*>> cells;
       int rows;
+      Time* timer = new Time();
 };
 
 #endif // SCENE_H
