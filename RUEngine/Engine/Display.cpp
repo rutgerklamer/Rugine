@@ -55,12 +55,12 @@ void Display::gameLoop()
     scenemanager->scenes[currentscene]->Update(dtime->getDeltatime());
     resourcemanager->updateShaders(shader, scenemanager->scenes[currentscene]->camera);
     for (int i = 0; i < scenemanager->scenes[currentscene]->entities.size(); i++) {
-      if (scenemanager->scenes[currentscene]->lights.size() > 0) {
+      if (scenemanager->scenes[currentscene]->lights.size() > 0 && scenemanager->scenes[currentscene]->entities[i]->enabled) {
          renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(), &scenemanager->scenes[currentscene]->lights);
-       } else {
+       } else if (scenemanager->scenes[currentscene]->entities[i]->enabled) {
          renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
        }
-       if (scenemanager->scenes[currentscene]->entities[i]->showNormals) {
+       if (scenemanager->scenes[currentscene]->entities[i]->showNormals && scenemanager->scenes[currentscene]->entities[i]->enabled) {
           resourcemanager->updateShaders(shaderNormals, scenemanager->scenes[currentscene]->camera);
           renderer->render(glfwGetTime(), shaderNormals, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
         }

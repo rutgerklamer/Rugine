@@ -6,6 +6,8 @@ project (ruengine)
 ####################################################################
 OPTION(MAKE_DEMO "Create DEMO" ON)
 OPTION(MAKE_NMHD "Create NormalMap vs HighDetail" ON)
+OPTION(MAKE_GOL "Create Game of Life" ON)
+
 ####################################################################
 
 if( CMAKE_BINARY_DIR STREQUAL CMAKE_SOURCE_DIR )
@@ -153,6 +155,7 @@ IF(MAKE_DEMO)
 
 ENDIF()
 
+
 ####################################################################
 # Rugine Normalmap vs High Detail                                  #
 ####################################################################
@@ -173,6 +176,30 @@ IF(MAKE_NMHD)
 
   file(
   	COPY ${CMAKE_SOURCE_DIR}/RUEngine/NMHD/Assets
+  	DESTINATION ${CMAKE_BINARY_DIR}
+  )
+
+ENDIF()
+
+####################################################################
+# Rugine Normalmap vs High Detail                                  #
+####################################################################
+IF(MAKE_GOL)
+  set(SOURCES
+    RUEngine/GOL/main.cpp
+    RUEngine/GOL/Scene.cpp
+  )
+
+  add_executable(GOL ${SOURCES} ${SOILSOURCE} ${RUGINESOURCE})
+
+  target_link_libraries(GOL ${ALL_GRAPHICS_LIBS}   )
+  file(
+  	COPY ${CMAKE_SOURCE_DIR}/RUEngine/Shaders
+  	DESTINATION ${CMAKE_BINARY_DIR}
+  )
+
+  file(
+  	COPY ${CMAKE_SOURCE_DIR}/RUEngine/GOL/Assets
   	DESTINATION ${CMAKE_BINARY_DIR}
   )
 

@@ -6,6 +6,7 @@
 #include "Engine/Display.h"
 #include "Demos/Scene.h"
 #include "Demos/Scene0.h"
+
 Display* display;
 Scene* scene;
 Scene0* scene0;
