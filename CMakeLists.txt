@@ -7,6 +7,7 @@ project (ruengine)
 OPTION(MAKE_DEMO "Create DEMO" ON)
 OPTION(MAKE_NMHD "Create NormalMap vs HighDetail" ON)
 OPTION(MAKE_GOL "Create Game of Life" ON)
+OPTION(MAKE_LA "Create Langtons Ant" ON)
 
 ####################################################################
 
@@ -200,6 +201,30 @@ IF(MAKE_GOL)
 
   file(
   	COPY ${CMAKE_SOURCE_DIR}/RUEngine/GOL/Assets
+  	DESTINATION ${CMAKE_BINARY_DIR}
+  )
+
+ENDIF()
+
+####################################################################
+# Rugine Normalmap vs High Detail                                  #
+####################################################################
+IF(MAKE_LA)
+  set(SOURCES
+    RUEngine/LA/main.cpp
+    RUEngine/LA/Scene.cpp
+  )
+
+  add_executable(LA ${SOURCES} ${SOILSOURCE} ${RUGINESOURCE})
+
+  target_link_libraries(LA ${ALL_GRAPHICS_LIBS}   )
+  file(
+  	COPY ${CMAKE_SOURCE_DIR}/RUEngine/Shaders
+  	DESTINATION ${CMAKE_BINARY_DIR}
+  )
+
+  file(
+  	COPY ${CMAKE_SOURCE_DIR}/RUEngine/LA/Assets
   	DESTINATION ${CMAKE_BINARY_DIR}
   )
 

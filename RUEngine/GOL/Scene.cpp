@@ -12,7 +12,7 @@ Scene::Scene(Input* input) : Superscene(input)
   std::cout << "Scene initialized" << std::endl;
   GLuint texture = tex::loadTexture("Assets/dust.jpg");
   GLuint texture2 = tex::loadTexture("Assets/bumps.jpg");
-  srand(42111);
+  srand(421111);
 
   for (unsigned int i =0; i < rows; i++) {
     std::vector<Entity*> row;
@@ -25,14 +25,12 @@ Scene::Scene(Input* input) : Superscene(input)
         cell->position = glm::vec3(i,0,j);
         cell->scale = glm::vec3(0.5f,0.5f,0.5f);
         //Add a child to the stage
-        if (rand() % 3 == 2 || rand() % 2 == 1) {
+        if (j % 2 > 0 || rand() % 3 == 2 )
+        {
+          cell->setTexture(texture2);
           cell->enabled = true;
         } else {
           cell->enabled = false;
-        }
-        if (j % 2 > 0)
-        {
-          cell->setTexture(texture2);
         }
         this->addChild(cell);
         row.push_back(cell);
@@ -60,7 +58,7 @@ Scene::~Scene()
 
 void Scene::Update(float deltaTime)
 {
-  if (timer->timer.seconds() > 0.1f) {
+  if (timer->timer.seconds() > 0.0001f) {
     std::vector<std::vector<bool>> tempCells;
     for (unsigned int i =0; i < rows; i++) {
       std::vector<bool> tempBools;
