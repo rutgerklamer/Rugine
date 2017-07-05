@@ -8,10 +8,11 @@ struct cell {
 Scene::Scene(Input* input) : Superscene(input)
 {
   timer->timer.start();
-  rows = 40;
+  rows = 100;
   std::cout << "Scene initialized" << std::endl;
-  GLuint texture = tex::loadTexture("Assets/dirt.jpg");
-  srand(2423);
+  GLuint texture = tex::loadTexture("Assets/dust.jpg");
+  GLuint texture2 = tex::loadTexture("Assets/bumps.jpg");
+  srand(42111);
 
   for (unsigned int i =0; i < rows; i++) {
     std::vector<Entity*> row;
@@ -24,12 +25,14 @@ Scene::Scene(Input* input) : Superscene(input)
         cell->position = glm::vec3(i,0,j);
         cell->scale = glm::vec3(0.5f,0.5f,0.5f);
         //Add a child to the stage
-        int ran = rand() % 10;
-        std::cout << ran << std::endl;
-        if (ran == 5) {
+        if (rand() % 3 == 2 || rand() % 2 == 1) {
           cell->enabled = true;
         } else {
           cell->enabled = false;
+        }
+        if (j % 2 > 0)
+        {
+          cell->setTexture(texture2);
         }
         this->addChild(cell);
         row.push_back(cell);
@@ -37,12 +40,11 @@ Scene::Scene(Input* input) : Superscene(input)
     cells.push_back(row);
   }
 
-
   light = new Light();
-  light->position = glm::vec3(0,20,20);
+  light->position = glm::vec3(70,20,70);
   light->setPosition(light->getPosition());
   light->setLightColor(glm::vec3(1,1,1));
-  light->setStrength(4.5f);
+  light->setStrength(70.5f);
   light->setSpecularStrength(0.2f);
   this->addLight(light);
 
@@ -58,9 +60,12 @@ Scene::~Scene()
 
 void Scene::Update(float deltaTime)
 {
-  if (timer->timer.seconds() > 0.5f) {
+  if (timer->timer.seconds() > 0.1f) {
+    std::vector<std::vector<bool>> tempCells;
     for (unsigned int i =0; i < rows; i++) {
+      std::vector<bool> tempBools;
       for (unsigned int j = 0; j < rows; j ++) {
+        tempBools.push_back(cells[i][j]->enabled);
         int neighbours = 0;
         if (i != 0) {
           if (cells[i-1][j]->enabled) {
@@ -91,14 +96,18 @@ void Scene::Update(float deltaTime)
           neighbours += 1;
         }
         if (neighbours < 2) {
-          cells[i][j]->enabled = false;
-        } else if (neighbours == 3 && cells[i][j]->enabled || neighbours == 2 && cells[i][j]->enabled) {
-          cells[i][j]->enabled = true;
+          tempBools[j] = false;
         } else if (neighbours > 3) {
-          cells[i][j]->enabled = false;
-        } else if (!cells[i][j]->enabled && neighbours == 3) {
-          cells[i][j]->enabled = true;
+          tempBools[j] = false;
+        } else if (neighbours == 3){
+          tempBools[j] = true;
         }
+      }
+      tempCells.push_back(tempBools);
+    }
+    for (unsigned int i =0; i < rows; i++) {
+      for (unsigned int j = 0; j < rows; j ++) {
+        cells[i][j]->enabled = tempCells[i][j];
       }
     }
     timer->timer.start();

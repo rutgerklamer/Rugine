@@ -4,7 +4,7 @@
 Mesh::Mesh()
 {
   LoadObject("Assets/untitled.obj", false);
-  lighting = 1;
+  lighting = 0;
   showNormals = false;
 }
 
@@ -14,7 +14,8 @@ Mesh::~Mesh()
 }
 
 int Mesh::getSize()
-{  return this->meshData.size;
+{
+  return this->meshData.size;
 }
 
 

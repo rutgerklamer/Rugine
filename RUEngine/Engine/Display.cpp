@@ -65,7 +65,6 @@ void Display::gameLoop()
           renderer->render(glfwGetTime(), shaderNormals, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
         }
     }
-
     //Get deltatime and fps
     dtime->update();
     //Update camera movement
@@ -76,7 +75,6 @@ void Display::gameLoop()
     //Update glfw's input
     glfwPollEvents();
   } while (!glfwWindowShouldClose(window));
-
   //Destroy everything glfw has made.
   glfwDestroyWindow(window);
   glfwTerminate();
