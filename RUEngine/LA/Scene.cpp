@@ -13,7 +13,7 @@ Scene::Scene(Input* input) : Superscene(input)
   currentcell = tex::loadTexture("Assets/wall.jpg");
 
   facing = glm::vec2(0,-1);
-  direction = "right";
+  direction = "left";
 
   timer->timer.start();
   rows = 60;
@@ -28,11 +28,7 @@ Scene::Scene(Input* input) : Superscene(input)
         Entity* cell = new Entity();
         cell->LoadObject("Assets/untitled.obj", false);
         //Set a texture to it
-        if (rand() % 3 == 2) {
-          cell->setTexture(right);
-        } else {
-          cell->setTexture(left);
-        }
+        cell->setTexture(right);
         cell->position = glm::vec3(i,0,j);
         cell->scale = glm::vec3(0.5f,0.5f,0.5f);
         cell->enabled = true;
