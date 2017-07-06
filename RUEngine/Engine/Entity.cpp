@@ -7,7 +7,7 @@ Entity::Entity() : Mesh()
   scale = glm::vec3(1,1,1);
   quaternation = glm::mat4(1);
 
-  std::cout << "Entity initialized" << std::endl;
+  //std::cout << "Entity initialized" << std::endl;
 }
 
 Entity::~Entity()

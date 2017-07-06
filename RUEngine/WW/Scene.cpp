@@ -1,0 +1,170 @@
+#include "Scene.h"
+#include <stdlib.h>
+#include <time.h>
+#include <fstream>
+#include <iterator>
+
+Scene::Scene(Input* input) : Superscene(input)
+{
+  timer->timer.start();
+  rows = 50;
+  std::cout << "Scene initialized" << std::endl;
+  srand(time(0));
+
+  red = tex::loadTexture("Assets/red.png");
+  grey = tex::loadTexture("Assets/grey.png");
+  yellow = tex::loadTexture("Assets/yellow.png");
+  blue = tex::loadTexture("Assets/blue.png");
+
+  readFile("Assets/grid.txt");
+
+  for (unsigned int i =0; i < rows; i++) {
+    std::vector<Cell> row;
+    for (unsigned int j = 0; j < rows; j ++) {
+        //Create a mesh
+        Entity* cells = new Entity();
+        cells->LoadObject("Assets/untitled.obj", false);
+        //Set a texture to it
+    //    cells->setTexture(red);
+        cells->position = glm::vec3(i,0,j);
+        cells->scale = glm::vec3(0.5f,0.5f,0.5f);
+        //Add a child to the stage
+        Cell madeCell;
+        madeCell.entity = cells;
+        if (finishedGrid[i][j] == '0')
+        {
+          cells->setTexture(grey);
+          madeCell.state = OFF;
+        }
+        else if (finishedGrid[i][j] == '1')
+        {
+          cells->setTexture(yellow);
+          madeCell.state = WIRE;
+        }
+        else if (finishedGrid[i][j] == '2')
+        {
+          cells->setTexture(blue);
+          madeCell.state = TAIL;
+        }
+        else if (finishedGrid[i][j] == '3')
+        {
+          cells->setTexture(red);
+          madeCell.state = HEAD;
+        }
+        this->addChild(cells);
+        row.push_back(madeCell);
+    }
+    cells.push_back(row);
+  }
+
+  light = new Light();
+  light->position = glm::vec3(25,10,25);
+  light->setPosition(light->getPosition());
+  light->setLightColor(glm::vec3(1,1,1));
+  light->setStrength(113.5f);
+  light->setSpecularStrength(0.2f);
+  this->addLight(light);
+
+  setGamma(0.8f);
+  setExposure(0.1f);
+}
+
+Scene::~Scene()
+{
+  delete mesh;
+  delete light;
+}
+
+void Scene::Update(float deltaTime)
+{
+  if (timer->timer.seconds() > 0.1f) {
+    std::vector<std::vector<States>> tempCells;
+    for (unsigned int i =0; i < rows; i++) {
+      std::vector<States> tempBools;
+      for (unsigned int j = 0; j < rows; j ++) {
+        tempBools.push_back(cells[i][j].state);
+        int neighbours = 0;
+        if (i != 0) {
+          if (cells[i-1][j].state == HEAD) {
+            neighbours += 1;
+          }
+          if (j != rows - 1 && cells[i-1][j + 1].state == HEAD) {
+            neighbours += 1;
+          }
+          if (j != 0 && cells[i-1][j - 1].state == HEAD) {
+            neighbours += 1;
+          }
+        }
+        if (i != rows - 1) {
+          if (cells[i+1][j].state == HEAD) {
+            neighbours += 1;
+          }
+          if (j != rows - 1 && cells[i+1][j + 1].state == HEAD) {
+            neighbours += 1;
+          }
+          if (j != 0 && cells[i+1][j - 1].state == HEAD) {
+            neighbours += 1;
+          }
+        }
+        if (j != rows - 1 && cells[i][j + 1].state == HEAD) {
+          neighbours += 1;
+        }
+        if (j != 0 && cells[i][j - 1].state == HEAD) {
+          neighbours += 1;
+        }
+
+        if (cells[i][j].state == HEAD)
+        {
+          tempBools[j] = TAIL;
+        }
+        else if (cells[i][j].state == OFF)
+        {
+          tempBools[j] = OFF;
+        }
+        else if (cells[i][j].state == TAIL)
+        {
+          tempBools[j] = WIRE;
+        }
+        else if (cells[i][j].state == WIRE && neighbours > 0 && neighbours < 3)
+        {
+          tempBools[j] = HEAD;
+        }
+      }
+      tempCells.push_back(tempBools);
+    }
+    for (unsigned int i =0; i < rows; i++) {
+      for (unsigned int j = 0; j < rows; j ++) {
+        cells[i][j].state = tempCells[i][j];
+        if (cells[i][j].state == HEAD)
+        {
+          cells[i][j].entity->setTexture(red);
+        }
+        else if (cells[i][j].state == OFF)
+        {
+          cells[i][j].entity->setTexture(grey);
+        }
+        else if (cells[i][j].state == TAIL)
+        {
+          cells[i][j].entity->setTexture(blue);
+        }
+        else if (cells[i][j].state == WIRE)
+        {
+          cells[i][j].entity->setTexture(yellow);
+        }
+    }
+  }
+    timer->timer.start();
+  }
+}
+
+void Scene::readFile(const char* filename)
+{
+  std::ifstream infile(filename);
+
+  std::string line;
+  while (std::getline(infile, line))
+      finishedGrid.push_back(line);
+
+  std::cout << finishedGrid[1][0] << std::endl;
+  infile.close();
+}

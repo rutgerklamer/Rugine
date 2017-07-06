@@ -6,6 +6,7 @@ Mesh::Mesh()
   LoadObject("Assets/untitled.obj", false);
   lighting = 0;
   showNormals = false;
+  enabled = true;
 }
 
 Mesh::~Mesh()
