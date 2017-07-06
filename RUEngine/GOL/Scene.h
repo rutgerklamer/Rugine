@@ -21,9 +21,17 @@ class Scene : public Superscene
         virtual ~Scene();
         void Update(float deltaTime);
     private:
+      enum States
+      {
+        ON,OFF,DYING
+      };
+      struct Cell {
+        Entity* entity;
+        States state;
+      };
       Entity* mesh;
       Light* light;
-      std::vector<std::vector<Entity*>> cells;
+      std::vector<std::vector<Cell>> cells;
       int rows;
       Time* timer = new Time();
 };

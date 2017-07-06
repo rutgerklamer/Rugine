@@ -72,14 +72,11 @@ void Scene::Update(float deltaTime)
             if (facing.y == -1 && facing.x == 0) {
               if (direction == "right")
               {
-                //MOVE X + 1
                 facing = glm::vec2(1,0);
                 cells[i][j]->setTexture(left);
                 if (cells[i][j+1]->getTexture() == right) { direction = "right"; } else { direction = "left"; }
                 cells[i][j+1]->setTexture(currentcell);
-              } else {
-                //MOVE X - 1
-                facing = glm::vec2(-1,0);
+              } else {                                                                                            facing = glm::vec2(-1,0);
                 cells[i][j]->setTexture(right);
                 if (cells[i][j-1]->getTexture() == right) { direction = "right"; } else { direction = "left"; }
                 cells[i][j-1]->setTexture(currentcell);

@@ -1,39 +1,40 @@
 #include "Scene.h"
-#include "stdlib.h"
+#include <stdlib.h>
+#include <time.h>
 
-struct cell {
-  Entity* entity;
-};
+
 
 Scene::Scene(Input* input) : Superscene(input)
 {
   timer->timer.start();
-  rows = 100;
+  rows = 40;
   std::cout << "Scene initialized" << std::endl;
   GLuint texture = tex::loadTexture("Assets/dust.jpg");
   GLuint texture2 = tex::loadTexture("Assets/bumps.jpg");
-  srand(421111);
+  srand(time(0));
 
   for (unsigned int i =0; i < rows; i++) {
-    std::vector<Entity*> row;
+    std::vector<Cell> row;
     for (unsigned int j = 0; j < rows; j ++) {
         //Create a mesh
-        Entity* cell = new Entity();
-        cell->LoadObject("Assets/untitled.obj", false);
+        Entity* cells = new Entity();
+        cells->LoadObject("Assets/untitled.obj", false);
         //Set a texture to it
-        cell->setTexture(texture);
-        cell->position = glm::vec3(i,0,j);
-        cell->scale = glm::vec3(0.5f,0.5f,0.5f);
+        cells->setTexture(texture);
+        cells->position = glm::vec3(i,0,j);
+        cells->scale = glm::vec3(0.5f,0.5f,0.5f);
         //Add a child to the stage
+        Cell madeCell;
+        madeCell.entity = cells;
         if (j % 2 > 0 || rand() % 3 == 2 )
         {
-          cell->setTexture(texture2);
-          cell->enabled = true;
+          cells->setTexture(texture2);
+          cells->enabled = true;
         } else {
-          cell->enabled = false;
+          cells->enabled = false;
         }
-        this->addChild(cell);
-        row.push_back(cell);
+        this->addChild(cells);
+        row.push_back(madeCell);
     }
     cells.push_back(row);
   }
@@ -63,34 +64,34 @@ void Scene::Update(float deltaTime)
     for (unsigned int i =0; i < rows; i++) {
       std::vector<bool> tempBools;
       for (unsigned int j = 0; j < rows; j ++) {
-        tempBools.push_back(cells[i][j]->enabled);
+        tempBools.push_back(cells[i][j].entity->enabled);
         int neighbours = 0;
         if (i != 0) {
-          if (cells[i-1][j]->enabled) {
+          if (cells[i-1][j].entity->enabled) {
             neighbours += 1;
           }
-          if (j != rows - 1 && cells[i-1][j + 1]->enabled) {
+          if (j != rows - 1 && cells[i-1][j + 1].entity->enabled) {
             neighbours += 1;
           }
-          if (j != 0 && cells[i-1][j - 1]->enabled) {
+          if (j != 0 && cells[i-1][j - 1].entity->enabled) {
             neighbours += 1;
           }
         }
         if (i != rows - 1) {
-          if (cells[i+1][j]->enabled) {
+          if (cells[i+1][j].entity->enabled) {
             neighbours += 1;
           }
-          if (j != rows - 1 && cells[i+1][j + 1]->enabled) {
+          if (j != rows - 1 && cells[i+1][j + 1].entity->enabled) {
             neighbours += 1;
           }
-          if (j != 0 && cells[i+1][j - 1]->enabled) {
+          if (j != 0 && cells[i+1][j - 1].entity->enabled) {
             neighbours += 1;
           }
         }
-        if (j != rows - 1 && cells[i][j + 1]->enabled) {
+        if (j != rows - 1 && cells[i][j + 1].entity->enabled) {
           neighbours += 1;
         }
-        if (j != 0 && cells[i][j - 1]->enabled) {
+        if (j != 0 && cells[i][j - 1].entity->enabled) {
           neighbours += 1;
         }
         if (neighbours < 2) {
@@ -105,7 +106,7 @@ void Scene::Update(float deltaTime)
     }
     for (unsigned int i =0; i < rows; i++) {
       for (unsigned int j = 0; j < rows; j ++) {
-        cells[i][j]->enabled = tempCells[i][j];
+        cells[i][j].entity->enabled = tempCells[i][j];
       }
     }
     timer->timer.start();
