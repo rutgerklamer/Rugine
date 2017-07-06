@@ -9,6 +9,7 @@ OPTION(MAKE_NMHD "Create NormalMap vs HighDetail" ON)
 OPTION(MAKE_GOL "Create Game of Life" ON)
 OPTION(MAKE_LA "Create Langtons Ant" ON)
 OPTION(MAKE_BB "Create Brian's Brain" ON)
+OPTION(MAKE_WW "Create Wire World" ON)
 
 ####################################################################
 
@@ -250,6 +251,30 @@ IF(MAKE_BB)
 
   file(
   	COPY ${CMAKE_SOURCE_DIR}/RUEngine/BB/Assets
+  	DESTINATION ${CMAKE_BINARY_DIR}
+  )
+
+ENDIF()
+
+####################################################################
+# Rugine Normalmap vs High Detail                                  #
+####################################################################
+IF(MAKE_WW)
+  set(SOURCES
+    RUEngine/WW/main.cpp
+    RUEngine/WW/Scene.cpp
+  )
+
+  add_executable(WW ${SOURCES} ${SOILSOURCE} ${RUGINESOURCE})
+
+  target_link_libraries(WW ${ALL_GRAPHICS_LIBS}   )
+  file(
+  	COPY ${CMAKE_SOURCE_DIR}/RUEngine/Shaders
+  	DESTINATION ${CMAKE_BINARY_DIR}
+  )
+
+  file(
+  	COPY ${CMAKE_SOURCE_DIR}/RUEngine/WW/Assets
   	DESTINATION ${CMAKE_BINARY_DIR}
   )
 

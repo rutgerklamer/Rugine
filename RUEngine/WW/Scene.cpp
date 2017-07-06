@@ -16,46 +16,9 @@ Scene::Scene(Input* input) : Superscene(input)
   yellow = tex::loadTexture("Assets/yellow.png");
   blue = tex::loadTexture("Assets/blue.png");
 
-  readFile("Assets/grid.txt");
+  readFile("Assets/grid2.txt");
+  makeGrid();
 
-  for (unsigned int i =0; i < rows; i++) {
-    std::vector<Cell> row;
-    for (unsigned int j = 0; j < rows; j ++) {
-        //Create a mesh
-        Entity* cells = new Entity();
-        cells->LoadObject("Assets/untitled.obj", false);
-        //Set a texture to it
-    //    cells->setTexture(red);
-        cells->position = glm::vec3(i,0,j);
-        cells->scale = glm::vec3(0.5f,0.5f,0.5f);
-        //Add a child to the stage
-        Cell madeCell;
-        madeCell.entity = cells;
-        if (finishedGrid[i][j] == '0')
-        {
-          cells->setTexture(grey);
-          madeCell.state = OFF;
-        }
-        else if (finishedGrid[i][j] == '1')
-        {
-          cells->setTexture(yellow);
-          madeCell.state = WIRE;
-        }
-        else if (finishedGrid[i][j] == '2')
-        {
-          cells->setTexture(blue);
-          madeCell.state = TAIL;
-        }
-        else if (finishedGrid[i][j] == '3')
-        {
-          cells->setTexture(red);
-          madeCell.state = HEAD;
-        }
-        this->addChild(cells);
-        row.push_back(madeCell);
-    }
-    cells.push_back(row);
-  }
 
   light = new Light();
   light->position = glm::vec3(25,10,25);
@@ -77,11 +40,18 @@ Scene::~Scene()
 
 void Scene::Update(float deltaTime)
 {
+  if (input->isDown(GLFW_KEY_R))
+  {
+    input->setKey(GLFW_KEY_R, false);
+    makeGrid();
+  }
   if (timer->timer.seconds() > 0.1f) {
     std::vector<std::vector<States>> tempCells;
     for (unsigned int i =0; i < rows; i++) {
       std::vector<States> tempBools;
       for (unsigned int j = 0; j < rows; j ++) {
+
+
         tempBools.push_back(cells[i][j].state);
         int neighbours = 0;
         if (i != 0) {
@@ -129,9 +99,12 @@ void Scene::Update(float deltaTime)
         {
           tempBools[j] = HEAD;
         }
+
+
       }
       tempCells.push_back(tempBools);
     }
+    currentAmount = 0;
     for (unsigned int i =0; i < rows; i++) {
       for (unsigned int j = 0; j < rows; j ++) {
         cells[i][j].state = tempCells[i][j];
@@ -151,10 +124,31 @@ void Scene::Update(float deltaTime)
         {
           cells[i][j].entity->setTexture(yellow);
         }
+        if (cells[i][j].state == HEAD && finishedGrid[i][j] == '5')
+        {
+          currentAmount += 1;
+        }
+        if (cells[i][j].state == HEAD && finishedGrid[i][j] == '6')
+        {
+          currentAmount += 2;
+        }
     }
+  }
+  if (currentAmount == 1)
+  {
+    std::cout << "Total amount is 1" << "In binary it is 01" << std::endl;
+  }
+  else if (currentAmount == 2)
+  {
+    std::cout << "Total amount is 2" << "In binary it is 10" << std::endl;
+  }
+  else if (currentAmount == 3)
+  {
+    std::cout << "Total amount is 3" << "In binary it is 11" << std::endl;
   }
     timer->timer.start();
   }
+
 }
 
 void Scene::readFile(const char* filename)
@@ -168,3 +162,56 @@ void Scene::readFile(const char* filename)
   std::cout << finishedGrid[1][0] << std::endl;
   infile.close();
 }
+
+void Scene::makeGrid()
+{
+  if (cells.size() > 0) {
+    entities.clear();
+    for (unsigned int k = 0; k < rows; k++) {
+      for (unsigned int l = 0 ; l < rows; l++) {
+        delete cells[k][l].entity;
+      }
+    }
+  }
+  for (unsigned int i =0; i < rows; i++) {
+    std::vector<Cell> row;
+    for (unsigned int j = 0; j < rows; j ++) {
+        //Create a mesh
+        Entity* cells = new Entity();
+        cells->LoadObject("Assets/untitled.obj", false);
+        //Set a texture to it
+    //    cells->setTexture(red);
+        cells->position = glm::vec3(i,0,j);
+        cells->scale = glm::vec3(0.5f,0.5f,0.5f);
+        //Add a child to the stage
+        Cell madeCell;
+        madeCell.entity = cells;
+        if (finishedGrid[i][j] == '0')
+        {
+          cells->setTexture(grey);
+          madeCell.state = OFF;
+        }
+        else if (finishedGrid[i][j] == '1' || finishedGrid[i][j] == '5' || finishedGrid[i][j] == '6')
+        {
+          cells->setTexture(yellow);
+          madeCell.state = WIRE;
+        }
+        else if (finishedGrid[i][j] == '2')
+        {
+          cells->setTexture(blue);
+          madeCell.state = TAIL;
+        }
+        else if (finishedGrid[i][j] == '3')
+        {
+          cells->setTexture(red);
+          madeCell.state = HEAD;
+        }
+        this->addChild(cells);
+        row.push_back(madeCell);
+    }
+    if (cells.size() == rows) {
+      cells.clear();
+    }
+    cells.push_back(row);
+    }
+  }

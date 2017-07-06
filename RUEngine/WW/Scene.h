@@ -21,6 +21,7 @@ class Scene : public Superscene
         virtual ~Scene();
         void Update(float deltaTime);
         void readFile(const char* filename);
+        void makeGrid();
     private:
       enum States
       {
@@ -40,6 +41,7 @@ class Scene : public Superscene
       GLuint yellow;
       GLuint grey;
       std::vector<std::string> finishedGrid;
+      int currentAmount;
 };
 
 #endif // SCENE_H
