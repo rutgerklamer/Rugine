@@ -38,8 +38,43 @@ Scene::~Scene()
   delete light;
 }
 
+void Scene::checkMovement()
+{
+  for (unsigned int i =0; i < rows; i++) {
+    for (unsigned int j = 0; j < rows; j ++) {
+      if (camera->getPosition().x <= i && camera->getPosition().x >= i-1 && camera->getPosition().z <= j && camera->getPosition().z >= j-1) {
+        std::cout << " X ( " << i << " ) Y ( " << j << " )" << std::endl;
+        cells[i][j].entity->enabled = false;
+      } else {
+        cells[i][j].entity->enabled = true;
+      }
+      if (input->isDown(GLFW_KEY_SPACE) && i >= 0 && j >= 0 && i< rows && j < rows && !cells[i][j].entity->enabled)
+      {
+        input->setKey(GLFW_KEY_SPACE, false);
+        if (cells[i][j].state == OFF)
+        {
+          cells[i][j].state = WIRE;
+        }
+        else if (cells[i][j].state == WIRE)
+        {
+          cells[i][j].state = HEAD;
+        }
+        else if (cells[i][j].state == WIRE)
+        {
+          cells[i][j].state = TAIL;
+        }
+        else
+        {
+          cells[i][j].state = OFF;
+        }
+      }
+    }
+  }
+}
+
 void Scene::Update(float deltaTime)
 {
+  checkMovement();
   if (input->isDown(GLFW_KEY_R))
   {
     input->setKey(GLFW_KEY_R, false);
@@ -124,31 +159,30 @@ void Scene::Update(float deltaTime)
         {
           cells[i][j].entity->setTexture(yellow);
         }
-        if (cells[i][j].state == HEAD && finishedGrid[i][j] == '5')
-        {
-          currentAmount += 1;
-        }
-        if (cells[i][j].state == HEAD && finishedGrid[i][j] == '6')
-        {
-          currentAmount += 2;
-        }
+        // if (cells[i][j].state == HEAD && finishedGrid[i][j] == '5')
+        // {
+        //   currentAmount += 1;
+        // }
+        // if (cells[i][j].state == HEAD && finishedGrid[i][j] == '6')
+        // {
+        //   currentAmount += 2;
+        // }
     }
   }
-  if (currentAmount == 1)
-  {
-    std::cout << "Total amount is 1" << "In binary it is 01" << std::endl;
-  }
-  else if (currentAmount == 2)
-  {
-    std::cout << "Total amount is 2" << "In binary it is 10" << std::endl;
-  }
-  else if (currentAmount == 3)
-  {
-    std::cout << "Total amount is 3" << "In binary it is 11" << std::endl;
-  }
+  // if (currentAmount == 1)
+  // {
+  //   std::cout << "Total amount is 1" << "In binary it is 01" << std::endl;
+  // }
+  // else if (currentAmount == 2)
+  // {
+  //   std::cout << "Total amount is 2" << "In binary it is 10" << std::endl;
+  // }
+  // else if (currentAmount == 3)
+  // {
+  //   std::cout << "Total amount is 3" << "In binary it is 11" << std::endl;
+  // }
     timer->timer.start();
   }
-
 }
 
 void Scene::readFile(const char* filename)

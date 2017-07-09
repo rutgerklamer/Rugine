@@ -22,6 +22,7 @@ class Scene : public Superscene
         void Update(float deltaTime);
         void readFile(const char* filename);
         void makeGrid();
+        void checkMovement();
     private:
       enum States
       {
