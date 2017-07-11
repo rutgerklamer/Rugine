@@ -28,7 +28,7 @@ Scene::Scene(Input* input) : Superscene(input)
       this->addLight(light2);
 
       std::cout << "making" << std::flush;
-      skybox = new Skybox("Assets/mountain_rt.tga", "Assets/mountain_lf.tga", "Assets/mountain_up.tga", "Assets/mountain_dn.tga", "Assets/mountain_bk.tga", "Assets/mountain_ft.tga");
+      skybox = new Skybox("Assets/sandtrap_rt.tga", "Assets/sandtrap_lf.tga", "Assets/sandtrap_up.tga", "Assets/sandtrap_dn.tga", "Assets/sandtrap_bk.tga", "Assets/sandtrap_ft.tga");
       std::cout << "created" << std::flush;
       this->addSkybox(skybox);
 
