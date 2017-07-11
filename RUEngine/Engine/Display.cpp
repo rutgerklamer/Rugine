@@ -19,6 +19,7 @@ Display::Display()
   shaderNormals = new Shader("Shaders/Normals/shader.vert", "Shaders/Normals/shader.frag","","","Shaders/Normals/shader.geom");
   shaderExplode = new Shader("Shaders/Explode/shader.vert", "Shaders/Explode/shader.frag","","","Shaders/Explode/shader.geom");
   shaderSkybox = new Shader("Shaders/SkyboxShaders/shader.vert", "Shaders/SkyboxShaders/shader.frag","","","");
+  shaderReflection = new Shader("Shaders/StrongReflection/shader.vert", "Shaders/StrongReflection/shader.frag","","","");
   dtime = new Time();
   scenemanager = new SceneManager(input);
   std::cout << "Display initialized" << std::endl;
@@ -67,10 +68,13 @@ void Display::gameLoop()
     scenemanager->scenes[currentscene]->Update(dtime->getDeltatime());
     resourcemanager->updateShaders(shader, scenemanager->scenes[currentscene]->camera);
     for (int i = 0; i < scenemanager->scenes[currentscene]->entities.size(); i++) {
-      if (scenemanager->scenes[currentscene]->lights.size() > 0 && scenemanager->scenes[currentscene]->entities[i]->enabled) {
+      if (scenemanager->scenes[currentscene]->lights.size() > 0 && scenemanager->scenes[currentscene]->entities[i]->enabled && !scenemanager->scenes[currentscene]->entities[i]->reflective) {
          renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(), &scenemanager->scenes[currentscene]->lights);
-       } else if (scenemanager->scenes[currentscene]->entities[i]->enabled) {
+       } else if (scenemanager->scenes[currentscene]->entities[i]->enabled && !scenemanager->scenes[currentscene]->entities[i]->reflective) {
          renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
+       } else if (scenemanager->scenes[currentscene]->entities[i]->reflective)
+       {
+         renderer->renderSkybox(glfwGetTime(), shaderReflection, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
        }
        if (scenemanager->scenes[currentscene]->entities[i]->showNormals && scenemanager->scenes[currentscene]->entities[i]->enabled) {
           resourcemanager->updateShaders(shaderNormals, scenemanager->scenes[currentscene]->camera);

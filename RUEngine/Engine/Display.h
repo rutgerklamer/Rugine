@@ -52,6 +52,7 @@ class Display
       Shader* shaderNormals;
       Shader* shaderExplode;
       Shader* shaderSkybox;
+      Shader* shaderReflection;
       Camera camera;
       Time* dtime;
       SceneManager* scenemanager;

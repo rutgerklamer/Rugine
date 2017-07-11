@@ -40,7 +40,7 @@ class Renderer
             *  and a vector of light if we want multiple lights.
             */
         void render(double currentTime, Shader* shader, Camera* camera, Entity* entity, SceneData scenedata, std::vector<Light*>* lights = nullptr);
-        void renderSkybox(double currentTime, Shader* shader, Camera* camera, Skybox* entity, SceneData scenedata);
+        void renderSkybox(double currentTime, Shader* shader, Camera* camera, Mesh* entity, SceneData scenedata);
     private:
 
 };

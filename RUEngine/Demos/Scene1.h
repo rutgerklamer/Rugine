@@ -22,6 +22,7 @@ class Scene1 : public Superscene
     private:
       Entity* mesh;
       Light* light;
+      Light* light2;
 };
 
 #endif // SCENE1_H

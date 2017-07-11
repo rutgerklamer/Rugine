@@ -78,6 +78,7 @@ class Mesh
         int hasLighting();
         bool showNormals;
         bool enabled;
+        bool reflective;
         /**
             *  Return the modelMatrix by translating, rotating and scaling the model matrix.
             */

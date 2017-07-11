@@ -60,12 +60,9 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
 }
 
 
-void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, Skybox* entity, SceneData scenedata)
+void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, Mesh* entity, SceneData scenedata)
 {
-  glDisable(GL_CULL_FACE);
-  glDisable(GL_DEPTH_TEST);
-  glCullFace(GL_FRONT);
-  glDepthMask(GL_FALSE);
+
 
   shader->Use();
 
@@ -74,10 +71,20 @@ void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, 
   model =  glm::translate(model,glm::vec3(0,0,0));
   //Send to vertex shader
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
-  glm::mat4 view = glm::mat4(glm::mat3(camera->getViewMatrix()));
+  glm::mat4 view;
+  if (!entity->reflective) {
+    view = glm::mat4(glm::mat3(camera->getViewMatrix()));
+    glDisable(GL_CULL_FACE);
+    glDisable(GL_DEPTH_TEST);
+    glCullFace(GL_FRONT);
+    glDepthMask(GL_FALSE);
+  } else {
+    view = camera->getViewMatrix();
+  }
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "view"), 1, GL_FALSE, glm::value_ptr(view));
   glm::mat4 projection = camera->getProjectionMatrix();
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "proj"), 1, GL_FALSE, glm::value_ptr(projection));
+  glUniform3f(glGetUniformLocation(shader->shaderProgram, "camPos"), camera->getPosition().x,camera->getPosition().y,camera->getPosition().z);
   //Send a texture
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_CUBE_MAP, entity->getTexture());

@@ -7,6 +7,7 @@ Mesh::Mesh()
   lighting = 0;
   showNormals = false;
   enabled = true;
+  reflective = false;
 }
 
 Mesh::~Mesh()
