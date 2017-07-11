@@ -87,8 +87,8 @@ class Mesh
             */
         virtual glm::vec3 getPosition();
     private:
-      GLuint VAO, VBO, EBO;
       MeshData meshData;
+      GLuint VAO, VBO, EBO;
       int lighting;
 };
 

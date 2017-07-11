@@ -16,6 +16,7 @@
 #include "Engine/Texture.h"
 #include "Engine/Light.h"
 #include "Engine/Entity.h"
+#include "Engine/Skybox.h"
 #include "Engine/Superscene.h"
 
 class Renderer
@@ -39,6 +40,7 @@ class Renderer
             *  and a vector of light if we want multiple lights.
             */
         void render(double currentTime, Shader* shader, Camera* camera, Entity* entity, SceneData scenedata, std::vector<Light*>* lights = nullptr);
+        void renderSkybox(double currentTime, Shader* shader, Camera* camera, Skybox* entity, SceneData scenedata);
     private:
 
 };

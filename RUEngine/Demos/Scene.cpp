@@ -27,6 +27,12 @@ Scene::Scene(Input* input) : Superscene(input)
       light2->setStrength(5.5f);
       this->addLight(light2);
 
+      std::cout << "making" << std::flush;
+      skybox = new Skybox("Assets/mountain_rt.tga", "Assets/mountain_lf.tga", "Assets/mountain_up.tga", "Assets/mountain_dn.tga", "Assets/mountain_bk.tga", "Assets/mountain_ft.tga");
+      std::cout << "created" << std::flush;
+      this->addSkybox(skybox);
+
+
 
       setGamma(0.5f);
       setExposure(0.3f);
@@ -36,6 +42,7 @@ Scene::~Scene()
 {
   delete mesh;
   delete light;
+  delete skybox;
 }
 
 void Scene::Update(float deltaTime)

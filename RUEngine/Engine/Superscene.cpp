@@ -7,6 +7,7 @@ Superscene::Superscene(Input* input)
   std::cout << "Superscene initialized" << std::endl;
   sceneData.gamma = 1.6f;
   sceneData.exposure = 0.1f;
+  skybox = NULL;
 }
 
 Superscene::~Superscene()
@@ -21,7 +22,14 @@ Superscene::~Superscene()
   {
     delete lights[i];
   }
+  delete skybox;
 }
+
+void Superscene::addSkybox(Skybox* sb)
+{
+  skybox = sb;
+}
+
 
 void Superscene::addChild(Entity* mesh)
 {

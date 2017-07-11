@@ -51,9 +51,45 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
   } else {
     glUniform1i(glGetUniformLocation(shader->shaderProgram, "hasNormalMap"), 0);
   }
+
   //Bind the VAO of the mesh
   entity->Draw();
 
   //Draw the mesh
   glDrawArrays(GL_TRIANGLES, 0, entity->getSize());
+}
+
+
+void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, Skybox* entity, SceneData scenedata)
+{
+  glDisable(GL_CULL_FACE);
+  glDisable(GL_DEPTH_TEST);
+  glCullFace(GL_FRONT);
+  glDepthMask(GL_FALSE);
+
+  shader->Use();
+
+  glm::mat4 model;
+//Manipulate model matrix
+  model =  glm::translate(model,glm::vec3(0,0,0));
+  //Send to vertex shader
+  glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
+  glm::mat4 view = glm::mat4(glm::mat3(camera->getViewMatrix()));
+  glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "view"), 1, GL_FALSE, glm::value_ptr(view));
+  glm::mat4 projection = camera->getProjectionMatrix();
+  glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "proj"), 1, GL_FALSE, glm::value_ptr(projection));
+  //Send a texture
+  glActiveTexture(GL_TEXTURE0);
+  glBindTexture(GL_TEXTURE_CUBE_MAP, entity->getTexture());
+  glUniform1i(glGetUniformLocation(shader->shaderProgram, "skybox"), 0);
+  //Bind the VAO of the mesh
+  entity->Draw();
+
+  //Draw the mesh
+  glDrawArrays(GL_TRIANGLES, 0, entity->getSize());
+
+  glDepthMask(GL_TRUE);
+  glEnable(GL_CULL_FACE);
+  glCullFace(GL_BACK);
+  glEnable(GL_DEPTH_TEST);
 }

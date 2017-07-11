@@ -16,6 +16,7 @@
 #include "Input.h"
 #include "Engine/Entity.h"
 #include "Engine/Light.h"
+#include "Skybox.h"
 
 struct SceneData
 {
@@ -40,6 +41,11 @@ class Superscene
             */
         void addChild(Entity* mesh);
         /**
+            *  Add a skybox to the scene
+            *  Takes in a Skybox pointer.
+            */
+        void addSkybox(Skybox* sb);
+        /**
             *  Add a light to the vector of lights.
             *  Takes in a Entity pointer.
             */
@@ -63,6 +69,7 @@ class Superscene
         std::vector<Light*> lights;
         Input* input;
         Camera* camera;
+        Skybox* skybox;
         /**
             *  Update the scene and update the meshes.
             *  Takes in the deltaTime of the scene.

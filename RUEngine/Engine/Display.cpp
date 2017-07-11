@@ -18,6 +18,7 @@ Display::Display()
   shader = new Shader("Shaders/3D/shader.vert", "Shaders/3D/shader.frag","","","");
   shaderNormals = new Shader("Shaders/Normals/shader.vert", "Shaders/Normals/shader.frag","","","Shaders/Normals/shader.geom");
   shaderExplode = new Shader("Shaders/Explode/shader.vert", "Shaders/Explode/shader.frag","","","Shaders/Explode/shader.geom");
+  shaderSkybox = new Shader("Shaders/SkyboxShaders/shader.vert", "Shaders/SkyboxShaders/shader.frag","","","");
   dtime = new Time();
   scenemanager = new SceneManager(input);
   std::cout << "Display initialized" << std::endl;
@@ -36,10 +37,21 @@ void Display::gameLoop()
   scenemanager->scenes[currentscene]->input->setCamera(scenemanager->scenes[currentscene]->camera);
   resourcemanager->setProjectionMatrix(shaderNormals, scenemanager->scenes[currentscene]->camera);
   resourcemanager->setProjectionMatrix(shader, scenemanager->scenes[currentscene]->camera);
+  resourcemanager->setProjectionMatrix(shaderSkybox, scenemanager->scenes[currentscene]->camera);
   do {
     //Clear window with a red-"ish" color
     glClearColor(0.3,0.3,0.3,1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    if (scenemanager->scenes[currentscene]->skybox != NULL)
+    {
+      std::cout<< "has skybox " << std::endl;
+      shaderSkybox->Use();
+      resourcemanager->updateShaders(shaderSkybox, scenemanager->scenes[currentscene]->camera);
+      renderer->renderSkybox(glfwGetTime(), shaderSkybox, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->skybox, scenemanager->scenes[currentscene]->getSceneData());
+      shader->Use();
+    } else {
+      std::cout<< "doesnt have skybox " << std::endl;
+    }
     if (input->isDown(93) && currentscene < scenemanager->scenes.size() - 1) {
       currentscene++;
       input->setKey(93, false);

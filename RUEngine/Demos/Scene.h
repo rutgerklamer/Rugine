@@ -12,6 +12,7 @@
 #include "Engine/Superscene.h"
 #include "Engine/Texture.h"
 #include "Engine/Light.h"
+#include "Engine/Skybox.h"
 
 class Scene : public Superscene
 {
@@ -23,6 +24,7 @@ class Scene : public Superscene
       Entity* mesh;
       Light* light;
       Light* light2;
+      Skybox* skybox;
 };
 
 #endif // SCENE_H

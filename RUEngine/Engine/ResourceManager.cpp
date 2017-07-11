@@ -19,7 +19,7 @@ void ResourceManager::updateShaders(Shader* shader, Camera* camera)
   //Send view to the vertex shader
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "view"), 1, GL_FALSE, glm::value_ptr(view));
   //Set the default texture to position 0
-  glUniform1i(glGetUniformLocation( shader->shaderProgram, "texture"),0);
+  glUniform1i(glGetUniformLocation( shader->shaderProgram, "skybox"),0);
 }
 
 void ResourceManager::setProjectionMatrix(Shader* shader, Camera* camera)
