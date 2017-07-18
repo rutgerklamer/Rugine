@@ -20,6 +20,7 @@ Display::Display()
   shaderExplode = new Shader("Shaders/Explode/shader.vert", "Shaders/Explode/shader.frag","","","Shaders/Explode/shader.geom");
   shaderSkybox = new Shader("Shaders/SkyboxShaders/shader.vert", "Shaders/SkyboxShaders/shader.frag","","","");
   shaderReflection = new Shader("Shaders/StrongReflection/shader.vert", "Shaders/StrongReflection/shader.frag","","","");
+  shaderTransparent = new Shader("Shaders/Transparent/shader.vert", "Shaders/Transparent/shader.frag","","","");
   dtime = new Time();
   scenemanager = new SceneManager(input);
   std::cout << "Display initialized" << std::endl;
@@ -45,13 +46,11 @@ void Display::gameLoop()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     if (scenemanager->scenes[currentscene]->skybox != NULL)
     {
-      std::cout<< "has skybox " << std::endl;
       shaderSkybox->Use();
       resourcemanager->updateShaders(shaderSkybox, scenemanager->scenes[currentscene]->camera);
       renderer->renderSkybox(glfwGetTime(), shaderSkybox, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->skybox, scenemanager->scenes[currentscene]->getSceneData());
       shader->Use();
     } else {
-      std::cout<< "doesnt have skybox " << std::endl;
     }
     if (input->isDown(93) && currentscene < scenemanager->scenes.size() - 1) {
       currentscene++;
@@ -68,13 +67,17 @@ void Display::gameLoop()
     scenemanager->scenes[currentscene]->Update(dtime->getDeltatime());
     resourcemanager->updateShaders(shader, scenemanager->scenes[currentscene]->camera);
     for (int i = 0; i < scenemanager->scenes[currentscene]->entities.size(); i++) {
-      if (scenemanager->scenes[currentscene]->lights.size() > 0 && scenemanager->scenes[currentscene]->entities[i]->enabled && !scenemanager->scenes[currentscene]->entities[i]->reflective) {
+      if (scenemanager->scenes[currentscene]->lights.size() > 0 && scenemanager->scenes[currentscene]->entities[i]->enabled && !scenemanager->scenes[currentscene]->entities[i]->reflective && !scenemanager->scenes[currentscene]->entities[i]->transparent) {
          renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(), &scenemanager->scenes[currentscene]->lights);
-       } else if (scenemanager->scenes[currentscene]->entities[i]->enabled && !scenemanager->scenes[currentscene]->entities[i]->reflective) {
+       } else if (scenemanager->scenes[currentscene]->entities[i]->enabled && !scenemanager->scenes[currentscene]->entities[i]->reflective && !scenemanager->scenes[currentscene]->entities[i]->transparent) {
          renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
-       } else if (scenemanager->scenes[currentscene]->entities[i]->reflective)
+       } else if (scenemanager->scenes[currentscene]->entities[i]->reflective  && !scenemanager->scenes[currentscene]->entities[i]->transparent)
        {
          renderer->renderSkybox(glfwGetTime(), shaderReflection, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
+       } else if (scenemanager->scenes[currentscene]->entities[i]->transparent)
+       {
+         std::cout << "car" << std::endl;
+         renderer->renderSkybox(glfwGetTime(), shaderTransparent, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
        }
        if (scenemanager->scenes[currentscene]->entities[i]->showNormals && scenemanager->scenes[currentscene]->entities[i]->enabled) {
           resourcemanager->updateShaders(shaderNormals, scenemanager->scenes[currentscene]->camera);

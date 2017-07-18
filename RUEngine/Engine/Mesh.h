@@ -79,6 +79,7 @@ class Mesh
         bool showNormals;
         bool enabled;
         bool reflective;
+        bool transparent;
         /**
             *  Return the modelMatrix by translating, rotating and scaling the model matrix.
             */

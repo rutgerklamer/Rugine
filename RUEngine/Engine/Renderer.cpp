@@ -72,7 +72,7 @@ void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, 
   //Send to vertex shader
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
   glm::mat4 view;
-  if (!entity->reflective) {
+  if (!entity->reflective && !entity->transparent) {
     view = glm::mat4(glm::mat3(camera->getViewMatrix()));
     glDisable(GL_CULL_FACE);
     glDisable(GL_DEPTH_TEST);
@@ -89,6 +89,9 @@ void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, 
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_CUBE_MAP, entity->getTexture());
   glUniform1i(glGetUniformLocation(shader->shaderProgram, "skybox"), 0);
+  glActiveTexture(GL_TEXTURE1);
+  glBindTexture(GL_TEXTURE_2D, entity->getTexture());
+  glUniform1i(glGetUniformLocation(shader->shaderProgram, "Texture"), 1);
   //Bind the VAO of the mesh
   entity->Draw();
 

@@ -6,7 +6,7 @@ Scene::Scene(Input* input) : Superscene(input)
   //Create a mesh
       mesh = new Entity();
       mesh->LoadObject("Assets/teapot.obj", false);
-      mesh->reflective = true;
+      mesh->transparent = true;
       //Set a texture to it
       mesh->setTexture(tex::loadTexture("Assets/wall.jpg"));
       mesh->position = glm::vec3(0,0,0);

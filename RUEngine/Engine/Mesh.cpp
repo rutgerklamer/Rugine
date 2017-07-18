@@ -8,6 +8,7 @@ Mesh::Mesh()
   showNormals = false;
   enabled = true;
   reflective = false;
+  transparent = false;
 }
 
 Mesh::~Mesh()

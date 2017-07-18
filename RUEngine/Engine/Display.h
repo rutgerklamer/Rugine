@@ -53,6 +53,8 @@ class Display
       Shader* shaderExplode;
       Shader* shaderSkybox;
       Shader* shaderReflection;
+      Shader* shaderTransparent;
+      GLuint skyboxTexture;
       Camera camera;
       Time* dtime;
       SceneManager* scenemanager;
