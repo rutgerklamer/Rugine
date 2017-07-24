@@ -76,7 +76,6 @@ void Display::gameLoop()
          renderer->renderSkybox(glfwGetTime(), shaderReflection, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
        } else if (scenemanager->scenes[currentscene]->entities[i]->transparent)
        {
-         std::cout << "car" << std::endl;
          renderer->renderSkybox(glfwGetTime(), shaderTransparent, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
        }
        if (scenemanager->scenes[currentscene]->entities[i]->showNormals && scenemanager->scenes[currentscene]->entities[i]->enabled) {

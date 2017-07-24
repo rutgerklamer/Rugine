@@ -76,6 +76,8 @@ while( 1 ){
     }
   }
   fclose(file);
+  glm::vec3 min;
+  glm::vec3 max;
   GLfloat *vertices = new GLfloat[vertexIndices.size()* multiplier];
    for( unsigned int i=0; i<vertexIndices.size(); i++ ) {
      //push vertices/uv's and normals to correct place in vertices
@@ -83,6 +85,12 @@ while( 1 ){
      vertices[i * multiplier] = temp_vertices[ vertexIndex-1 ].x;
      vertices[i * multiplier + 1] = temp_vertices[ vertexIndex-1 ].y;
      vertices[i * multiplier + 2] = temp_vertices[ vertexIndex-1 ].z;
+     if (temp_vertices[ vertexIndex-1 ].x < min.x) min.x = temp_vertices[ vertexIndex-1 ].x;
+     if (temp_vertices[ vertexIndex-1 ].x > max.x) max.x = temp_vertices[ vertexIndex-1 ].x;
+     if (temp_vertices[ vertexIndex-1 ].y < min.y) min.y = temp_vertices[ vertexIndex-1 ].y;
+     if (temp_vertices[ vertexIndex-1 ].y > max.y) max.y = temp_vertices[ vertexIndex-1 ].y;
+     if (temp_vertices[ vertexIndex-1 ].z < min.z) min.z = temp_vertices[ vertexIndex-1 ].z;
+     if (temp_vertices[ vertexIndex-1 ].z > max.z) max.z = temp_vertices[ vertexIndex-1 ].z;
      unsigned int uvIndex = uvIndices[i];
      vertices[i * multiplier + 3] = temp_textures[ uvIndex-1 ].x;
      vertices[i * multiplier + 4] = temp_textures[ uvIndex-1 ].y;
@@ -171,6 +179,8 @@ while( 1 ){
      }
    }
    MeshData meshData;
+   meshData.min = min;
+   meshData.max = max;
    meshData.size = vertexIndices.size() * multiplier * sizeof(GLfloat);
    meshData.vertices = vertices;
    return meshData;

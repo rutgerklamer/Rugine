@@ -21,6 +21,8 @@ struct MeshData
   int size;
   GLuint texture;
   GLuint normalMap;
+  glm::vec3 min;
+  glm::vec3 max;
 };
 
 class Mesh
