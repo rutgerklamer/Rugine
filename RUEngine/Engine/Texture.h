@@ -13,6 +13,5 @@ namespace tex {
               */
           GLuint loadTexture(const char* path);
           GLuint loadCubemap(std::vector<const char*> faces);
-
 }
 #endif // TEXTURE_H

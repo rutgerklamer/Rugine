@@ -37,6 +37,7 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
       glUniform3f(glGetUniformLocation(shader->shaderProgram, "sceneData.fogColor"), scenedata.fogColor.x, scenedata.fogColor.y, scenedata.fogColor.z);
     }
   }
+  glUniform1f(glGetUniformLocation(shader->shaderProgram, "time"), glfwGetTime());
 //Manipulate model matrix
   model =  entity->getModelMatrix();
   //Send to vertex shader
@@ -44,7 +45,7 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
   //Send a texture
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, entity->getTexture());
-  glUniform1i(glGetUniformLocation(shader->shaderProgram, "texture"), 0);
+  glUniform1i(glGetUniformLocation(shader->shaderProgram, "Texture"), 0);
   if (entity->getNormalMap() != NULL) {
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, entity->getNormalMap());

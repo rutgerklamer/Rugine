@@ -32,7 +32,7 @@ Scene0::Scene0(Input* input) : Superscene(input)
 
       setGamma(1.2f);
       setExposure(0.20f);
-      setFogDensity(0.05f);
+      setFogDensity(0.1f);
       setFogColor(glm::vec3(1.0,0.2,0.2));
 }
 
