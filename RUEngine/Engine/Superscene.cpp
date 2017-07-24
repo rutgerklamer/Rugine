@@ -63,3 +63,13 @@ void Superscene::setExposure(float exposure)
 {
   this->sceneData.exposure = exposure;
 }
+
+void Superscene::setFogDensity(float density)
+{
+  this->sceneData.fogDensity = density;
+}
+
+void Superscene::setFogColor(glm::vec3 color)
+{
+  this->sceneData.fogColor = color;
+}

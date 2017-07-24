@@ -22,6 +22,8 @@ struct SceneData
 {
   float gamma;
   float exposure;
+  float fogDensity;
+  glm::vec3 fogColor;
 };
 
 class Superscene
@@ -60,6 +62,16 @@ class Superscene
             *  Takes in a gamma value
             */
         void setExposure(float exposure);
+        /**
+            *  Set the exposure of this scene.
+            *  Takes in a density value
+            */
+        void setFogDensity(float density);
+        /**
+            *  Set the fogColor of this scene.
+            *  Takes in a vec3 which represents RGB
+            */
+        void setFogColor(glm::vec3 color);
         /**
             *  Return the scenedata of this scene.
             *  Takes in a exposure value.

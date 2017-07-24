@@ -5,6 +5,8 @@ struct SceneData
 {
   float gamma;
   float exposure;
+  float fogDensity;
+  vec3 fogColor;
 };
 
 struct LightData
@@ -83,7 +85,16 @@ void main(void)
       }
     }
   }
+  if (sceneData.fogDensity != 0)
+  {
+    float fogFactor;
+    float dist = length(camPos - worldPos);
+    fogFactor = 1.0 /exp( (dist * sceneData.fogDensity)* (dist * sceneData.fogDensity));
+    fogFactor = clamp( fogFactor, 0.0, 2.0 );
+    result = mix(vec4(sceneData.fogColor,1), vec4(result), fogFactor);
+  }
   vec3 mapped = vec3(1.0) - exp(-result.rgb * sceneData.exposure);
   mapped = pow(mapped, vec3(1.0 / sceneData.gamma));
   color = vec4(mapped,1);
+
 }

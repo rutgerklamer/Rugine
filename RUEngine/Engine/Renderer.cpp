@@ -33,6 +33,8 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
       //Send scene data
       glUniform1f(glGetUniformLocation(shader->shaderProgram, "sceneData.gamma"), scenedata.gamma);
       glUniform1f(glGetUniformLocation(shader->shaderProgram, "sceneData.exposure"), scenedata.exposure);
+      glUniform1f(glGetUniformLocation(shader->shaderProgram, "sceneData.fogDensity"), scenedata.fogDensity);
+      glUniform3f(glGetUniformLocation(shader->shaderProgram, "sceneData.fogColor"), scenedata.fogColor.x, scenedata.fogColor.y, scenedata.fogColor.z);
     }
   }
 //Manipulate model matrix
