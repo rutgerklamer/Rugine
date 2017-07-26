@@ -39,6 +39,7 @@ void Display::addScene(Superscene* scene)
 void Display::gameLoop()
 {
   scenemanager->scenes[currentscene]->input->setCamera(scenemanager->scenes[currentscene]->camera);
+  raycaster->setCamera(scenemanager->scenes[currentscene]->camera);
   resourcemanager->setProjectionMatrix(shaderNormals, scenemanager->scenes[currentscene]->camera);
   resourcemanager->setProjectionMatrix(shader, scenemanager->scenes[currentscene]->camera);
   resourcemanager->setProjectionMatrix(shaderSkybox, scenemanager->scenes[currentscene]->camera);
