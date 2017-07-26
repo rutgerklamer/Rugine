@@ -82,6 +82,7 @@ class Mesh
         bool enabled;
         bool reflective;
         bool transparent;
+        MeshData meshData;
         /**
             *  Return the modelMatrix by translating, rotating and scaling the model matrix.
             */
@@ -91,7 +92,6 @@ class Mesh
             */
         virtual glm::vec3 getPosition();
     private:
-      MeshData meshData;
       GLuint VAO, VBO, EBO;
       int lighting;
 };

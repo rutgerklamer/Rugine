@@ -19,6 +19,11 @@ Input::~Input()
   delete camera;
 }
 
+void Input::setWindow(GLFWwindow* window)
+{
+  this->window = window;
+}
+
 bool Input::isDown(int key)
 {
   return keys[key];
@@ -44,8 +49,15 @@ void Input::setCamera(Camera* camera)
   this->camera = camera;
 }
 
+glm::vec2 Input::getWindowSize()
+{
+  int width;
+  int height;
+  glfwGetWindowSize(window, &width, &height);
+  return glm::vec2(width, height);
+}
 
-glm::vec2 Input::getMousePosition(GLFWwindow* window)
+glm::vec2 Input::getMousePosition()
 {
   double dx, dy;
   glfwGetCursorPos(window, &dx, &dy);

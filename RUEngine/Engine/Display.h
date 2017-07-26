@@ -12,6 +12,7 @@
 #include "Maths/Time.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
+#include "Raycast.h"
 
 class Display
 {
@@ -54,6 +55,7 @@ class Display
       Shader* shaderSkybox;
       Shader* shaderReflection;
       Shader* shaderTransparent;
+      Raycast* raycaster;
       GLuint skyboxTexture;
       Camera camera;
       Time* dtime;

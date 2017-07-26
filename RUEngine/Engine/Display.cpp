@@ -12,6 +12,7 @@ Display::Display()
   resourcemanager = new ResourceManager();
   //Initialize glfw
   initGlfw();
+  input->setWindow(window);
   //Make a renderer
   renderer = new Renderer();
   //Make a shader after initializing glew
@@ -23,6 +24,7 @@ Display::Display()
   shaderTransparent = new Shader("Shaders/Transparent/shader.vert", "Shaders/Transparent/shader.frag","","","");
   dtime = new Time();
   scenemanager = new SceneManager(input);
+  raycaster = new Raycast(&camera, input);
   std::cout << "Display initialized" << std::endl;
   //We want to run this atleast once.
   //Get the projection matrix
@@ -56,12 +58,14 @@ void Display::gameLoop()
       currentscene++;
       input->setKey(93, false);
       scenemanager->scenes[currentscene]->input->setCamera(scenemanager->scenes[currentscene]->camera);
+      raycaster->setCamera(scenemanager->scenes[currentscene]->camera);
       resourcemanager->removeLights(shader);
     }
     if (input->isDown(91) && currentscene > 0) {
       currentscene--;
       input->setKey(91, false);
       scenemanager->scenes[currentscene]->input->setCamera(scenemanager->scenes[currentscene]->camera);
+      raycaster->setCamera(scenemanager->scenes[currentscene]->camera);
       resourcemanager->removeLights(shader);
     }
     scenemanager->scenes[currentscene]->Update(dtime->getDeltatime());
@@ -74,8 +78,11 @@ void Display::gameLoop()
     } else {
       glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
+    raycaster->Update();
     for (int i = 0; i < scenemanager->scenes[currentscene]->entities.size(); i++) {
-
+      if (scenemanager->scenes[currentscene]->entities[i] != nullptr) {
+        raycaster->checkCollision(scenemanager->scenes[currentscene]->entities[i]);
+      }
         if (scenemanager->scenes[currentscene]->lights.size() > 0 && scenemanager->scenes[currentscene]->entities[i]->enabled && !scenemanager->scenes[currentscene]->entities[i]->reflective && !scenemanager->scenes[currentscene]->entities[i]->transparent) {
            renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(), &scenemanager->scenes[currentscene]->lights);
          } else if (scenemanager->scenes[currentscene]->entities[i]->enabled && !scenemanager->scenes[currentscene]->entities[i]->reflective && !scenemanager->scenes[currentscene]->entities[i]->transparent) {
