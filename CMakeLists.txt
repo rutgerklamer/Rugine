@@ -5,11 +5,11 @@ project (ruengine)
 # delete CMakeCache.txt from the build directory when you edit these options
 ####################################################################
 OPTION(MAKE_DEMO "Create DEMO" ON)
-OPTION(MAKE_NMHD "Create NormalMap vs HighDetail" ON)
-OPTION(MAKE_GOL "Create Game of Life" ON)
-OPTION(MAKE_LA "Create Langtons Ant" ON)
-OPTION(MAKE_BB "Create Brian's Brain" ON)
-OPTION(MAKE_WW "Create Wire World" ON)
+OPTION(MAKE_NMHD "Create NormalMap vs HighDetail" OFF)
+OPTION(MAKE_GOL "Create Game of Life" OFF)
+OPTION(MAKE_LA "Create Langtons Ant" OFF)
+OPTION(MAKE_BB "Create Brian's Brain" OFF)
+OPTION(MAKE_WW "Create Wire World" OFF)
 
 ####################################################################
 
@@ -131,6 +131,7 @@ set(RUGINESOURCE
     RUEngine/Engine/SceneManager.cpp
     RUEngine/Engine/Skybox.cpp
     RUEngine/Engine/Framebuffer.cpp
+    RUEngine/Engine/Raycast.cpp
   )
 
 ####################################################################
