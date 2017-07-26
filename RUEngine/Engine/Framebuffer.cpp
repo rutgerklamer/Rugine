@@ -20,8 +20,8 @@ void Framebuffer::initFramebuffer()
   glGenTextures(1, &framebufferTexture);
   glBindTexture(GL_TEXTURE_2D, framebufferTexture);
 
-  int width = 800;
-  int height = 600;
+  int width = 1024;
+  int height = 720;
 
   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);

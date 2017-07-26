@@ -30,6 +30,8 @@ Scene1::Scene1(Input* input) : Superscene(input)
 
       setGamma(0.8f);
       setExposure(0.25f);
+      addFramebuffer("Shaders/Framebuffer/FishEye/shader.vert", "Shaders/Framebuffer/FishEye/shader.frag");
+
 }
 
 Scene1::~Scene1()
