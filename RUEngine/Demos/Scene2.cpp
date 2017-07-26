@@ -34,4 +34,5 @@ Scene2::~Scene2()
 
 void Scene2::Update(float deltaTime)
 {
+
 }

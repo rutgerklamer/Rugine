@@ -40,7 +40,23 @@ class Renderer
             *  and a vector of light if we want multiple lights.
             */
         void render(double currentTime, Shader* shader, Camera* camera, Entity* entity, SceneData scenedata, std::vector<Light*>* lights = nullptr);
+        /**
+            *  render the scene's skybox
+            *  takes in the current Time //TODO remove <-
+            *  the shader we want to use //TODO improve performance <-
+            *  the camera we want to get the view from //TODO improve performance <-
+            *  the entity we want to render.
+            *  the data of the scene.
+            */
         void renderSkybox(double currentTime, Shader* shader, Camera* camera, Mesh* entity, SceneData scenedata);
+        /**
+            *  render the scene
+            *  takes in the shader we want to use //TODO improve performance <-
+            *  the texture to display on the quad
+            */
+        void renderFramebuffer(Shader* shader, GLuint texture);
+
+        GLuint Texture;
     private:
 
 };

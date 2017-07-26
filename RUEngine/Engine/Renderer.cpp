@@ -4,6 +4,7 @@
 Renderer::Renderer()
 {
   std::cout << "Renderer initialized" << std::endl;
+  Texture = tex::loadTexture("Assets/wall.jpg");
 }
 
 Renderer::~Renderer()
@@ -105,4 +106,15 @@ void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, 
   glEnable(GL_CULL_FACE);
   glCullFace(GL_BACK);
   glEnable(GL_DEPTH_TEST);
+}
+
+void Renderer::renderFramebuffer(Shader* shader, GLuint texture)
+{
+  shader->Use();
+
+  glActiveTexture(GL_TEXTURE1);
+  glBindTexture(GL_TEXTURE_2D, texture);
+  glUniform1i(glGetUniformLocation(shader->shaderProgram, "Texture"), 1);
+
+  glDrawArrays(GL_TRIANGLES , 0, 6);
 }

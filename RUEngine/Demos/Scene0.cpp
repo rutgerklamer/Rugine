@@ -34,6 +34,8 @@ Scene0::Scene0(Input* input) : Superscene(input)
       setExposure(0.20f);
       setFogDensity(0.073f);
       setFogColor(glm::vec3(0.9,1.0,0.8));
+      addFramebuffer("Shaders/Framebuffer/shader.vert", "Shaders/Framebuffer/shader.frag");
+
 }
 
 Scene0::~Scene0()

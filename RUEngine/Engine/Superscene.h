@@ -17,7 +17,7 @@
 #include "Engine/Entity.h"
 #include "Engine/Light.h"
 #include "Skybox.h"
-
+#include "Engine/Framebuffer.h"
 struct SceneData
 {
   float gamma;
@@ -73,6 +73,11 @@ class Superscene
             */
         void setFogColor(glm::vec3 color);
         /**
+            *  Tell the scene we want to use a framebuffer
+            *  Takes in 5 const chars of all supported shader stages
+            */
+        void addFramebuffer(const char* vertexPath, const char* fragmentPath);
+        /**
             *  Return the scenedata of this scene.
             *  Takes in a exposure value.
             */
@@ -82,6 +87,7 @@ class Superscene
         Input* input;
         Camera* camera;
         Skybox* skybox;
+        Framebuffer* framebuffer;
         /**
             *  Update the scene and update the meshes.
             *  Takes in the deltaTime of the scene.

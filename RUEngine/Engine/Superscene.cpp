@@ -7,7 +7,10 @@ Superscene::Superscene(Input* input)
   std::cout << "Superscene initialized" << std::endl;
   sceneData.gamma = 1.6f;
   sceneData.exposure = 0.1f;
+  sceneData.fogDensity = 0.0f;
+  sceneData.fogColor = glm::vec3(0,0,0);
   skybox = NULL;
+  framebuffer = NULL;
 }
 
 Superscene::~Superscene()
@@ -30,6 +33,10 @@ void Superscene::addSkybox(Skybox* sb)
   skybox = sb;
 }
 
+void Superscene::addFramebuffer(const char* vertexPath, const char* fragmentPath)
+{
+  framebuffer = new Framebuffer(vertexPath, fragmentPath);
+}
 
 void Superscene::addChild(Entity* mesh)
 {

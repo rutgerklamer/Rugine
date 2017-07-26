@@ -66,22 +66,35 @@ void Display::gameLoop()
     }
     scenemanager->scenes[currentscene]->Update(dtime->getDeltatime());
     resourcemanager->updateShaders(shader, scenemanager->scenes[currentscene]->camera);
+    if (scenemanager->scenes[currentscene]->framebuffer != nullptr) {
+      glBindFramebuffer(GL_FRAMEBUFFER, scenemanager->scenes[currentscene]->framebuffer->fbo);
+
+      glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    } else {
+      glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    }
     for (int i = 0; i < scenemanager->scenes[currentscene]->entities.size(); i++) {
-      if (scenemanager->scenes[currentscene]->lights.size() > 0 && scenemanager->scenes[currentscene]->entities[i]->enabled && !scenemanager->scenes[currentscene]->entities[i]->reflective && !scenemanager->scenes[currentscene]->entities[i]->transparent) {
-         renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(), &scenemanager->scenes[currentscene]->lights);
-       } else if (scenemanager->scenes[currentscene]->entities[i]->enabled && !scenemanager->scenes[currentscene]->entities[i]->reflective && !scenemanager->scenes[currentscene]->entities[i]->transparent) {
-         renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
-       } else if (scenemanager->scenes[currentscene]->entities[i]->reflective  && !scenemanager->scenes[currentscene]->entities[i]->transparent)
-       {
-         renderer->renderSkybox(glfwGetTime(), shaderReflection, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
-       } else if (scenemanager->scenes[currentscene]->entities[i]->transparent)
-       {
-         renderer->renderSkybox(glfwGetTime(), shaderTransparent, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
-       }
-       if (scenemanager->scenes[currentscene]->entities[i]->showNormals && scenemanager->scenes[currentscene]->entities[i]->enabled) {
-          resourcemanager->updateShaders(shaderNormals, scenemanager->scenes[currentscene]->camera);
-          renderer->render(glfwGetTime(), shaderNormals, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
-        }
+
+        if (scenemanager->scenes[currentscene]->lights.size() > 0 && scenemanager->scenes[currentscene]->entities[i]->enabled && !scenemanager->scenes[currentscene]->entities[i]->reflective && !scenemanager->scenes[currentscene]->entities[i]->transparent) {
+           renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(), &scenemanager->scenes[currentscene]->lights);
+         } else if (scenemanager->scenes[currentscene]->entities[i]->enabled && !scenemanager->scenes[currentscene]->entities[i]->reflective && !scenemanager->scenes[currentscene]->entities[i]->transparent) {
+           renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
+         } else if (scenemanager->scenes[currentscene]->entities[i]->reflective  && !scenemanager->scenes[currentscene]->entities[i]->transparent)
+         {
+           renderer->renderSkybox(glfwGetTime(), shaderReflection, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
+         } else if (scenemanager->scenes[currentscene]->entities[i]->transparent)
+         {
+           renderer->renderSkybox(glfwGetTime(), shaderTransparent, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
+         }
+         if (scenemanager->scenes[currentscene]->entities[i]->showNormals && scenemanager->scenes[currentscene]->entities[i]->enabled) {
+            resourcemanager->updateShaders(shaderNormals, scenemanager->scenes[currentscene]->camera);
+            renderer->render(glfwGetTime(), shaderNormals, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData());
+          }
+    }
+    if (scenemanager->scenes[currentscene]->framebuffer != nullptr) {
+      glBindFramebuffer(GL_FRAMEBUFFER, 0);
+      renderer->renderFramebuffer(scenemanager->scenes[currentscene]->framebuffer->shader, scenemanager->scenes[currentscene]->framebuffer->framebufferTexture);
     }
     //Get deltatime and fps
     dtime->update();

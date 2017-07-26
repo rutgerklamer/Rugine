@@ -64,8 +64,8 @@ class Display
       struct WINDOWINFO
       {
         std::string windowName = "RUEngine 2.0";
-        int windowWidth = 1920;
-        int windowHeight = 1024;
+        int windowWidth = 1024;
+        int windowHeight = 720;
         int majorVersion = 3;
         int minorVersion = 3;
       };

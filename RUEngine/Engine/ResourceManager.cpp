@@ -33,6 +33,7 @@ void ResourceManager::setProjectionMatrix(Shader* shader, Camera* camera)
 
 void ResourceManager::removeLights(Shader* shader)
 {
+  shader->Use();
   for (unsigned int i = 0; i < 15; i++)
   {
     //Since we use the same shader for every scene we need to remove previously set uniforms
