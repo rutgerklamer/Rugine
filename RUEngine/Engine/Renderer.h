@@ -54,7 +54,7 @@ class Renderer
             *  takes in the shader we want to use //TODO improve performance <-
             *  the texture to display on the quad
             */
-        void renderFramebuffer(Shader* shader, GLuint texture);
+        void renderFramebuffer(Shader* shader, GLuint texture, Input* input);
 
         GLuint Texture;
     private:

@@ -47,6 +47,11 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, entity->getTexture());
   glUniform1i(glGetUniformLocation(shader->shaderProgram, "Texture"), 0);
+  if (entity->getTexture() < 1000) {
+    glUniform3f(glGetUniformLocation(shader->shaderProgram, "Color"), 0, 0, 0);
+  } else {
+    glUniform3f(glGetUniformLocation(shader->shaderProgram, "Color"), entity->getColor().x, entity->getColor().y, entity->getColor().z);
+  }
   if (entity->getNormalMap() != NULL) {
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, entity->getNormalMap());
@@ -70,13 +75,14 @@ void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, 
 
   shader->Use();
 
-  glm::mat4 model;
-//Manipulate model matrix
-  model =  glm::translate(model,glm::vec3(0,0,0));
-  //Send to vertex shader
-  glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
+
   glm::mat4 view;
   if (!entity->reflective && !entity->transparent) {
+    glm::mat4 model;
+    //Manipulate model matrix
+    model =  glm::translate(model,glm::vec3(0,0,0));
+    //Send to vertex shader
+    glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
     view = glm::mat4(glm::mat3(camera->getViewMatrix()));
     glDisable(GL_CULL_FACE);
     glDisable(GL_DEPTH_TEST);
@@ -84,6 +90,8 @@ void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, 
     glDepthMask(GL_FALSE);
   } else {
     view = camera->getViewMatrix();
+    //Send to vertex shader
+    glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(entity->getModelMatrix()));
   }
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "view"), 1, GL_FALSE, glm::value_ptr(view));
   glm::mat4 projection = camera->getProjectionMatrix();
@@ -96,6 +104,11 @@ void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, 
   glActiveTexture(GL_TEXTURE1);
   glBindTexture(GL_TEXTURE_2D, entity->getTexture());
   glUniform1i(glGetUniformLocation(shader->shaderProgram, "Texture"), 1);
+  if (entity->getTexture() < 1000) {
+    glUniform3f(glGetUniformLocation(shader->shaderProgram, "Color"), 0, 0, 0);
+  } else {
+    glUniform3f(glGetUniformLocation(shader->shaderProgram, "Color"), entity->getColor().x, entity->getColor().y, entity->getColor().z);
+  }
   //Bind the VAO of the mesh
   entity->Draw();
 
@@ -108,13 +121,15 @@ void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, 
   glEnable(GL_DEPTH_TEST);
 }
 
-void Renderer::renderFramebuffer(Shader* shader, GLuint texture)
+void Renderer::renderFramebuffer(Shader* shader, GLuint texture, Input* input)
 {
   shader->Use();
 
   glActiveTexture(GL_TEXTURE1);
   glBindTexture(GL_TEXTURE_2D, texture);
   glUniform1i(glGetUniformLocation(shader->shaderProgram, "Texture"), 1);
+  glm::vec2 velocity = input->getMouseVelocity();
+  glUniform2f(glGetUniformLocation(shader->shaderProgram, "velocity"), velocity.x, velocity.y);
 
   glDrawArrays(GL_TRIANGLES , 0, 6);
 }

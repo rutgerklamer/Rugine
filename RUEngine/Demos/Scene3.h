@@ -22,6 +22,8 @@ class Scene3 : public Superscene
         void Update(float deltaTime);
     private:
       Entity* mesh;
+      Entity* mesh2;
+      Entity* mesh3;
       Skybox* skybox;
 };
 

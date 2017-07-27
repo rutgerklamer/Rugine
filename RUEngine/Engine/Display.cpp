@@ -82,7 +82,7 @@ void Display::gameLoop()
     raycaster->Update();
     for (int i = 0; i < scenemanager->scenes[currentscene]->entities.size(); i++) {
       if (scenemanager->scenes[currentscene]->entities[i] != nullptr) {
-        raycaster->checkCollision(scenemanager->scenes[currentscene]->entities[i]);
+    //    raycaster->checkCollision(scenemanager->scenes[currentscene]->entities[i]);
       }
         if (scenemanager->scenes[currentscene]->lights.size() > 0 && scenemanager->scenes[currentscene]->entities[i]->enabled && !scenemanager->scenes[currentscene]->entities[i]->reflective && !scenemanager->scenes[currentscene]->entities[i]->transparent) {
            renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(), &scenemanager->scenes[currentscene]->lights);
@@ -102,7 +102,7 @@ void Display::gameLoop()
     }
     if (scenemanager->scenes[currentscene]->framebuffer != nullptr) {
       glBindFramebuffer(GL_FRAMEBUFFER, 0);
-      renderer->renderFramebuffer(scenemanager->scenes[currentscene]->framebuffer->shader, scenemanager->scenes[currentscene]->framebuffer->framebufferTexture);
+      renderer->renderFramebuffer(scenemanager->scenes[currentscene]->framebuffer->shader, scenemanager->scenes[currentscene]->framebuffer->framebufferTexture, input);
     }
     //Get deltatime and fps
     dtime->update();
@@ -130,6 +130,7 @@ Display::~Display() {
   delete window;
   delete resourcemanager;
   delete scenemanager;
+  delete raycaster;
 }
 
 void Display::initGlfw()

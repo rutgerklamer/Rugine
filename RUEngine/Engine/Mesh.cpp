@@ -9,6 +9,7 @@ Mesh::Mesh()
   enabled = true;
   reflective = false;
   transparent = false;
+  meshData.texture = NULL;
 }
 
 Mesh::~Mesh()
@@ -54,6 +55,16 @@ int Mesh::hasLighting()
 glm::mat4 Mesh::getModelMatrix()
 {
 
+}
+
+void Mesh::setColor(glm::vec3 color)
+{
+  this->meshData.color = color;
+}
+
+glm::vec3 Mesh::getColor()
+{
+  return this->meshData.color;
 }
 
 glm::vec3 Mesh::getPosition()

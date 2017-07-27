@@ -1,11 +1,7 @@
 #version 410 core
-
 out vec4 color;
-
 const float offset = 1.0 / 300.0;
-
 in vec2 texCoords;
-
 uniform sampler2D Texture;
 
 void main(void)

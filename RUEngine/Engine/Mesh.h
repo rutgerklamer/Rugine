@@ -20,6 +20,7 @@ struct MeshData
   GLfloat* vertices;
   int size;
   GLuint texture;
+  glm::vec3 color;
   GLuint normalMap;
   glm::vec3 min;
   glm::vec3 max;
@@ -53,10 +54,17 @@ class Mesh
         void setTexture(GLuint tex);
         /**
             *  return the texture of this mesh.
-            *  this will set the texture by taking in an loaded image from
-            * /see Texture::loadTexture().
             */
         GLuint getTexture();
+        /**
+            *  return the color of this mesh.
+            */
+        glm::vec3 getColor();
+        /**
+            *  set the color of this mesh.
+            *  takes in a vec3 representing the RGB values.
+            */
+        void setColor(glm::vec3 color);
         /**
             *  return the diffuse texture of this mesh.
             */

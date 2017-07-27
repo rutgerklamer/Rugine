@@ -78,12 +78,20 @@ class Input
             *  takes in the window we created in Display
             */
         void setWindow(GLFWwindow* window);
+        /**
+            *  get the mouse velocity, For example for motion blur
+            */
+        glm::vec2 getMouseVelocity();
     private:
+      glm::vec2 lastMouse;
+      glm::vec2 currentMouse;
       static bool keys[1024];
       static bool mouseKeys[7];
       static bool firstMouse;
-      static int lastX;
-      static int lastY;
+      static float lastX;
+      static float lastY;
+      static float currentX;
+      static float currentY;
       static Camera* camera;
       GLFWwindow* window;
 };

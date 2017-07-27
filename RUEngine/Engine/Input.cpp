@@ -6,8 +6,10 @@ bool Input::keys[1024];
 bool Input::mouseKeys[7];
 bool Input::firstMouse = true;
 
-int Input::lastX;
-int Input::lastY;
+float Input::lastX;
+float Input::lastY;
+float Input::currentX;
+float Input::currentY;
 
 Input::Input()
 {
@@ -44,6 +46,13 @@ void Input::setKey(int key, bool active)
   keys[key] = active;
 }
 
+glm::vec2 Input::getMouseVelocity()
+{
+  glm::vec2 lastMouse = glm::vec2(lastX, lastY);
+  lastX = currentX;
+  lastY = currentY;
+  return lastMouse - glm::vec2(currentX, currentY);
+}
 void Input::setCamera(Camera* camera)
 {
   this->camera = camera;
@@ -62,14 +71,13 @@ glm::vec2 Input::getMousePosition()
   double dx, dy;
   glfwGetCursorPos(window, &dx, &dy);
 
-  int x = static_cast<int>(floor(dx));
-  int y = static_cast<int>(floor(dy));
+  float x = dx;
+  float y = dy;
 
   glm::vec2 mousepos;
   mousepos.x = x;
   mousepos.y = y;
-
-
+  currentMouse = mousepos;
   return mousepos;
 }
 
@@ -105,12 +113,13 @@ void Input::mouseCallBack(GLFWwindow* window, double xPos, double yPos)
       lastY = yPos;
       firstMouse = false;
   }
-  GLfloat xOffset = xPos - lastX;
-  GLfloat yOffset = lastY - yPos;
+  lastX = currentX;
+  lastY = currentY;
+  GLfloat xOffset = xPos - currentX;
+  GLfloat yOffset = currentY - yPos;
 
-  lastX = xPos;
-  lastY = yPos;
-
+  currentX = xPos;
+  currentY = yPos;
   camera->processMouseMovement(xOffset, yOffset);
 }
 
