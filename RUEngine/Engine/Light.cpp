@@ -24,6 +24,11 @@ void Light::setLightColor(glm::vec3 color)
   this->lightData.lightColor = color;
 }
 
+void Light::setExtinction(float extinction)
+{
+  this->lightData.extinction = extinction;
+}
+
 void Light::setStrength(float strength)
 {
   this->lightData.lightStrength = strength;

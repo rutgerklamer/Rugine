@@ -9,7 +9,6 @@ Mesh::Mesh()
   enabled = true;
   reflective = false;
   transparent = false;
-  meshData.texture = NULL;
 }
 
 Mesh::~Mesh()
@@ -83,6 +82,8 @@ void Mesh::LoadObject(const char* objectPath, bool isNormalMap)
    }
 
    meshData = OBJloader::loadModel(objectPath, isNormalMap);
+   meshData.texture = NULL;
+   meshData.normalMap = NULL;
 
    glGenVertexArrays(1, &VAO);
    glGenBuffers(1, &VBO);

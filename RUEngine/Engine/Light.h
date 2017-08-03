@@ -15,6 +15,7 @@ struct LightData
   glm::vec3 lightPosition;
   float lightStrength;
   float specularStrength;
+  float extinction;
 };
 
 class Light : public Entity
@@ -42,6 +43,11 @@ class Light : public Entity
             *  takes in the strength
             */
         void setStrength(float strength);
+        /**
+            *  Set the extinction of the light.
+            *  takes in the extinction
+            */
+        void setExtinction(float extinction);
         /**
             *  Set the specular strength of the light
             *  takes in the strength

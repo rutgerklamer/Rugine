@@ -31,6 +31,7 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
       //TODO remove
       glUniform1i(glGetUniformLocation(shader->shaderProgram, ("lightData[" + std::to_string(i) + "].isLight").c_str()),  1);
       glUniform1f(glGetUniformLocation(shader->shaderProgram, ("lightData[" + std::to_string(i) + "].specularStrength").c_str()),  lightData.specularStrength);
+      glUniform1f(glGetUniformLocation(shader->shaderProgram, ("lightData[" + std::to_string(i) + "].extinction").c_str()),  lightData.extinction);
       //Send scene data
       glUniform1f(glGetUniformLocation(shader->shaderProgram, "sceneData.gamma"), scenedata.gamma);
       glUniform1f(glGetUniformLocation(shader->shaderProgram, "sceneData.exposure"), scenedata.exposure);
@@ -44,10 +45,11 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
   //Send to vertex shader
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
   //Send a texture
-  glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D, entity->getTexture());
-  glUniform1i(glGetUniformLocation(shader->shaderProgram, "Texture"), 0);
-  if (entity->getTexture() < 1000) {
+
+  if (entity->getColor().x + entity->getColor().y + entity->getColor().z == 0) {
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, entity->getTexture());
+    glUniform1i(glGetUniformLocation(shader->shaderProgram, "Texture"), 0);
     glUniform3f(glGetUniformLocation(shader->shaderProgram, "Color"), 0, 0, 0);
   } else {
     glUniform3f(glGetUniformLocation(shader->shaderProgram, "Color"), entity->getColor().x, entity->getColor().y, entity->getColor().z);
@@ -71,8 +73,6 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
 
 void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, Mesh* entity, SceneData scenedata)
 {
-
-
   shader->Use();
 
 
@@ -88,6 +88,9 @@ void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, 
     glDisable(GL_DEPTH_TEST);
     glCullFace(GL_FRONT);
     glDepthMask(GL_FALSE);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, entity->getTexture());
+    glUniform1i(glGetUniformLocation(shader->shaderProgram, "skybox"), 0);
   } else {
     view = camera->getViewMatrix();
     //Send to vertex shader
@@ -98,13 +101,12 @@ void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, 
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "proj"), 1, GL_FALSE, glm::value_ptr(projection));
   glUniform3f(glGetUniformLocation(shader->shaderProgram, "camPos"), camera->getPosition().x,camera->getPosition().y,camera->getPosition().z);
   //Send a texture
-  glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_CUBE_MAP, entity->getTexture());
-  glUniform1i(glGetUniformLocation(shader->shaderProgram, "skybox"), 0);
-  glActiveTexture(GL_TEXTURE1);
-  glBindTexture(GL_TEXTURE_2D, entity->getTexture());
-  glUniform1i(glGetUniformLocation(shader->shaderProgram, "Texture"), 1);
-  if (entity->getTexture() < 1000) {
+
+
+  if (entity->getColor().x + entity->getColor().y + entity->getColor().z == 0) {
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, entity->getTexture());
+    glUniform1i(glGetUniformLocation(shader->shaderProgram, "Texture"), 1);
     glUniform3f(glGetUniformLocation(shader->shaderProgram, "Color"), 0, 0, 0);
   } else {
     glUniform3f(glGetUniformLocation(shader->shaderProgram, "Color"), entity->getColor().x, entity->getColor().y, entity->getColor().z);

@@ -16,6 +16,7 @@ struct LightData
   float lightStrength;
   float specularStrength;
   int isLight;
+  float extinction;
 };
 
 out vec4 color;
@@ -34,6 +35,7 @@ uniform LightData lightData[maxLights];
 uniform sampler2D texture;
 uniform sampler2D normalMap;
 uniform float time;
+uniform vec3 Color;
 
 vec4 getLight(LightData lightdata, vec3 eyedir, vec3 norms, vec3 worldPosition, vec4 texture, vec3 ambient, mat3 tangentSpace, vec3 lightDirection, int isNM)
 {
@@ -57,7 +59,12 @@ vec4 getLight(LightData lightdata, vec3 eyedir, vec3 norms, vec3 worldPosition, 
       specularTerm += lightdata.specularStrength* lightdata.lightColor * pow(max(dot(E, reflectDir), 0), 32);
     }
   float distanceToLight = length(lightdata.lightPos - worldPos);
-  float extinction = 100.0 / (1.1 * pow(distanceToLight, 2)) * lightdata.lightStrength;
+  float extinction;
+  if (lightdata.extinction > 0) {
+    extinction = 0.0;
+  } else {
+    extinction = 100.0 / (1.1 * pow(distanceToLight, 2)) * lightdata.lightStrength;
+  }
 
   vec4 finishedLighting = vec4(texture) * vec4(ambientTerm * extinction + (diffuseTerm + specularTerm), 1);
 
@@ -138,7 +145,14 @@ float cnoise(vec3 P){
 
 void main(void)
 {
-  vec4 diffuseTexture = texture2D(texture, vec2(texCoords.x, 1-texCoords.y));
+  vec4 diffuseTexture;
+  if (Color.r + Color.g + Color.b == 0)
+  {
+    diffuseTexture = texture2D(texture, texCoords);
+  } else {
+    diffuseTexture = vec4(vec3(Color.r, Color.g, Color.b),1);
+  }
+
   color = vec4(diffuseTexture);
   vec3 normalmap = texture2D(normalMap, vec2(texCoords.x, 1-texCoords.y)).rgb * 2.0 - 1.0;
   vec3 ambient = vec3(0.09, 0.09, 0.09);
