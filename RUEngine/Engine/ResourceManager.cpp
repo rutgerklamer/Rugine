@@ -14,6 +14,8 @@ void ResourceManager::updateShaders(Shader* shader, Camera* camera)
 {
   //Use shader program we send in the arguments
   shader->Use();
+  //Update camera
+  camera->updateCameraVector();
   //Get the view matrix
   glm::mat4 view = camera->getViewMatrix();
   //Send view to the vertex shader

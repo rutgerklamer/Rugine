@@ -198,11 +198,28 @@ class Camera
           return this->zoom;
         }
         /**
+                *  calculate the new front of the camera according to,
+                *  The pitch and yaw.
+                */
+        void updateCameraVector()
+        {
+          glm::vec3 front;
+          front.x = cos(glm::radians(this->yaw)) * cos(glm::radians (this->pitch));
+          front.y = sin(glm::radians(this->pitch));
+          front.z = sin(glm::radians(this->yaw)) * cos(glm::radians(this->pitch));
+
+          this->front = glm::normalize(front);
+
+          this->right = glm::normalize(glm::cross(this->front, this->worldUp));
+          this->up = glm::normalize(glm::cross(this->right, this->front));
+        }
+        /**
                 *  Invert the pitch, Usefull for reflections of water etc.
                 */
+                
         void invertPitch()
         {
-            this->pitch = -this->pitch;
+            this->pitch = -pitch;
         }
 
     protected:
@@ -221,22 +238,7 @@ class Camera
 
       float xOff,
             yOff;
-            /**
-                    *  calculate the new front of the camera according to,
-                    *  The pitch and yaw.
-                    */
-      void updateCameraVector()
-      {
-        glm::vec3 front;
-        front.x = cos(glm::radians(this->yaw)) * cos(glm::radians (this->pitch));
-        front.y = sin(glm::radians(this->pitch));
-        front.z = sin(glm::radians(this->yaw)) * cos(glm::radians(this->pitch));
 
-        this->front = glm::normalize(front);
-
-        this->right = glm::normalize(glm::cross(this->front, this->worldUp));
-        this->up = glm::normalize(glm::cross(this->right, this->front));
-      }
 };
 
 #endif // CAMERA_H

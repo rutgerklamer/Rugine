@@ -18,6 +18,8 @@
 #include "Engine/Light.h"
 #include "Skybox.h"
 #include "Engine/Framebuffer.h"
+#include "Water.h"
+
 struct SceneData
 {
   float gamma;
@@ -63,6 +65,11 @@ class Superscene
             */
         void setExposure(float exposure);
         /**
+            *  Set the size and position of the water
+            *  Takes the size a water object
+            */
+        void addWater(Water* w);
+        /**
             *  Set the exposure of this scene.
             *  Takes in a density value
             */
@@ -88,6 +95,7 @@ class Superscene
         Camera* camera;
         Skybox* skybox;
         Framebuffer* framebuffer;
+        Water* water;
         /**
             *  Update the scene and update the meshes.
             *  Takes in the deltaTime of the scene.

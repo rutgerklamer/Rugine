@@ -11,6 +11,7 @@ Superscene::Superscene(Input* input)
   sceneData.fogColor = glm::vec3(0,0,0);
   skybox = NULL;
   framebuffer = NULL;
+  water = nullptr;
 }
 
 Superscene::~Superscene()
@@ -42,6 +43,12 @@ void Superscene::addChild(Entity* mesh)
 {
   entities.push_back(mesh);
 }
+
+void Superscene::addWater(Water* w)
+{
+  water = w;
+}
+
 
 void Superscene::addLight(Light* light)
 {

@@ -9,6 +9,13 @@ Mesh::Mesh()
   enabled = true;
   reflective = false;
   transparent = false;
+  meshData.vertices = 0;
+  meshData.size = 0;
+  meshData.texture = NULL;
+  meshData.color = glm::vec3(0,0,0);
+  meshData.normalMap = NULL;
+  meshData.min = glm::vec3(0,0,0);
+  meshData.max = glm::vec3(0,0,0);
 }
 
 Mesh::~Mesh()

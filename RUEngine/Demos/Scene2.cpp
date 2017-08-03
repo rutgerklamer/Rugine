@@ -5,20 +5,20 @@ Scene2::Scene2(Input* input) : Superscene(input)
       std::cout << "Scene2 initialized" << std::endl;
       //Create a mesh
       mesh = new Entity();
-      mesh->LoadObject("Assets/untitled.obj", true);
+      mesh->LoadObject("Assets/untitled.obj", false);
       //Set a texture to it
-      mesh->setColor(glm::vec3(1.0,0.0,0.0));
+    //  mesh->setColor(glm::vec3(1.0,0.0,0.0));
       mesh->position = glm::vec3(0,10,0);
-      mesh->scale = glm::vec3(1,1,1);
+      mesh->scale = glm::vec3(2,2,2);
       //Add a child to the stage
       this->addChild(mesh);
 
       mesh2 = new Entity();
-      mesh2->LoadObject("Assets/untitled.obj", true);
+      mesh2->LoadObject("Assets/untitled.obj", false);
       //Set a texture to it
-      mesh2->setColor(glm::vec3(0.0,1.0,0.0));
+    //  mesh2->setColor(glm::vec3(0.0,1.0,0.0));
       mesh2->position = glm::vec3(0,0,0);
-      mesh2->scale = glm::vec3(10,1,10);
+      mesh2->scale = glm::vec3(1,1,1);
       //Add a child to the stage
       this->addChild(mesh2);
 
@@ -32,6 +32,8 @@ Scene2::Scene2(Input* input) : Superscene(input)
 
       setGamma(0.8f);
       setExposure(0.3f);
+      water = new Water(glm::vec2(100,100), glm::vec3(0,0,0));
+      addWater(water);
 }
 
 Scene2::~Scene2()
