@@ -148,7 +148,7 @@ void main(void)
   vec4 diffuseTexture;
   if (Color.r + Color.g + Color.b == 0)
   {
-    diffuseTexture = texture2D(texture, texCoords);
+    diffuseTexture = texture2D(texture, vec2(texCoords.x, 1.0 - texCoords.y));
   } else {
     diffuseTexture = vec4(vec3(Color.r, Color.g, Color.b),1);
   }

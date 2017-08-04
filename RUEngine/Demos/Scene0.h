@@ -12,7 +12,7 @@
 #include "Engine/Superscene.h"
 #include "Engine/Texture.h"
 #include "Engine/Light.h"
-
+#include "Engine/Water.h"
 class Scene0 : public Superscene
 {
     public:
@@ -22,6 +22,7 @@ class Scene0 : public Superscene
     private:
       Entity* mesh;
       Light* light;
+      Water* water;
 };
 
 #endif // SCENE0_H

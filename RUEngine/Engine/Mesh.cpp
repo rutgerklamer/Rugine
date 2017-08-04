@@ -3,7 +3,7 @@
 
 Mesh::Mesh()
 {
-  LoadObject("Assets/untitled.obj", false);
+//  LoadObject("Assets/untitled.obj", false);
   lighting = 0;
   showNormals = false;
   enabled = true;

@@ -9,6 +9,7 @@ layout (location = 4) in vec3 BitTangent;
 uniform mat4 view;
 uniform mat4 proj;
 uniform mat4 model;
+uniform vec4 planeYPosition;
 
 out vec2 texCoords;
 out vec3 worldPos;
@@ -30,7 +31,7 @@ void main(void)
   vec4 B = MV * normalize(vec4(BitTangent,0));
   TBN = transpose( mat3(vec3(T), vec3(B), vec3(N)));
 
-
+  gl_ClipDistance[0] = dot(model*vec4(Vertices,1), planeYPosition);
   gl_Position = proj* view * model * vec4(Vertices,1);
   texCoords = TexCoords;
 }

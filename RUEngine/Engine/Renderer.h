@@ -55,6 +55,12 @@ class Renderer
             *  the texture to display on the quad
             */
         void renderFramebuffer(Shader* shader, GLuint texture, Input* input);
+        /**
+            *  render the water of the scene
+            *  takes in the shader we want to use //TODO improve performance <-
+            *  the texture to display on the water quad
+            */
+        void renderWater(Shader* shader, GLuint reflectionTexture, GLuint refractionTexture, Entity* entity);
 
         GLuint Texture;
     private:

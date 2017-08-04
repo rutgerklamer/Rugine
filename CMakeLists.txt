@@ -132,6 +132,7 @@ set(RUGINESOURCE
     RUEngine/Engine/Skybox.cpp
     RUEngine/Engine/Framebuffer.cpp
     RUEngine/Engine/Raycast.cpp
+    RUEngine/Engine/Water.cpp
   )
 
 ####################################################################

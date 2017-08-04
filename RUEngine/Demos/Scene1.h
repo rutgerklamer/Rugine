@@ -13,6 +13,7 @@
 #include "Engine/Texture.h"
 #include "Maths/Time.h"
 #include "Engine/Light.h"
+#include "Engine/Water.h"
 class Scene1 : public Superscene
 {
     public:
@@ -23,6 +24,7 @@ class Scene1 : public Superscene
       Entity* mesh;
       Light* light;
       Light* light2;
+      Water* water;
 };
 
 #endif // SCENE1_H

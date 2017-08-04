@@ -12,6 +12,29 @@ Renderer::~Renderer()
 
 }
 
+void Renderer::renderWater(Shader* shader, GLuint reflectionTexture, GLuint refractionTexture, Entity* entity)
+{
+  glm::mat4 model;
+  glUniform1f(glGetUniformLocation(shader->shaderProgram, "time"), glfwGetTime());
+ //Manipulate model matrix
+  model =  entity->getModelMatrix();
+  //Send to vertex shader
+  glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
+  //Send a texture
+
+  glActiveTexture(GL_TEXTURE0);
+  glBindTexture(GL_TEXTURE_2D, reflectionTexture);
+  glUniform1i(glGetUniformLocation(shader->shaderProgram, "WaterReflection"), 0);
+  glActiveTexture(GL_TEXTURE1);
+  glBindTexture(GL_TEXTURE_2D, refractionTexture);
+  glUniform1i(glGetUniformLocation(shader->shaderProgram, "WaterRefraction"), 1);
+  //Bind the VAO of the mesh
+  entity->Draw();
+
+  //Draw the mesh
+  glDrawArrays(GL_TRIANGLES, 0, entity->getSize());
+}
+
 void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity* entity, SceneData scenedata, std::vector<Light*>* lights)
 {
   glm::mat4 model;
@@ -32,13 +55,18 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
       glUniform1i(glGetUniformLocation(shader->shaderProgram, ("lightData[" + std::to_string(i) + "].isLight").c_str()),  1);
       glUniform1f(glGetUniformLocation(shader->shaderProgram, ("lightData[" + std::to_string(i) + "].specularStrength").c_str()),  lightData.specularStrength);
       glUniform1f(glGetUniformLocation(shader->shaderProgram, ("lightData[" + std::to_string(i) + "].extinction").c_str()),  lightData.extinction);
-      //Send scene data
-      glUniform1f(glGetUniformLocation(shader->shaderProgram, "sceneData.gamma"), scenedata.gamma);
-      glUniform1f(glGetUniformLocation(shader->shaderProgram, "sceneData.exposure"), scenedata.exposure);
-      glUniform1f(glGetUniformLocation(shader->shaderProgram, "sceneData.fogDensity"), scenedata.fogDensity);
-      glUniform3f(glGetUniformLocation(shader->shaderProgram, "sceneData.fogColor"), scenedata.fogColor.x, scenedata.fogColor.y, scenedata.fogColor.z);
+
     }
   }
+  //Send scene data
+  glUniform1f(glGetUniformLocation(shader->shaderProgram, "sceneData.gamma"), scenedata.gamma);
+  glUniform1f(glGetUniformLocation(shader->shaderProgram, "sceneData.exposure"), scenedata.exposure);
+  if (scenedata.fogDensity > 0) {
+    glUniform1f(glGetUniformLocation(shader->shaderProgram, "sceneData.fogDensity"), scenedata.fogDensity);
+  } else {
+    glUniform1f(glGetUniformLocation(shader->shaderProgram, "sceneData.fogDensity"), 0);
+  }
+  glUniform3f(glGetUniformLocation(shader->shaderProgram, "sceneData.fogColor"), scenedata.fogColor.x, scenedata.fogColor.y, scenedata.fogColor.z);
   glUniform1f(glGetUniformLocation(shader->shaderProgram, "time"), glfwGetTime());
 //Manipulate model matrix
   model =  entity->getModelMatrix();

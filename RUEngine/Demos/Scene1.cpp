@@ -30,6 +30,8 @@ Scene1::Scene1(Input* input) : Superscene(input)
 
       setGamma(0.8f);
       setExposure(0.25f);
+      water = new Water(glm::vec2(100,100), glm::vec3(0,0,0));
+      addWater(water);
     //addFramebuffer("Shaders/Framebuffer/FishEye/shader.vert", "Shaders/Framebuffer/FishEye/shader.frag");
 
 }

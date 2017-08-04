@@ -9,13 +9,15 @@ uniform mat4 model;
 
 out vec2 texCoords;
 out vec3 normals;
+out vec4 clipSpace;
+
 
 void main(void)
 {
   mat3 normalMatrix = mat3(model);
   normalMatrix = transpose(normalMatrix);
   normals = normalize(Normals * normalMatrix);
-
-  gl_Position = proj* view * model * vec4(Vertices,1);
+  clipSpace = proj* view * model * vec4(Vertices,1);
+  gl_Position = clipSpace;
   texCoords = TexCoords;
 }
