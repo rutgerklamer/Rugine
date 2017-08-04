@@ -16,6 +16,8 @@ public:
     Framebuffer* top;
     Framebuffer* bottom;
     Entity* entity;
+    GLuint DUDVmap;
+    GLuint normalMap;
 };
 
 #endif

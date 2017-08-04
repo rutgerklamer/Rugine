@@ -19,5 +19,5 @@ void main(void)
   normals = normalize(Normals * normalMatrix);
   clipSpace = proj* view * model * vec4(Vertices,1);
   gl_Position = clipSpace;
-  texCoords = TexCoords;
+  texCoords = vec2(Vertices.x/2.0+0.5, Vertices.z/2.0+0.5) * 10.0;
 }

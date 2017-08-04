@@ -30,7 +30,9 @@ Scene1::Scene1(Input* input) : Superscene(input)
 
       setGamma(0.8f);
       setExposure(0.25f);
-      water = new Water(glm::vec2(100,100), glm::vec3(0,0,0));
+      skybox = new Skybox("Assets/sandtrap_rt.tga", "Assets/sandtrap_lf.tga", "Assets/sandtrap_up.tga", "Assets/sandtrap_dn.tga", "Assets/sandtrap_bk.tga", "Assets/sandtrap_ft.tga");
+      this->addSkybox(skybox);
+      water = new Water(glm::vec2(100,100), glm::vec3(0,1,0));
       addWater(water);
     //addFramebuffer("Shaders/Framebuffer/FishEye/shader.vert", "Shaders/Framebuffer/FishEye/shader.frag");
 

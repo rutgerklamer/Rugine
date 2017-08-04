@@ -40,6 +40,8 @@ Scene3::Scene3(Input* input) : Superscene(input)
 
       setGamma(0.5f);
       setExposure(0.3f);
+      water = new Water(glm::vec2(100,100), glm::vec3(0,1,0));
+      addWater(water);
 }
 
 Scene3::~Scene3()

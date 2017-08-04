@@ -7,6 +7,7 @@ layout (location = 2) in vec3 Normals;
 uniform mat4 view;
 uniform mat4 proj;
 uniform mat4 model;
+uniform vec4 planeYPosition;
 
 out VS_OUT {
   vec2 texCoords;
@@ -15,6 +16,7 @@ out VS_OUT {
 
 void main(void)
 {
+  gl_ClipDistance[0] = dot(model*vec4(Vertices,1), planeYPosition);
   gl_Position = proj * view * model * vec4(Vertices, 1.0);
   mat3 normalMatrix = mat3(transpose(inverse(view * model)));
   vs_out.normal = normalize(vec3(proj* vec4(normalMatrix * Normals, 1.0)));

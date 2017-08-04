@@ -32,8 +32,8 @@ Scene0::Scene0(Input* input) : Superscene(input)
 
       setGamma(1.2f);
       setExposure(0.20f);
-      water = new Water(glm::vec2(100,100), glm::vec3(0,18,0));
-      addWater(water);
+      setFogDensity(0.09f);
+      setFogColor(glm::vec3(0.7,0.9,0.5));
 }
 
 Scene0::~Scene0()

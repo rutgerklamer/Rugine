@@ -49,7 +49,6 @@ void Superscene::addWater(Water* w)
   water = w;
 }
 
-
 void Superscene::addLight(Light* light)
 {
   entities.push_back(light);

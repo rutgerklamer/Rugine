@@ -45,6 +45,10 @@ class Display
                 *  return the window we created
                 */
         GLFWwindow* getWindow();
+        /**
+                *  Checks what we should render
+                */
+        void whatToRender(glm::vec4 waterPlane);
         Input* input;
     private:
       GLFWwindow* window;

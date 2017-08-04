@@ -12,7 +12,7 @@ Renderer::~Renderer()
 
 }
 
-void Renderer::renderWater(Shader* shader, GLuint reflectionTexture, GLuint refractionTexture, Entity* entity)
+void Renderer::renderWater(Shader* shader, GLuint reflectionTexture, GLuint refractionTexture, GLuint waterTexture, GLuint normalTexture,  Entity* entity)
 {
   glm::mat4 model;
   glUniform1f(glGetUniformLocation(shader->shaderProgram, "time"), glfwGetTime());
@@ -28,6 +28,12 @@ void Renderer::renderWater(Shader* shader, GLuint reflectionTexture, GLuint refr
   glActiveTexture(GL_TEXTURE1);
   glBindTexture(GL_TEXTURE_2D, refractionTexture);
   glUniform1i(glGetUniformLocation(shader->shaderProgram, "WaterRefraction"), 1);
+  glActiveTexture(GL_TEXTURE2);
+  glBindTexture(GL_TEXTURE_2D, waterTexture);
+  glUniform1i(glGetUniformLocation(shader->shaderProgram, "dudvMap"), 2);
+  glActiveTexture(GL_TEXTURE3);
+  glBindTexture(GL_TEXTURE_2D, normalTexture);
+  glUniform1i(glGetUniformLocation(shader->shaderProgram, "normalMap"), 3);
   //Bind the VAO of the mesh
   entity->Draw();
 
@@ -35,8 +41,9 @@ void Renderer::renderWater(Shader* shader, GLuint reflectionTexture, GLuint refr
   glDrawArrays(GL_TRIANGLES, 0, entity->getSize());
 }
 
-void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity* entity, SceneData scenedata, std::vector<Light*>* lights)
+void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity* entity, SceneData scenedata, glm::vec4 waterPlane, std::vector<Light*>* lights)
 {
+  shader->Use();
   glm::mat4 model;
   if (lights != nullptr) {
     std::vector<Light*>& lightPointer = *lights;
@@ -72,6 +79,7 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
   model =  entity->getModelMatrix();
   //Send to vertex shader
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
+  glUniform4f(glGetUniformLocation(shader->shaderProgram, "planeYPosition"), waterPlane.x, waterPlane.y, waterPlane.z, waterPlane.w);
   //Send a texture
 
   if (entity->getColor().x + entity->getColor().y + entity->getColor().z == 0) {
@@ -99,10 +107,9 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
 }
 
 
-void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, Mesh* entity, SceneData scenedata)
+void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, Mesh* entity, SceneData scenedata, glm::vec4 waterPlane)
 {
   shader->Use();
-
 
   glm::mat4 view;
   if (!entity->reflective && !entity->transparent) {
@@ -128,6 +135,7 @@ void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, 
   glm::mat4 projection = camera->getProjectionMatrix();
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "proj"), 1, GL_FALSE, glm::value_ptr(projection));
   glUniform3f(glGetUniformLocation(shader->shaderProgram, "camPos"), camera->getPosition().x,camera->getPosition().y,camera->getPosition().z);
+  glUniform4f(glGetUniformLocation(shader->shaderProgram, "planeYPosition"), waterPlane.x, waterPlane.y, waterPlane.z, waterPlane.w);
   //Send a texture
 
 

@@ -8,6 +8,7 @@ layout (location = 3) in vec3 Tangents;
 uniform mat4 view;
 uniform mat4 proj;
 uniform mat4 model;
+uniform vec4 planeYPosition;
 
 out VS_OUT {
     vec3 normals;
@@ -16,6 +17,7 @@ out VS_OUT {
 
 void main(void)
 {
+    gl_ClipDistance[0] = dot(model*vec4(Vertices,1), planeYPosition);
     gl_Position = proj* view * model * vec4(Vertices,1);
 
     vec3 n = normalize((model* vec4(Normals,0)).xyz);

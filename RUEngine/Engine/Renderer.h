@@ -39,7 +39,7 @@ class Renderer
             *  the data of the scene.
             *  and a vector of light if we want multiple lights.
             */
-        void render(double currentTime, Shader* shader, Camera* camera, Entity* entity, SceneData scenedata, std::vector<Light*>* lights = nullptr);
+        void render(double currentTime, Shader* shader, Camera* camera, Entity* entity, SceneData scenedata, glm::vec4 waterPlane, std::vector<Light*>* lights = nullptr);
         /**
             *  render the scene's skybox
             *  takes in the current Time //TODO remove <-
@@ -48,7 +48,7 @@ class Renderer
             *  the entity we want to render.
             *  the data of the scene.
             */
-        void renderSkybox(double currentTime, Shader* shader, Camera* camera, Mesh* entity, SceneData scenedata);
+        void renderSkybox(double currentTime, Shader* shader, Camera* camera, Mesh* entity, SceneData scenedata, glm::vec4 waterPlane);
         /**
             *  render the scene
             *  takes in the shader we want to use //TODO improve performance <-
@@ -60,7 +60,7 @@ class Renderer
             *  takes in the shader we want to use //TODO improve performance <-
             *  the texture to display on the water quad
             */
-        void renderWater(Shader* shader, GLuint reflectionTexture, GLuint refractionTexture, Entity* entity);
+        void renderWater(Shader* shader, GLuint reflectionTexture, GLuint refractionTexture, GLuint waterTexture, GLuint normalTexture, Entity* entity);
 
         GLuint Texture;
     private:
