@@ -49,11 +49,11 @@ void Display::whatToRender(glm::vec4 waterPlane)
          renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(), waterPlane);
        } else if (scenemanager->scenes[currentscene]->entities[i]->reflective  && !scenemanager->scenes[currentscene]->entities[i]->transparent)
        {
-         renderer->renderSkybox(glfwGetTime(), shaderReflection, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(), waterPlane);
+         renderer->renderSkybox(glfwGetTime(), shaderReflection, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(), waterPlane, scenemanager->scenes[currentscene]->skybox->getTexture());
          shader->Use();
        } else if (scenemanager->scenes[currentscene]->entities[i]->transparent)
        {
-         renderer->renderSkybox(glfwGetTime(), shaderTransparent, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(), waterPlane);
+         renderer->renderSkybox(glfwGetTime(), shaderTransparent, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(), waterPlane, scenemanager->scenes[currentscene]->skybox->getTexture());
          shader->Use();
        }
        if (scenemanager->scenes[currentscene]->entities[i]->showNormals && scenemanager->scenes[currentscene]->entities[i]->enabled) {
@@ -74,17 +74,6 @@ void Display::gameLoop()
   resourcemanager->setProjectionMatrix(shaderSkybox, scenemanager->scenes[currentscene]->camera);
   resourcemanager->setProjectionMatrix(waterShader, scenemanager->scenes[currentscene]->camera);
   do {
-    //Clear window with a red-"ish" color
-    glClearColor(0.3,0.3,0.3,1);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    if (scenemanager->scenes[currentscene]->skybox != NULL)
-    {
-      shaderSkybox->Use();
-      resourcemanager->updateShaders(shaderSkybox, scenemanager->scenes[currentscene]->camera);
-      renderer->renderSkybox(glfwGetTime(), shaderSkybox, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->skybox, scenemanager->scenes[currentscene]->getSceneData(), glm::vec4(0,0,0,0));
-      shader->Use();
-    } else {
-    }
     if (input->isDown(93) && currentscene < scenemanager->scenes.size() - 1) {
       currentscene++;
       input->setKey(93, false);
@@ -112,17 +101,19 @@ void Display::gameLoop()
       scenemanager->scenes[currentscene]->camera->setPosition(glm::vec3(scenemanager->scenes[currentscene]->camera->getPosition().x,scenemanager->scenes[currentscene]->camera->getPosition().y - dist,scenemanager->scenes[currentscene]->camera->getPosition().z));
       scenemanager->scenes[currentscene]->camera->invertPitch();
       resourcemanager->updateShaders(shader, scenemanager->scenes[currentscene]->camera);
-      renderer->renderSkybox(glfwGetTime(), shaderSkybox, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->skybox, scenemanager->scenes[currentscene]->getSceneData(), glm::vec4(0,0,0,0));
+      resourcemanager->updateShaders(shaderReflection, scenemanager->scenes[currentscene]->camera);
+      renderer->renderSkybox(glfwGetTime(), shaderSkybox, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->skybox, scenemanager->scenes[currentscene]->getSceneData(), glm::vec4(0,0,0,0), scenemanager->scenes[currentscene]->skybox->getTexture());
       whatToRender(glm::vec4(0,1,0,scenemanager->scenes[currentscene]->water->waterPosition.y));
 
-      scenemanager->scenes[currentscene]->camera->setPosition(glm::vec3(scenemanager->scenes[currentscene]->camera->getPosition().x,scenemanager->scenes[currentscene]->camera->getPosition().y + dist,scenemanager->scenes[currentscene]->camera->getPosition().z));
-      scenemanager->scenes[currentscene]->camera->invertPitch();
-      resourcemanager->updateShaders(shader, scenemanager->scenes[currentscene]->camera);
       glBindFramebuffer(GL_FRAMEBUFFER, scenemanager->scenes[currentscene]->water->bottom->fbo);
       glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
       glEnable(GL_CLIP_DISTANCE0);
-      renderer->renderSkybox(glfwGetTime(), shaderSkybox, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->skybox, scenemanager->scenes[currentscene]->getSceneData(), glm::vec4(0,0,0,0));
+      scenemanager->scenes[currentscene]->camera->setPosition(glm::vec3(scenemanager->scenes[currentscene]->camera->getPosition().x,scenemanager->scenes[currentscene]->camera->getPosition().y + dist,scenemanager->scenes[currentscene]->camera->getPosition().z));
+      scenemanager->scenes[currentscene]->camera->invertPitch();
+      resourcemanager->updateShaders(shader, scenemanager->scenes[currentscene]->camera);
+      resourcemanager->updateShaders(shaderReflection, scenemanager->scenes[currentscene]->camera);
+      renderer->renderSkybox(glfwGetTime(), shaderSkybox, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->skybox, scenemanager->scenes[currentscene]->getSceneData(), glm::vec4(0,0,0,0), scenemanager->scenes[currentscene]->skybox->getTexture());
       whatToRender(glm::vec4(0,-1,0,scenemanager->scenes[currentscene]->water->waterPosition.y));
     }
     if (scenemanager->scenes[currentscene]->framebuffer != nullptr) {
@@ -132,18 +123,30 @@ void Display::gameLoop()
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     } else {
       glBindFramebuffer(GL_FRAMEBUFFER, 0);
+      //Clear window with a red-"ish" color
+      glClearColor(0.3,0.3,0.3,1);
+      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
     //raycaster->Update();
+    if (scenemanager->scenes[currentscene]->skybox != NULL)
+    {
+      shaderSkybox->Use();
+      resourcemanager->updateShaders(shaderSkybox, scenemanager->scenes[currentscene]->camera);
+      renderer->renderSkybox(glfwGetTime(), shaderSkybox, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->skybox, scenemanager->scenes[currentscene]->getSceneData(), glm::vec4(0,0,0,0), scenemanager->scenes[currentscene]->skybox->getTexture());
+      shader->Use();
+    }
     glDisable(GL_CLIP_DISTANCE0);
     whatToRender(glm::vec4(0,0,0,0));
     if (scenemanager->scenes[currentscene]->water != nullptr) {
-      waterShader->Use();
-      renderer->renderWater(waterShader, scenemanager->scenes[currentscene]->water->top->framebufferTexture, scenemanager->scenes[currentscene]->water->bottom->framebufferTexture, scenemanager->scenes[currentscene]->water->DUDVmap, scenemanager->scenes[currentscene]->water->normalMap, scenemanager->scenes[currentscene]->water->entity);
-      glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    //  waterShader->Use();
+    GLuint texture = scenemanager->scenes[currentscene]->water->top->framebufferTexture;
+      renderer->renderWater(waterShader, texture, scenemanager->scenes[currentscene]->water->bottom->framebufferTexture, scenemanager->scenes[currentscene]->water->DUDVmap, scenemanager->scenes[currentscene]->water->normalMap, scenemanager->scenes[currentscene]->water->entity);
+      //renderer->renderFramebuffer(scenemanager->scenes[currentscene]->water->top->shader, texture, input);
+      shaderReflection->Use();
     }
     if (scenemanager->scenes[currentscene]->framebuffer != nullptr) {
       glBindFramebuffer(GL_FRAMEBUFFER, 0);
-      renderer->renderFramebuffer(scenemanager->scenes[currentscene]->framebuffer->shader, scenemanager->scenes[currentscene]->framebuffer->framebufferTexture, input);
+    //  renderer->renderFramebuffer(scenemanager->scenes[currentscene]->framebuffer->shader, scenemanager->scenes[currentscene]->framebuffer->framebufferTexture, input);
     }
     //Get deltatime and fps
     dtime->update();

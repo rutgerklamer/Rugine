@@ -48,7 +48,7 @@ class Renderer
             *  the entity we want to render.
             *  the data of the scene.
             */
-        void renderSkybox(double currentTime, Shader* shader, Camera* camera, Mesh* entity, SceneData scenedata, glm::vec4 waterPlane);
+        void renderSkybox(double currentTime, Shader* shader, Camera* camera, Mesh* entity, SceneData scenedata, glm::vec4 waterPlane, GLuint skybox);
         /**
             *  render the scene
             *  takes in the shader we want to use //TODO improve performance <-

@@ -14,6 +14,7 @@ Renderer::~Renderer()
 
 void Renderer::renderWater(Shader* shader, GLuint reflectionTexture, GLuint refractionTexture, GLuint waterTexture, GLuint normalTexture,  Entity* entity)
 {
+  shader->Use();
   glm::mat4 model;
   glUniform1f(glGetUniformLocation(shader->shaderProgram, "time"), glfwGetTime());
  //Manipulate model matrix
@@ -107,7 +108,7 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
 }
 
 
-void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, Mesh* entity, SceneData scenedata, glm::vec4 waterPlane)
+void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, Mesh* entity, SceneData scenedata, glm::vec4 waterPlane, GLuint skybox)
 {
   shader->Use();
 
@@ -123,14 +124,15 @@ void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, 
     glDisable(GL_DEPTH_TEST);
     glCullFace(GL_FRONT);
     glDepthMask(GL_FALSE);
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_CUBE_MAP, entity->getTexture());
-    glUniform1i(glGetUniformLocation(shader->shaderProgram, "skybox"), 0);
   } else {
     view = camera->getViewMatrix();
     //Send to vertex shader
     glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(entity->getModelMatrix()));
   }
+  glActiveTexture(GL_TEXTURE0);
+  glBindTexture(GL_TEXTURE_CUBE_MAP, skybox);
+  glUniform1i(glGetUniformLocation(shader->shaderProgram, "skybox"), 0);
+
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "view"), 1, GL_FALSE, glm::value_ptr(view));
   glm::mat4 projection = camera->getProjectionMatrix();
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "proj"), 1, GL_FALSE, glm::value_ptr(projection));

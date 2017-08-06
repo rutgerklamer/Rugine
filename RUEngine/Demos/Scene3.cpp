@@ -9,6 +9,7 @@ Scene3::Scene3(Input* input) : Superscene(input)
       mesh->reflective = true;
       //Set a texture to it
       mesh->position = glm::vec3(0,0,0);
+      mesh2->scale = glm::vec3(10.3,10.3,10.3);
       mesh->setColor(glm::vec3(0.8,0.1,0.1));
       //Add a child to the stage
       this->addChild(mesh);
@@ -18,8 +19,8 @@ Scene3::Scene3(Input* input) : Superscene(input)
       mesh2->LoadObject("Assets/bunny.obj", false);
       mesh2->reflective = true;
       //Set a texture to it
-      mesh2->position = glm::vec3(5,0,0);
-      mesh2->scale = glm::vec3(2.3,2.3,2.3);
+      mesh2->position = glm::vec3(50,0,0);
+      mesh2->scale = glm::vec3(23.3,23.3,23.3);
       mesh2->setColor(glm::vec3(0.1,0.1,0.8));
       //Add a child to the stage
       this->addChild(mesh2);
@@ -29,8 +30,8 @@ Scene3::Scene3(Input* input) : Superscene(input)
       mesh3->LoadObject("Assets/dragon.obj", false);
       mesh3->reflective = true;
       //Set a texture to it
-      mesh3->position = glm::vec3(-5,0,0);
-      mesh3->scale = glm::vec3(0.35,0.35,0.35);
+      mesh3->position = glm::vec3(-50,0,0);
+      mesh3->scale = glm::vec3(3.5,3.5,3.5);
       mesh3->setColor(glm::vec3(0.1,0.8,0.1));
       //Add a child to the stage
       this->addChild(mesh3);
