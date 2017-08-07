@@ -9,7 +9,7 @@ Scene3::Scene3(Input* input) : Superscene(input)
       mesh->reflective = true;
       //Set a texture to it
       mesh->position = glm::vec3(0,0,0);
-      mesh2->scale = glm::vec3(10.3,10.3,10.3);
+      mesh->scale = glm::vec3(10.3,10.3,10.3);
       mesh->setColor(glm::vec3(0.8,0.1,0.1));
       //Add a child to the stage
       this->addChild(mesh);

@@ -132,7 +132,6 @@ void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, 
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_CUBE_MAP, skybox);
   glUniform1i(glGetUniformLocation(shader->shaderProgram, "skybox"), 0);
-
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "view"), 1, GL_FALSE, glm::value_ptr(view));
   glm::mat4 projection = camera->getProjectionMatrix();
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "proj"), 1, GL_FALSE, glm::value_ptr(projection));

@@ -10,7 +10,7 @@ Scene2::Scene2(Input* input) : Superscene(input)
       // mesh->setNormalMap(tex::loadTexture("Assets/Head_Level2_Normal.jpg"));
       //Set a texture to it
       mesh->position = glm::vec3(0,0,0);
-      mesh->scale = glm::vec3(10,10,10);
+      mesh->scale = glm::vec3(1,1,10);
       //Add a child to the stage
       this->addChild(mesh);
 

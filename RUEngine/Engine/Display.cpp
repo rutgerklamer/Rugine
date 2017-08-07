@@ -49,7 +49,7 @@ void Display::whatToRender(glm::vec4 waterPlane)
          renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(), waterPlane);
        } else if (scenemanager->scenes[currentscene]->entities[i]->reflective  && !scenemanager->scenes[currentscene]->entities[i]->transparent)
        {
-         renderer->renderSkybox(glfwGetTime(), shaderReflection, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(), waterPlane, scenemanager->scenes[currentscene]->skybox->getTexture());
+         renderer->renderSkybox(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(), waterPlane, scenemanager->scenes[currentscene]->skybox->getTexture());
          shader->Use();
        } else if (scenemanager->scenes[currentscene]->entities[i]->transparent)
        {
