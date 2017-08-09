@@ -28,6 +28,7 @@ class Framebuffer
         GLuint fbo;
         GLuint rbo;
         GLuint framebufferTexture;
+        GLuint watermark;
     private:
 };
 

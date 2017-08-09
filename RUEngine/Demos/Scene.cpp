@@ -18,6 +18,7 @@ Scene::Scene(Input* input) : Superscene(input)
 
       setGamma(0.5f);
       setExposure(0.3f);
+      addFramebuffer("Shaders/Framebuffer/shader.vert", "Shaders/Framebuffer/shader.frag");
 }
 
 Scene::~Scene()
