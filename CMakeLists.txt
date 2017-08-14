@@ -10,6 +10,7 @@ OPTION(MAKE_GOL "Create Game of Life" OFF)
 OPTION(MAKE_LA "Create Langtons Ant" OFF)
 OPTION(MAKE_BB "Create Brian's Brain" OFF)
 OPTION(MAKE_WW "Create Wire World" OFF)
+OPTION(MAKE_MAZE "Create Maze" ON)
 
 ####################################################################
 
@@ -269,6 +270,30 @@ IF(MAKE_WW)
 
   file(
   	COPY ${CMAKE_SOURCE_DIR}/RUEngine/WW/Assets
+  	DESTINATION ${CMAKE_BINARY_DIR}
+  )
+
+ENDIF()
+
+####################################################################
+# Rugine Normalmap vs High Detail                                  #
+####################################################################
+IF(MAKE_MAZE)
+  set(SOURCES
+    RUEngine/MAZE/main.cpp
+    RUEngine/MAZE/Scene.cpp
+  )
+
+  add_executable(MAZE ${SOURCES} ${SOILSOURCE} ${RUGINESOURCE})
+
+  target_link_libraries(MAZE ${ALL_GRAPHICS_LIBS}   )
+  file(
+  	COPY ${CMAKE_SOURCE_DIR}/RUEngine/Shaders
+  	DESTINATION ${CMAKE_BINARY_DIR}
+  )
+
+  file(
+  	COPY ${CMAKE_SOURCE_DIR}/RUEngine/MAZE/Assets
   	DESTINATION ${CMAKE_BINARY_DIR}
   )
 
