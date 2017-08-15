@@ -20,20 +20,33 @@ class Scene : public Superscene
         Scene(Input* ip);
         virtual ~Scene();
         void Update(float deltaTime);
+        bool GenerateMazeHard();
     private:
-      enum States
+      enum Dir
       {
-        ON,OFF
+        N, W ,S, E
+      };
+      enum Difficulty
+      {
+        EASY, NORMAL, HARD
       };
       struct Cell {
         Entity* entity;
-        States state;
+        bool visited = false;
+        bool listed = false;
       };
+      Difficulty difficulty;
       Entity* mesh;
       Light* light;
       std::vector<std::vector<Cell>> cells;
+      glm::vec2 walkerPos;
+      glm::vec2 start;
+      glm::vec2 end;
       int rows;
+      int amount;
+      std::vector<Cell> visitedStack;
       Time* timer = new Time();
+      void Paint(Dir dir);
 };
 
 #endif // SCENE_H
