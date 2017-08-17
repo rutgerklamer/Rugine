@@ -26,16 +26,12 @@ class Scene : public Superscene
       {
         N, W ,S, E
       };
-      enum Difficulty
-      {
-        EASY, NORMAL, HARD
-      };
       struct Cell {
         Entity* entity;
+        glm::vec3 solvedColor;
         bool visited = false;
         bool listed = false;
       };
-      Difficulty difficulty;
       Entity* mesh;
       Light* light;
       std::vector<std::vector<Cell>> cells;
@@ -46,6 +42,8 @@ class Scene : public Superscene
       int amount;
       std::vector<Cell> visitedStack;
       Time* timer = new Time();
+      bool generateDone;
+      bool done;
       void Paint(Dir dir);
 };
 
