@@ -293,7 +293,6 @@ IF(MAKE_MAZE)
   )
 
   file(
-  	COPY ${CMAKE_SOURCE_DIR}/RUEngine/MAZE/Assets
   	DESTINATION ${CMAKE_BINARY_DIR}
   )
 
