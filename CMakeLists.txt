@@ -1,4 +1,4 @@
-# CMake entry point
+	# CMake entry point
 cmake_minimum_required (VERSION 2.6)
 project (ruengine)
 
@@ -292,8 +292,5 @@ IF(MAKE_MAZE)
   	DESTINATION ${CMAKE_BINARY_DIR}
   )
 
-  file(
-  	DESTINATION ${CMAKE_BINARY_DIR}
-  )
 
 ENDIF()
