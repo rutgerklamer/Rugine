@@ -76,20 +76,22 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
   }
   glUniform3f(glGetUniformLocation(shader->shaderProgram, "sceneData.fogColor"), scenedata.fogColor.x, scenedata.fogColor.y, scenedata.fogColor.z);
   glUniform1f(glGetUniformLocation(shader->shaderProgram, "time"), glfwGetTime());
-//Manipulate model matrix
+  //Manipulate model matrix
   model =  entity->getModelMatrix();
   //Send to vertex shader
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
   glUniform4f(glGetUniformLocation(shader->shaderProgram, "planeYPosition"), waterPlane.x, waterPlane.y, waterPlane.z, waterPlane.w);
   //Send a texture
 
-  if (entity->getColor().x + entity->getColor().y + entity->getColor().z == 0) {
+  if (entity != nullptr && entity->getColor().x + entity->getColor().y + entity->getColor().z == 0) {
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, entity->getTexture());
     glUniform1i(glGetUniformLocation(shader->shaderProgram, "Texture"), 0);
     glUniform3f(glGetUniformLocation(shader->shaderProgram, "Color"), 0, 0, 0);
+    glUniform1f(glGetUniformLocation(shader->shaderProgram, "material.shininess"), entity->getShininess());
   } else {
     glUniform3f(glGetUniformLocation(shader->shaderProgram, "Color"), entity->getColor().x, entity->getColor().y, entity->getColor().z);
+    glUniform1f(glGetUniformLocation(shader->shaderProgram, "material.shininess"), entity->getShininess());
   }
   if (entity->getNormalMap() != NULL) {
     glActiveTexture(GL_TEXTURE1);
@@ -104,7 +106,12 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
   entity->Draw();
 
   //Draw the mesh
-  glDrawArrays(GL_TRIANGLES, 0, entity->getSize());
+  if (entity->meshData.indsize != 0) {
+    //std::cout << "indices" << std::endl;
+    glDrawElements(GL_TRIANGLES, entity->meshData.indsize, GL_UNSIGNED_INT, 0);
+  } else {
+    glDrawArrays(GL_TRIANGLES, 0, entity->getSize());
+  }
 }
 
 

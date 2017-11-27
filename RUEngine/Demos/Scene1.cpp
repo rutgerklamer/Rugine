@@ -34,7 +34,7 @@ Scene1::Scene1(Input* input) : Superscene(input)
       this->addSkybox(skybox);
       water = new Water(glm::vec2(100,100), glm::vec3(0,1,0));
       addWater(water);
-    //addFramebuffer("Shaders/Framebuffer/FishEye/shader.vert", "Shaders/Framebuffer/FishEye/shader.frag");
+    // addFramebuffer("Shaders/Framebuffer/EdgeDetect/shader.vert", "Shaders/Framebuffer/EdgeDetect/shader.frag");
 
 }
 

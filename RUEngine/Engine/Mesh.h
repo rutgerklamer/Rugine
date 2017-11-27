@@ -18,12 +18,18 @@
 struct MeshData
 {
   GLfloat* vertices;
+  GLuint* indices;
   int size;
+  int indsize;
   GLuint texture;
-  glm::vec3 color;
   GLuint normalMap;
   glm::vec3 min;
   glm::vec3 max;
+};
+
+struct Material {
+  float shininess;
+  glm::vec3 color;
 };
 
 class Mesh
@@ -72,6 +78,12 @@ class Mesh
         /**
             *  return the normalMap texture of this mesh.
             */
+        void bind();
+
+        void setShininess(float s);
+        float getShininess();
+
+
         GLuint getNormalMap();
         /**
             *  load an obj file, This will not load ANY obj files.
@@ -102,6 +114,7 @@ class Mesh
     private:
       GLuint VAO, VBO, EBO;
       int lighting;
+      Material material;
 };
 
 #endif // MESH_H

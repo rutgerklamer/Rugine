@@ -27,6 +27,7 @@ Display::Display()
   scenemanager = new SceneManager(input);
   raycaster = new Raycast(&camera, input);
   std::cout << "Display initialized" << std::endl;
+
   //We want to run this atleast once.
   //Get the projection matrix
 }
@@ -89,12 +90,14 @@ void Display::gameLoop()
       resourcemanager->removeLights(shader);
     }
     scenemanager->scenes[currentscene]->Update(dtime->getDeltatime());
+    scenemanager->scenes[currentscene]->updateEntities(dtime->getDeltatime());
+
     resourcemanager->updateShaders(waterShader, scenemanager->scenes[currentscene]->camera);
     resourcemanager->updateShaders(shader, scenemanager->scenes[currentscene]->camera);
 
     if (scenemanager->scenes[currentscene]->water != nullptr) {
       glBindFramebuffer(GL_FRAMEBUFFER, scenemanager->scenes[currentscene]->water->top->fbo);
-      glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+      glClearColor(0.5,0.7,0.9, 1.0f);
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
       glEnable(GL_CLIP_DISTANCE0);
       float dist = 2* (scenemanager->scenes[currentscene]->camera->getPosition().y - scenemanager->scenes[currentscene]->water->waterPosition.y);
@@ -118,12 +121,12 @@ void Display::gameLoop()
     }
     if (scenemanager->scenes[currentscene]->framebuffer != nullptr) {
       glBindFramebuffer(GL_FRAMEBUFFER, scenemanager->scenes[currentscene]->framebuffer->fbo);
-      glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+      glClearColor(0,0,0, 1.0f);
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     } else {
       glBindFramebuffer(GL_FRAMEBUFFER, 0);
       //Clear window with a red-"ish" color
-      glClearColor(0.3,0.3,0.3,1);
+      glClearColor(0,0,0,1);
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
     //raycaster->Update();
@@ -154,6 +157,7 @@ void Display::gameLoop()
     //Update camera movement
     //TODO remove
     input->doMovement(dtime->getDeltatime());
+    input->Update(dtime->getDeltatime());
     //Get the current screen
     glfwSwapBuffers(window);
     //Update glfw's input
@@ -199,7 +203,7 @@ void Display::initGlfw()
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, windowinfo.minorVersion);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
   glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-
+  glfwWindowHint(GLFW_SAMPLES, 4);
   //Create the window
   window = glfwCreateWindow(windowinfo.windowWidth, windowinfo.windowHeight, windowinfo.windowName.c_str(), nullptr, nullptr);
   glfwGetFramebufferSize(window, &windowinfo.windowWidth, &windowinfo.windowHeight);
@@ -220,7 +224,7 @@ void Display::initGlfw()
   glfwSetCursorPosCallback(window, input->mouseCallBack);
   glfwSetMouseButtonCallback(window, input->mouseButtonCallback);
   //Lock the cursor
-  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+  //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 
 void Display::initGlew()
@@ -231,6 +235,7 @@ void Display::initGlew()
   if (glewInit() != GLEW_OK) {
       std::cout << "Failed to initialize GLEW" << std::endl;
   }
+  glEnable(GL_MULTISAMPLE);
   //Enable depth testing
   glEnable(GL_DEPTH_TEST);
   glDepthFunc(GL_LESS);

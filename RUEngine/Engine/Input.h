@@ -48,6 +48,12 @@ class Input
             *  set the pointer of the camera of the scene to the pointer in input.
             */
         void setCamera(Camera* camera);
+
+        void Update(float deltaTime);
+        /**
+            *  get the camera
+            */
+        Camera* getCamera();
         /**
             *  Move the camera.
             *  Takes in deltaTime.
@@ -82,11 +88,20 @@ class Input
             *  get the mouse velocity, For example for motion blur
             */
         glm::vec2 getMouseVelocity();
+
+        bool getMouseKeyDown(int key);
+        bool getMouseKeyUp(int key);
+        bool getKeyDown(int key);
+        bool getKeyUp(int key);
     private:
       glm::vec2 lastMouse;
       glm::vec2 currentMouse;
       static bool keys[1024];
+      static bool keysDown[1024];
+      static bool keysUp[1024];
       static bool mouseKeys[7];
+      static bool mouseKeysDown[7];
+      static bool mouseKeysUp[7];
       static bool firstMouse;
       static float lastX;
       static float lastY;

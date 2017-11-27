@@ -1,0 +1,426 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_54193/fast"
+/usr/bin/make -f CMakeFiles/cmTC_54193.dir/build.make CMakeFiles/cmTC_54193.dir/build
+make[1]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_54193.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_54193.dir/CheckSymbolExists.c.o   -c /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_54193
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_54193.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_54193.dir/CheckSymbolExists.c.o  -o cmTC_54193 
+CMakeFiles/cmTC_54193.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_54193.dir/build.make:98: cmTC_54193] Error 1
+make[1]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:126: cmTC_54193/fast] Error 2
+
+File /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_4d3e5/fast"
+/usr/bin/make -f CMakeFiles/cmTC_4d3e5.dir/build.make CMakeFiles/cmTC_4d3e5.dir/build
+make[1]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_4d3e5.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_4d3e5.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.9/Modules/CheckFunctionExists.c
+Linking C executable cmTC_4d3e5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4d3e5.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_4d3e5.dir/CheckFunctionExists.c.o  -o cmTC_4d3e5 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_4d3e5.dir/build.make:98: cmTC_4d3e5] Error 1
+make[1]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:126: cmTC_4d3e5/fast] Error 2
+
+
+Determining if the function glXGetProcAddressEXT exists failed with the following output:
+Change Dir: /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_bceb2/fast"
+/usr/bin/make -f CMakeFiles/cmTC_bceb2.dir/build.make CMakeFiles/cmTC_bceb2.dir/build
+make[1]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_bceb2.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT   -o CMakeFiles/cmTC_bceb2.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.9/Modules/CheckFunctionExists.c
+Linking C executable cmTC_bceb2
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bceb2.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT    -rdynamic CMakeFiles/cmTC_bceb2.dir/CheckFunctionExists.c.o  -o cmTC_bceb2 /usr/lib/libGL.so 
+CMakeFiles/cmTC_bceb2.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x10): undefined reference to `glXGetProcAddressEXT'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_bceb2.dir/build.make:99: cmTC_bceb2] Error 1
+make[1]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:126: cmTC_bceb2/fast] Error 2
+
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_50d64/fast"
+/usr/bin/make -f CMakeFiles/cmTC_50d64.dir/build.make CMakeFiles/cmTC_50d64.dir/build
+make[1]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_50d64.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_50d64.dir/CheckSymbolExists.c.o   -c /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_50d64
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_50d64.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_50d64.dir/CheckSymbolExists.c.o  -o cmTC_50d64 
+CMakeFiles/cmTC_50d64.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_50d64.dir/build.make:98: cmTC_50d64] Error 1
+make[1]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:126: cmTC_50d64/fast] Error 2
+
+File /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_95e90/fast"
+/usr/bin/make -f CMakeFiles/cmTC_95e90.dir/build.make CMakeFiles/cmTC_95e90.dir/build
+make[1]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_95e90.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_95e90.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.9/Modules/CheckFunctionExists.c
+Linking C executable cmTC_95e90
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_95e90.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_95e90.dir/CheckFunctionExists.c.o  -o cmTC_95e90 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_95e90.dir/build.make:98: cmTC_95e90] Error 1
+make[1]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:126: cmTC_95e90/fast] Error 2
+
+
+Determining if the function glXGetProcAddressEXT exists failed with the following output:
+Change Dir: /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_61363/fast"
+/usr/bin/make -f CMakeFiles/cmTC_61363.dir/build.make CMakeFiles/cmTC_61363.dir/build
+make[1]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_61363.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT   -o CMakeFiles/cmTC_61363.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.9/Modules/CheckFunctionExists.c
+Linking C executable cmTC_61363
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_61363.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT    -rdynamic CMakeFiles/cmTC_61363.dir/CheckFunctionExists.c.o  -o cmTC_61363 /usr/lib/libGL.so 
+CMakeFiles/cmTC_61363.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x10): undefined reference to `glXGetProcAddressEXT'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_61363.dir/build.make:99: cmTC_61363] Error 1
+make[1]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:126: cmTC_61363/fast] Error 2
+
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_793ff/fast"
+/usr/bin/make -f CMakeFiles/cmTC_793ff.dir/build.make CMakeFiles/cmTC_793ff.dir/build
+make[1]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_793ff.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_793ff.dir/CheckSymbolExists.c.o   -c /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_793ff
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_793ff.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_793ff.dir/CheckSymbolExists.c.o  -o cmTC_793ff 
+CMakeFiles/cmTC_793ff.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_793ff.dir/build.make:98: cmTC_793ff] Error 1
+make[1]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:126: cmTC_793ff/fast] Error 2
+
+File /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_cec5c/fast"
+/usr/bin/make -f CMakeFiles/cmTC_cec5c.dir/build.make CMakeFiles/cmTC_cec5c.dir/build
+make[1]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_cec5c.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_cec5c.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.9/Modules/CheckFunctionExists.c
+Linking C executable cmTC_cec5c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cec5c.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_cec5c.dir/CheckFunctionExists.c.o  -o cmTC_cec5c -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_cec5c.dir/build.make:98: cmTC_cec5c] Error 1
+make[1]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:126: cmTC_cec5c/fast] Error 2
+
+
+Determining if the function glXGetProcAddressEXT exists failed with the following output:
+Change Dir: /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2035a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2035a.dir/build.make CMakeFiles/cmTC_2035a.dir/build
+make[1]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2035a.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT   -o CMakeFiles/cmTC_2035a.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.9/Modules/CheckFunctionExists.c
+Linking C executable cmTC_2035a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2035a.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT    -rdynamic CMakeFiles/cmTC_2035a.dir/CheckFunctionExists.c.o  -o cmTC_2035a /usr/lib/libGL.so 
+CMakeFiles/cmTC_2035a.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x10): undefined reference to `glXGetProcAddressEXT'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_2035a.dir/build.make:99: cmTC_2035a] Error 1
+make[1]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:126: cmTC_2035a/fast] Error 2
+
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_6eea7/fast"
+/usr/bin/make -f CMakeFiles/cmTC_6eea7.dir/build.make CMakeFiles/cmTC_6eea7.dir/build
+make[1]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_6eea7.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_6eea7.dir/CheckSymbolExists.c.o   -c /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_6eea7
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6eea7.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_6eea7.dir/CheckSymbolExists.c.o  -o cmTC_6eea7 
+CMakeFiles/cmTC_6eea7.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_6eea7.dir/build.make:98: cmTC_6eea7] Error 1
+make[1]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:126: cmTC_6eea7/fast] Error 2
+
+File /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_12693/fast"
+/usr/bin/make -f CMakeFiles/cmTC_12693.dir/build.make CMakeFiles/cmTC_12693.dir/build
+make[1]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_12693.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_12693.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.9/Modules/CheckFunctionExists.c
+Linking C executable cmTC_12693
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_12693.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_12693.dir/CheckFunctionExists.c.o  -o cmTC_12693 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_12693.dir/build.make:98: cmTC_12693] Error 1
+make[1]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:126: cmTC_12693/fast] Error 2
+
+
+Determining if the function glXGetProcAddressEXT exists failed with the following output:
+Change Dir: /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_1785f/fast"
+/usr/bin/make -f CMakeFiles/cmTC_1785f.dir/build.make CMakeFiles/cmTC_1785f.dir/build
+make[1]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_1785f.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT   -o CMakeFiles/cmTC_1785f.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.9/Modules/CheckFunctionExists.c
+Linking C executable cmTC_1785f
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1785f.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT    -rdynamic CMakeFiles/cmTC_1785f.dir/CheckFunctionExists.c.o  -o cmTC_1785f /usr/lib/libGL.so 
+CMakeFiles/cmTC_1785f.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x10): undefined reference to `glXGetProcAddressEXT'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_1785f.dir/build.make:99: cmTC_1785f] Error 1
+make[1]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:126: cmTC_1785f/fast] Error 2
+
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_de094/fast"
+make[1]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_de094.dir/build.make CMakeFiles/cmTC_de094.dir/build
+make[2]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_de094.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_de094.dir/CheckSymbolExists.c.o   -c /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_de094
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_de094.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_de094.dir/CheckSymbolExists.c.o  -o cmTC_de094 
+CMakeFiles/cmTC_de094.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+make[2]: *** [CMakeFiles/cmTC_de094.dir/build.make:98: cmTC_de094] Error 1
+make[2]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+make[1]: *** [Makefile:126: cmTC_de094/fast] Error 2
+make[1]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+
+File /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_345ad/fast"
+make[1]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_345ad.dir/build.make CMakeFiles/cmTC_345ad.dir/build
+make[2]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_345ad.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_345ad.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.9/Modules/CheckFunctionExists.c
+Linking C executable cmTC_345ad
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_345ad.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_345ad.dir/CheckFunctionExists.c.o  -o cmTC_345ad -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+make[2]: *** [CMakeFiles/cmTC_345ad.dir/build.make:98: cmTC_345ad] Error 1
+make[2]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+make[1]: *** [Makefile:126: cmTC_345ad/fast] Error 2
+make[1]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the function glXGetProcAddressEXT exists failed with the following output:
+Change Dir: /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_02778/fast"
+make[1]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_02778.dir/build.make CMakeFiles/cmTC_02778.dir/build
+make[2]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_02778.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT   -o CMakeFiles/cmTC_02778.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.9/Modules/CheckFunctionExists.c
+Linking C executable cmTC_02778
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_02778.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT    -rdynamic CMakeFiles/cmTC_02778.dir/CheckFunctionExists.c.o  -o cmTC_02778 /usr/lib/libGL.so 
+CMakeFiles/cmTC_02778.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x10): undefined reference to `glXGetProcAddressEXT'
+collect2: error: ld returned 1 exit status
+make[2]: *** [CMakeFiles/cmTC_02778.dir/build.make:99: cmTC_02778] Error 1
+make[2]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+make[1]: *** [Makefile:126: cmTC_02778/fast] Error 2
+make[1]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_7a64f/fast"
+/usr/bin/make -f CMakeFiles/cmTC_7a64f.dir/build.make CMakeFiles/cmTC_7a64f.dir/build
+make[1]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7a64f.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_7a64f.dir/CheckSymbolExists.c.o   -c /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_7a64f
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7a64f.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_7a64f.dir/CheckSymbolExists.c.o  -o cmTC_7a64f 
+CMakeFiles/cmTC_7a64f.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_7a64f.dir/build.make:98: cmTC_7a64f] Error 1
+make[1]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:126: cmTC_7a64f/fast] Error 2
+
+File /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2ede2/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2ede2.dir/build.make CMakeFiles/cmTC_2ede2.dir/build
+make[1]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2ede2.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_2ede2.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.9/Modules/CheckFunctionExists.c
+Linking C executable cmTC_2ede2
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2ede2.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_2ede2.dir/CheckFunctionExists.c.o  -o cmTC_2ede2 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_2ede2.dir/build.make:98: cmTC_2ede2] Error 1
+make[1]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:126: cmTC_2ede2/fast] Error 2
+
+
+Determining if the function glXGetProcAddressEXT exists failed with the following output:
+Change Dir: /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_0b275/fast"
+/usr/bin/make -f CMakeFiles/cmTC_0b275.dir/build.make CMakeFiles/cmTC_0b275.dir/build
+make[1]: Entering directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_0b275.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT   -o CMakeFiles/cmTC_0b275.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.9/Modules/CheckFunctionExists.c
+Linking C executable cmTC_0b275
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0b275.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT    -rdynamic CMakeFiles/cmTC_0b275.dir/CheckFunctionExists.c.o  -o cmTC_0b275 /usr/lib/libGL.so 
+CMakeFiles/cmTC_0b275.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x10): undefined reference to `glXGetProcAddressEXT'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_0b275.dir/build.make:99: cmTC_0b275] Error 1
+make[1]: Leaving directory '/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:126: cmTC_0b275/fast] Error 2
+
+

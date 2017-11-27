@@ -12,10 +12,15 @@ Mesh::Mesh()
   meshData.vertices = 0;
   meshData.size = 0;
   meshData.texture = NULL;
-  meshData.color = glm::vec3(0,0,0);
+  material.color = glm::vec3(0,0,0);
   meshData.normalMap = NULL;
   meshData.min = glm::vec3(0,0,0);
   meshData.max = glm::vec3(0,0,0);
+  meshData.indices = 0;
+  meshData.indsize = 0;
+
+  material.shininess = 8.0f;
+
 }
 
 Mesh::~Mesh()
@@ -28,6 +33,14 @@ int Mesh::getSize()
   return this->meshData.size;
 }
 
+void Mesh::setShininess(float s)
+{
+  this->material.shininess = s;
+}
+float Mesh::getShininess()
+{
+  return this->material.shininess;
+}
 
 void Mesh::Draw()
 {
@@ -65,17 +78,36 @@ glm::mat4 Mesh::getModelMatrix()
 
 void Mesh::setColor(glm::vec3 color)
 {
-  this->meshData.color = color;
+  this->material.color = color;
 }
 
 glm::vec3 Mesh::getColor()
 {
-  return this->meshData.color;
+  return this->material.color;
 }
 
 glm::vec3 Mesh::getPosition()
 {
 
+}
+
+void Mesh::bind()
+{
+  glGenVertexArrays(1, &VAO);
+  glGenBuffers(1, &VBO);
+  glGenBuffers(1, &EBO);
+  glBindVertexArray(VAO);
+  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  glBufferData(GL_ARRAY_BUFFER, meshData.size, meshData.vertices, GL_STATIC_DRAW);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, meshData.indsize, meshData.indices, GL_STATIC_DRAW);
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *) 0);
+  glEnableVertexAttribArray(0);
+  glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)(3 * sizeof(GLfloat)));
+  glEnableVertexAttribArray(2);
+  glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)0);
+  glEnableVertexAttribArray(3);
+  glBindVertexArray(0);
 }
 
 void Mesh::LoadObject(const char* objectPath, bool isNormalMap)
@@ -88,10 +120,13 @@ void Mesh::LoadObject(const char* objectPath, bool isNormalMap)
      multiplier = 8;
    }
 
+   std::cout << "hello 1" << std::endl;
+
    meshData = OBJloader::loadModel(objectPath, isNormalMap);
+   std::cout << "hello 2" << std::endl;
+
    meshData.texture = NULL;
    meshData.normalMap = NULL;
-
    glGenVertexArrays(1, &VAO);
    glGenBuffers(1, &VBO);
    glBindVertexArray(VAO);

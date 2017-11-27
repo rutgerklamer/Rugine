@@ -3,7 +3,11 @@
 Camera* Input::camera;
 
 bool Input::keys[1024];
+bool Input::keysDown[1024];
+bool Input::keysUp[1024];
 bool Input::mouseKeys[7];
+bool Input::mouseKeysDown[7];
+bool Input::mouseKeysUp[7];
 bool Input::firstMouse = true;
 
 float Input::lastX;
@@ -21,6 +25,11 @@ Input::~Input()
   delete camera;
 }
 
+Camera* Input::getCamera()
+{
+  return this->camera;
+}
+
 void Input::setWindow(GLFWwindow* window)
 {
   this->window = window;
@@ -34,6 +43,35 @@ bool Input::isDown(int key)
 bool Input::isMouseDown(int key)
 {
   return mouseKeys[key];
+}
+
+void Input::Update(float deltaTime)
+{
+  for (unsigned int i = 0; i < 1024; i++) {
+    keysDown[i] = false;
+    keysUp[i] = false;
+  }
+  for (unsigned int i = 0; i < 7; i++) {
+    mouseKeysDown[i] = false;
+    mouseKeysUp[i] = false;
+  }
+}
+
+bool Input::getMouseKeyDown(int key)
+{
+  return mouseKeysDown[key];
+}
+bool Input::getMouseKeyUp(int key)
+{
+  return mouseKeysUp[key];
+}
+bool Input::getKeyDown(int key)
+{
+  return keysDown[key];
+}
+bool Input::getKeyUp(int key)
+{
+  return keysUp[key];
 }
 
 void Input::setMouseKey(int key, bool active)
@@ -89,9 +127,11 @@ void Input::keyCallBack(GLFWwindow* window, int key, int scancode, int action, i
   if (key >= 0 && key < 1024) {
       if (GLFW_PRESS == action) {
           keys[key] = true;
+          keysDown[key] = true;
       }
       else if (GLFW_RELEASE == action) {
           keys[key] = false;
+          keysUp[key] = true;
       }
   }
 }
@@ -100,9 +140,11 @@ void Input::mouseButtonCallback(GLFWwindow* window, int button, int action, int 
 {
     if (action) {
         mouseKeys[button] = true;
+        mouseKeysDown[button] = true;
     }
     else {
         mouseKeys[button] = false;
+        mouseKeysUp[button] = true;
     }
 }
 

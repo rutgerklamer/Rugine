@@ -4,13 +4,14 @@ project (ruengine)
 
 # delete CMakeCache.txt from the build directory when you edit these options
 ####################################################################
-OPTION(MAKE_DEMO "Create DEMO" ON)
+OPTION(MAKE_DEMO "Create DEMO" OFF)
 OPTION(MAKE_NMHD "Create NormalMap vs HighDetail" OFF)
 OPTION(MAKE_GOL "Create Game of Life" OFF)
 OPTION(MAKE_LA "Create Langtons Ant" OFF)
 OPTION(MAKE_BB "Create Brian's Brain" OFF)
 OPTION(MAKE_WW "Create Wire World" OFF)
-OPTION(MAKE_MAZE "Create Maze" ON)
+OPTION(MAKE_MAZE "Create Maze" OFF)
+OPTION(MAKE_MB "Create Mustache Bot" ON)
 
 ####################################################################
 
@@ -62,6 +63,8 @@ include_directories(
 	${CMAKE_SOURCE_DIR}/external/glm-0.9.8.4
 	${CMAKE_SOURCE_DIR}/external/glew-1.9.0/include
 	${CMAKE_SOURCE_DIR}/external
+      ${CMAKE_SOURCE_DIR}/external/freetype2/include
+      ${CMAKE_SOURCE_DIR}/external/freetype2
   ${CMAKE_SOURCE_DIR}/external/irrKlang
   ${CMAKE_SOURCE_DIR}/RUEngine
 	${CMAKE_SOURCE_DIR}/.
@@ -71,6 +74,8 @@ link_directories(
 	${CMAKE_SOURCE_DIR}/external/glfw-3.0.3/src
 	${CMAKE_SOURCE_DIR}/external/glew-1.9.0
 	${CMAKE_SOURCE_DIR}/external
+      ${CMAKE_SOURCE_DIR}/external/freetype2/include
+      ${CMAKE_SOURCE_DIR}/external/freetype2
 )
 
 
@@ -134,6 +139,8 @@ set(RUGINESOURCE
     RUEngine/Engine/Framebuffer.cpp
     RUEngine/Engine/Raycast.cpp
     RUEngine/Engine/Water.cpp
+		RUEngine/Engine/Terrain.cpp
+		RUEngine/Maths/Collision.cpp
   )
 
 ####################################################################
@@ -162,6 +169,7 @@ IF(MAKE_DEMO)
   	DESTINATION ${CMAKE_BINARY_DIR}
   )
 
+  include_directories("external/freetype2/include")
 ENDIF()
 
 
@@ -287,6 +295,28 @@ IF(MAKE_MAZE)
   add_executable(MAZE ${SOURCES} ${SOILSOURCE} ${RUGINESOURCE})
 
   target_link_libraries(MAZE ${ALL_GRAPHICS_LIBS}   )
+  file(
+  	COPY ${CMAKE_SOURCE_DIR}/RUEngine/Shaders
+  	DESTINATION ${CMAKE_BINARY_DIR}
+  )
+
+
+ENDIF()
+
+####################################################################
+# Rugine Normalmap vs High Detail                                  #
+####################################################################
+IF(MAKE_MB)
+  set(SOURCES
+    RUEngine/MB/main.cpp
+    RUEngine/MB/Scene.cpp
+		RUEngine/MB/RailTrack.cpp
+		RUEngine/MB/Bullet.cpp
+  )
+
+  add_executable(MB ${SOURCES} ${SOILSOURCE} ${RUGINESOURCE})
+
+  target_link_libraries(MB ${ALL_GRAPHICS_LIBS}   )
   file(
   	COPY ${CMAKE_SOURCE_DIR}/RUEngine/Shaders
   	DESTINATION ${CMAKE_BINARY_DIR}

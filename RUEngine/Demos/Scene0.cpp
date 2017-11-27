@@ -2,8 +2,8 @@
 
 Scene0::Scene0(Input* input) : Superscene(input)
 {
-  std::cout << "Scene0 initialized" << std::endl;
-  //Create a mesh
+      std::cout << "Scene0 initialized" << std::endl;
+      //Create a mesh
       mesh = new Entity();
       mesh->LoadObject("Assets/sponza.obj", false);
       //Set a texture to it
@@ -26,14 +26,16 @@ Scene0::Scene0(Input* input) : Superscene(input)
         light2->position = glm::vec3(-35 + (i * 10),2,0);
         light2->setPosition(light2->getPosition());
         light2->setLightColor(glm::vec3(sin(i * 16.0f),cos(i*16.0f),i/16.0f));
+        light2->setStrength(i);
+        light2->setExtinction(i / 2);
         light2->setSpecularStrength(2.0f);
         this->addLight(light2);
       }
 
       setGamma(1.2f);
       setExposure(0.20f);
-      setFogDensity(0.09f);
-      setFogColor(glm::vec3(0.7,0.9,0.5));
+      skybox = new Skybox("Assets/sandtrap_rt.tga", "Assets/sandtrap_lf.tga", "Assets/sandtrap_up.tga", "Assets/sandtrap_dn.tga", "Assets/sandtrap_bk.tga", "Assets/sandtrap_ft.tga");
+      this->addSkybox(skybox);
 }
 
 Scene0::~Scene0()
@@ -44,5 +46,5 @@ Scene0::~Scene0()
 
 void Scene0::Update(float deltaTime)
 {
-
+  std::cout << sizeof(long) << std::endl;
 }

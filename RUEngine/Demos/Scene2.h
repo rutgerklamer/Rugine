@@ -13,6 +13,7 @@
 #include "Engine/Texture.h"
 #include "Engine/Light.h"
 #include "Engine/Water.h"
+#include "Engine/Terrain.h"
 
 class Scene2 : public Superscene
 {
@@ -21,10 +22,11 @@ class Scene2 : public Superscene
         virtual ~Scene2();
         void Update(float deltaTime);
     private:
-      Entity* mesh;
-      Entity* mesh2;
+      Terrain* mesh;
+      Entity* ball;
       Light* light;
       Water* water;
+      float terrainHeightNorm;
 };
 
 #endif // SCENE2_H

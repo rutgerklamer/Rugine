@@ -25,7 +25,7 @@ class Entity : public Mesh
         /**
                 *  called by the Superscene
                 */
-        void update(float deltaTime);
+        virtual void update(float deltaTime);
         /**
             *  Return the modelMatrix by translating, rotating and scaling the model matrix.
             */
@@ -35,6 +35,7 @@ class Entity : public Mesh
             */
         glm::vec3 getPosition();
         glm::vec3 position;
+        glm::vec3 velocity;
         glm::vec3 scale;
         glm::vec3 eularAngles;
     private:

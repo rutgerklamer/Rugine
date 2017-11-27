@@ -34,6 +34,8 @@ class Camera
           this->yaw = yaw;
           this->pitch = pitch;
           this->updateCameraVector();
+          mouseMovement = true;
+
         }
         /**
                 *  set everything Manually.
@@ -45,6 +47,7 @@ class Camera
           this->yaw = yaw;
           this->pitch = pitch;
           this->updateCameraVector();
+          mouseMovement = true;
         }
         /**
                 *  Destructor.
@@ -126,19 +129,19 @@ class Camera
           GLfloat velocity = this->movementSpeed * deltaTime;
           if (FORWARD == direction)
           {
-            this->position += this->front * 3.0f * velocity;
+            this->position += this->front * 6.0f * velocity;
           }
           if (BACKWARD == direction)
           {
-            this->position -= this->front * 3.0f * velocity;
+            this->position -= this->front * 6.0f * velocity;
           }
           if (LEFT == direction)
           {
-            this->position -= this->right * 3.0f * velocity;
+            this->position -= this->right * 6.0f * velocity;
           }
           if (RIGHT == direction)
           {
-            this->position += this->right * 3.0f * velocity;
+            this->position += this->right * 6.0f * velocity;
           }
         }
         /**
@@ -148,6 +151,7 @@ class Camera
                 */
         void processMouseMovement(GLfloat xOffset, GLfloat yOffset, GLboolean constrainPitch = true)
         {
+          if (mouseMovement) {
           xOffset *= 0.05;
           yOffset *= 0.05;
           yOff += yOffset;
@@ -169,6 +173,10 @@ class Camera
             }
           }
           this->updateCameraVector();
+        }
+        }
+        void setMouseMovement(bool m) {
+          mouseMovement = m;
         }
         /**
                 *  set the zoom(FOV) of the camera.
@@ -197,6 +205,12 @@ class Camera
         {
           return this->zoom;
         }
+
+        void setYawPitch(glm::vec2 yp)
+        {
+          this->yaw = yp.x;
+          this->pitch = yp.y;
+        }
         /**
                 *  calculate the new front of the camera according to,
                 *  The pitch and yaw.
@@ -216,7 +230,7 @@ class Camera
         /**
                 *  Invert the pitch, Usefull for reflections of water etc.
                 */
-                
+
         void invertPitch()
         {
             this->pitch = -pitch;
@@ -235,6 +249,8 @@ class Camera
       GLfloat movementSpeed;
       GLfloat mouseSensitivity;
       GLfloat zoom;
+
+      bool mouseMovement;
 
       float xOff,
             yOff;
