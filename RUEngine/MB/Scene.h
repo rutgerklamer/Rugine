@@ -16,6 +16,7 @@
 #include "RailTrack.h"
 #include "Bullet.h"
 #include "Maths/Collision.h"
+#include "Mirror.h"
 
 class Scene : public Superscene
 {
@@ -27,13 +28,15 @@ class Scene : public Superscene
 
 
     private:
-      Entity* mirror;
       RailTrack* rt;
       Entity* mesh;
+      Entity* GUI;
       Light* light;
       Bullet* bullet;
+      Mirror* mirror;
       float t;
       std::vector<Bullet*> bullets;
+      std::vector<Mirror*> mirrors;
       std::vector<float> speeds;
 };
 

@@ -15,7 +15,7 @@ Display::Display()
   input->setWindow(window);
   //Make a renderer
   renderer = new Renderer();
-  //Make a shader after initializing glew
+  //Make a shader after initializing glewGUIShader
   shader = new Shader("Shaders/3D/shader.vert", "Shaders/3D/shader.frag","","","");
   shaderNormals = new Shader("Shaders/Normals/shader.vert", "Shaders/Normals/shader.frag","","","Shaders/Normals/shader.geom");
   shaderExplode = new Shader("Shaders/Explode/shader.vert", "Shaders/Explode/shader.frag","","","Shaders/Explode/shader.geom");
@@ -23,6 +23,7 @@ Display::Display()
   shaderReflection = new Shader("Shaders/StrongReflection/shader.vert", "Shaders/StrongReflection/shader.frag","","","");
   shaderTransparent = new Shader("Shaders/Transparent/shader.vert", "Shaders/Transparent/shader.frag","","","");
   waterShader = new Shader("Shaders/Water/shader.vert", "Shaders/Water/shader.frag","","","");
+  GUIShader = new Shader("Shaders/2D/shader.vert", "Shaders/2D/shader.frag","","","");
   dtime = new Time();
   scenemanager = new SceneManager(input);
   raycaster = new Raycast(&camera, input);
@@ -39,10 +40,13 @@ void Display::addScene(Superscene* scene)
 
 void Display::whatToRender(glm::vec4 waterPlane)
 {
+
   for (int i = 0; i < scenemanager->scenes[currentscene]->entities.size(); i++) {
     if (scenemanager->scenes[currentscene]->entities[i] != nullptr) {
+      if (scenemanager->scenes[currentscene]->entities[i]->check2D()) {
+        renderer->render2D(glfwGetTime(), GUIShader, scenemanager->scenes[currentscene]->entities[i]);
+      }else
   //    raycaster->checkCollision(scenemanager->scenes[currentscene]->entities[i]);
-    }
       if (scenemanager->scenes[currentscene]->lights.size() > 0 && scenemanager->scenes[currentscene]->entities[i]->enabled && !scenemanager->scenes[currentscene]->entities[i]->reflective && !scenemanager->scenes[currentscene]->entities[i]->transparent) {
          renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(),waterPlane, &scenemanager->scenes[currentscene]->lights);
 
@@ -62,6 +66,7 @@ void Display::whatToRender(glm::vec4 waterPlane)
           renderer->render(glfwGetTime(), shaderNormals, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(), waterPlane);
           shader->Use();
         }
+      }
   }
 }
 

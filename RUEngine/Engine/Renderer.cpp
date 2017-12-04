@@ -42,6 +42,28 @@ void Renderer::renderWater(Shader* shader, GLuint reflectionTexture, GLuint refr
   glDrawArrays(GL_TRIANGLES, 0, entity->getSize());
 }
 
+void Renderer::render2D(double currentTime, Shader* shader, Entity* entity)
+{
+  shader->Use();
+
+
+  glm::mat4 model;
+  model =  entity->getModelMatrix();
+  glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
+
+  if (entity != nullptr && entity->getColor().x + entity->getColor().y + entity->getColor().z == 0) {
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, entity->getTexture());
+    glUniform1i(glGetUniformLocation(shader->shaderProgram, "Texture"), 0);
+    glUniform3f(glGetUniformLocation(shader->shaderProgram, "Color"), 0, 0, 0);
+  } else {
+    glUniform3f(glGetUniformLocation(shader->shaderProgram, "Color"), entity->getColor().x, entity->getColor().y, entity->getColor().z);
+  }
+  entity->Draw();
+  glDrawArrays(GL_TRIANGLES , 0, 6);
+}
+
+
 void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity* entity, SceneData scenedata, glm::vec4 waterPlane, std::vector<Light*>* lights)
 {
   shader->Use();

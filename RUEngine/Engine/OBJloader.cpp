@@ -31,6 +31,8 @@ MeshData OBJloader::loadModel(const char* modelPath, bool isNormalMap)
   if( file == NULL ){
     std::cout << "failed to open: " << modelPath << std::endl;
     fclose(file);
+    MeshData temp;
+    return temp;
   }
 
 while( 1 ){

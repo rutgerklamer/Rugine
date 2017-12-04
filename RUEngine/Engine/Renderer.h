@@ -40,6 +40,7 @@ class Renderer
             *  and a vector of light if we want multiple lights.
             */
         void render(double currentTime, Shader* shader, Camera* camera, Entity* entity, SceneData scenedata, glm::vec4 waterPlane, std::vector<Light*>* lights = nullptr);
+        void render2D(double currentTime, Shader* shader, Entity* entity);
         /**
             *  render the scene's skybox
             *  takes in the current Time //TODO remove <-

@@ -4,8 +4,8 @@
 Bullet::Bullet(glm::vec3 direction) : Entity()
 {
   this->dir = direction;
-  this->LoadObject("Assets/untitled.obj", false);
-  this->scale  = glm::vec3(0.3,0.3,0.3);
+  this->make2D();
+  this->scale  = glm::vec3(0.003f,0.003f,1.0f);
   this->setColor(glm::vec3(0,0,1));
   this->reflective = true;
 }
@@ -19,7 +19,12 @@ void Bullet::update(float deltaTime) {
   this->position += dir  * deltaTime;
 }
 
-void Bullet::mirrorDir()
+void Bullet::mirrorDirX()
 {
-  this->dir = -dir;
+  this->dir.x = -dir.x;
+}
+
+void Bullet::mirrorDirY()
+{
+  this->dir.y = -dir.y;
 }

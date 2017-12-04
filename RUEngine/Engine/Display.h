@@ -60,6 +60,7 @@ class Display
       Shader* shaderReflection;
       Shader* shaderTransparent;
       Shader* waterShader;
+      Shader* GUIShader;
       Raycast* raycaster;
       GLuint skyboxTexture;
       Camera camera;

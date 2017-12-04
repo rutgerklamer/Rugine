@@ -10,7 +10,8 @@ public:
     ~Bullet();
 
     virtual void update(float deltaTime);
-    void mirrorDir();
+    void mirrorDirX();
+    void mirrorDirY();
 private:
     glm::vec3 dir;
 

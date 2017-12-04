@@ -83,7 +83,6 @@ class Mesh
         void setShininess(float s);
         float getShininess();
 
-
         GLuint getNormalMap();
         /**
             *  load an obj file, This will not load ANY obj files.
@@ -94,6 +93,9 @@ class Mesh
             *  This will also bind the Array of vertices, uv's, normals, (tangents, bittangents(binormals)).
             */
         void LoadObject(const char* objectPath, bool isNormalMap);
+
+        void make2D();
+        bool check2D();
         /**
             *  Check if this model will will use lighting.
             */
@@ -115,6 +117,7 @@ class Mesh
       GLuint VAO, VBO, EBO;
       int lighting;
       Material material;
+      bool is2D;
 };
 
 #endif // MESH_H
