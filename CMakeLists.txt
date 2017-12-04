@@ -312,6 +312,8 @@ IF(MAKE_MB)
     RUEngine/MB/Scene.cpp
 		RUEngine/MB/RailTrack.cpp
 		RUEngine/MB/Bullet.cpp
+		RUEngine/MB/Mirror.cpp
+
   )
 
   add_executable(MB ${SOURCES} ${SOILSOURCE} ${RUGINESOURCE})

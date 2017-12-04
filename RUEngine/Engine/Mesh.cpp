@@ -40,8 +40,8 @@ void Mesh::make2D()
       -0.5f, 0.5f, -0.5f,  0.0f, 1.0f,
        -0.5f,  -0.5f, -0.5f,  0.0f, 0.0f,
    };
-   meshData.min = glm::vec3(-1.0f,-1.0f,-1.0f);
-   meshData.max = glm::vec3(1.0f,1.0f,1);
+   meshData.min = glm::vec3(1.0f,-1.0f,-1.0f);
+   meshData.max = glm::vec3(1.0f,-1.0f,1);
    meshData.size = sizeof(vertices) / sizeof(vertices[0]) / 5;
    glGenVertexArrays(1, &VAO);
    glGenBuffers(1, &VBO);

@@ -271,8 +271,10 @@ CMakeFiles/MB.dir/RUEngine/Engine/Entity.cpp.o
  ../external/glm-0.9.8.4/glm/vec3.hpp
  ../external/glm-0.9.8.4/glm/vec4.hpp
  ../external/glm-0.9.8.4/glm/vector_relational.hpp
+ /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Camera.h
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Entity.cpp
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Entity.h
+ /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Input.h
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Mesh.h
 CMakeFiles/MB.dir/RUEngine/Engine/Framebuffer.cpp.o
  ../RUEngine/Engine/Shader.h
@@ -493,7 +495,9 @@ CMakeFiles/MB.dir/RUEngine/Engine/Light.cpp.o
  ../external/glm-0.9.8.4/glm/vec3.hpp
  ../external/glm-0.9.8.4/glm/vec4.hpp
  ../external/glm-0.9.8.4/glm/vector_relational.hpp
+ /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Camera.h
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Entity.h
+ /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Input.h
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Light.cpp
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Light.h
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Mesh.h
@@ -1539,7 +1543,9 @@ CMakeFiles/MB.dir/RUEngine/Engine/Terrain.cpp.o
  ../external/glm-0.9.8.4/glm/vec3.hpp
  ../external/glm-0.9.8.4/glm/vec4.hpp
  ../external/glm-0.9.8.4/glm/vector_relational.hpp
+ /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Camera.h
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Entity.h
+ /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Input.h
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Mesh.h
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Terrain.cpp
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Terrain.h
@@ -1658,14 +1664,18 @@ CMakeFiles/MB.dir/RUEngine/Engine/Water.cpp.o
  ../external/glm-0.9.8.4/glm/vec3.hpp
  ../external/glm-0.9.8.4/glm/vec4.hpp
  ../external/glm-0.9.8.4/glm/vector_relational.hpp
+ /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Camera.h
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Entity.h
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Framebuffer.h
+ /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Input.h
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Mesh.h
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Texture.h
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Water.cpp
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Water.h
 CMakeFiles/MB.dir/RUEngine/MB/Bullet.cpp.o
+ ../RUEngine/Engine/Camera.h
  ../RUEngine/Engine/Entity.h
+ ../RUEngine/Engine/Input.h
  ../RUEngine/Engine/Mesh.h
  ../external/glew-1.9.0/include/GL/glew.h
  ../external/glfw-3.0.3/include/GLFW/glfw3.h
@@ -1775,8 +1785,123 @@ CMakeFiles/MB.dir/RUEngine/MB/Bullet.cpp.o
  ../external/glm-0.9.8.4/glm/vector_relational.hpp
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/MB/Bullet.cpp
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/MB/Bullet.h
-CMakeFiles/MB.dir/RUEngine/MB/RailTrack.cpp.o
+CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.o
+ ../RUEngine/Engine/Camera.h
  ../RUEngine/Engine/Entity.h
+ ../RUEngine/Engine/Input.h
+ ../RUEngine/Engine/Mesh.h
+ ../external/glew-1.9.0/include/GL/glew.h
+ ../external/glfw-3.0.3/include/GLFW/glfw3.h
+ ../external/glm-0.9.8.4/glm/common.hpp
+ ../external/glm-0.9.8.4/glm/detail/_fixes.hpp
+ ../external/glm-0.9.8.4/glm/detail/_swizzle.hpp
+ ../external/glm-0.9.8.4/glm/detail/_swizzle_func.hpp
+ ../external/glm-0.9.8.4/glm/detail/_vectorize.hpp
+ ../external/glm-0.9.8.4/glm/detail/func_common.hpp
+ ../external/glm-0.9.8.4/glm/detail/func_common.inl
+ ../external/glm-0.9.8.4/glm/detail/func_common_simd.inl
+ ../external/glm-0.9.8.4/glm/detail/func_exponential.hpp
+ ../external/glm-0.9.8.4/glm/detail/func_exponential.inl
+ ../external/glm-0.9.8.4/glm/detail/func_exponential_simd.inl
+ ../external/glm-0.9.8.4/glm/detail/func_geometric.hpp
+ ../external/glm-0.9.8.4/glm/detail/func_geometric.inl
+ ../external/glm-0.9.8.4/glm/detail/func_geometric_simd.inl
+ ../external/glm-0.9.8.4/glm/detail/func_integer.hpp
+ ../external/glm-0.9.8.4/glm/detail/func_integer.inl
+ ../external/glm-0.9.8.4/glm/detail/func_integer_simd.inl
+ ../external/glm-0.9.8.4/glm/detail/func_matrix.hpp
+ ../external/glm-0.9.8.4/glm/detail/func_matrix.inl
+ ../external/glm-0.9.8.4/glm/detail/func_matrix_simd.inl
+ ../external/glm-0.9.8.4/glm/detail/func_packing.hpp
+ ../external/glm-0.9.8.4/glm/detail/func_packing.inl
+ ../external/glm-0.9.8.4/glm/detail/func_packing_simd.inl
+ ../external/glm-0.9.8.4/glm/detail/func_trigonometric.hpp
+ ../external/glm-0.9.8.4/glm/detail/func_trigonometric.inl
+ ../external/glm-0.9.8.4/glm/detail/func_trigonometric_simd.inl
+ ../external/glm-0.9.8.4/glm/detail/func_vector_relational.hpp
+ ../external/glm-0.9.8.4/glm/detail/func_vector_relational.inl
+ ../external/glm-0.9.8.4/glm/detail/func_vector_relational_simd.inl
+ ../external/glm-0.9.8.4/glm/detail/precision.hpp
+ ../external/glm-0.9.8.4/glm/detail/setup.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_float.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_half.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_half.inl
+ ../external/glm-0.9.8.4/glm/detail/type_int.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_mat.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_mat2x2.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_mat2x2.inl
+ ../external/glm-0.9.8.4/glm/detail/type_mat2x3.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_mat2x3.inl
+ ../external/glm-0.9.8.4/glm/detail/type_mat2x4.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_mat2x4.inl
+ ../external/glm-0.9.8.4/glm/detail/type_mat3x2.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_mat3x2.inl
+ ../external/glm-0.9.8.4/glm/detail/type_mat3x3.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_mat3x3.inl
+ ../external/glm-0.9.8.4/glm/detail/type_mat3x4.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_mat3x4.inl
+ ../external/glm-0.9.8.4/glm/detail/type_mat4x2.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_mat4x2.inl
+ ../external/glm-0.9.8.4/glm/detail/type_mat4x3.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_mat4x3.inl
+ ../external/glm-0.9.8.4/glm/detail/type_mat4x4.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_mat4x4.inl
+ ../external/glm-0.9.8.4/glm/detail/type_mat4x4_simd.inl
+ ../external/glm-0.9.8.4/glm/detail/type_vec.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_vec1.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_vec1.inl
+ ../external/glm-0.9.8.4/glm/detail/type_vec2.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_vec2.inl
+ ../external/glm-0.9.8.4/glm/detail/type_vec3.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_vec3.inl
+ ../external/glm-0.9.8.4/glm/detail/type_vec4.hpp
+ ../external/glm-0.9.8.4/glm/detail/type_vec4.inl
+ ../external/glm-0.9.8.4/glm/detail/type_vec4_simd.inl
+ ../external/glm-0.9.8.4/glm/exponential.hpp
+ ../external/glm-0.9.8.4/glm/fwd.hpp
+ ../external/glm-0.9.8.4/glm/geometric.hpp
+ ../external/glm-0.9.8.4/glm/glm.hpp
+ ../external/glm-0.9.8.4/glm/gtc/constants.hpp
+ ../external/glm-0.9.8.4/glm/gtc/constants.inl
+ ../external/glm-0.9.8.4/glm/gtc/matrix_transform.hpp
+ ../external/glm-0.9.8.4/glm/gtc/matrix_transform.inl
+ ../external/glm-0.9.8.4/glm/gtc/quaternion.hpp
+ ../external/glm-0.9.8.4/glm/gtc/quaternion.inl
+ ../external/glm-0.9.8.4/glm/gtc/quaternion_simd.inl
+ ../external/glm-0.9.8.4/glm/gtc/type_ptr.hpp
+ ../external/glm-0.9.8.4/glm/gtc/type_ptr.inl
+ ../external/glm-0.9.8.4/glm/gtx/norm.hpp
+ ../external/glm-0.9.8.4/glm/gtx/norm.inl
+ ../external/glm-0.9.8.4/glm/gtx/quaternion.hpp
+ ../external/glm-0.9.8.4/glm/integer.hpp
+ ../external/glm-0.9.8.4/glm/mat2x2.hpp
+ ../external/glm-0.9.8.4/glm/mat2x3.hpp
+ ../external/glm-0.9.8.4/glm/mat2x4.hpp
+ ../external/glm-0.9.8.4/glm/mat3x2.hpp
+ ../external/glm-0.9.8.4/glm/mat3x3.hpp
+ ../external/glm-0.9.8.4/glm/mat3x4.hpp
+ ../external/glm-0.9.8.4/glm/mat4x2.hpp
+ ../external/glm-0.9.8.4/glm/mat4x3.hpp
+ ../external/glm-0.9.8.4/glm/mat4x4.hpp
+ ../external/glm-0.9.8.4/glm/matrix.hpp
+ ../external/glm-0.9.8.4/glm/packing.hpp
+ ../external/glm-0.9.8.4/glm/simd/common.h
+ ../external/glm-0.9.8.4/glm/simd/exponential.h
+ ../external/glm-0.9.8.4/glm/simd/geometric.h
+ ../external/glm-0.9.8.4/glm/simd/integer.h
+ ../external/glm-0.9.8.4/glm/simd/matrix.h
+ ../external/glm-0.9.8.4/glm/simd/platform.h
+ ../external/glm-0.9.8.4/glm/trigonometric.hpp
+ ../external/glm-0.9.8.4/glm/vec2.hpp
+ ../external/glm-0.9.8.4/glm/vec3.hpp
+ ../external/glm-0.9.8.4/glm/vec4.hpp
+ ../external/glm-0.9.8.4/glm/vector_relational.hpp
+ /home/rutger/Programming/C++/openGL/Rugine/RUEngine/MB/Mirror.cpp
+ /home/rutger/Programming/C++/openGL/Rugine/RUEngine/MB/Mirror.h
+CMakeFiles/MB.dir/RUEngine/MB/RailTrack.cpp.o
+ ../RUEngine/Engine/Camera.h
+ ../RUEngine/Engine/Entity.h
+ ../RUEngine/Engine/Input.h
  ../RUEngine/Engine/Mesh.h
  ../external/glew-1.9.0/include/GL/glew.h
  ../external/glfw-3.0.3/include/GLFW/glfw3.h
@@ -2012,6 +2137,7 @@ CMakeFiles/MB.dir/RUEngine/MB/Scene.cpp.o
  ../external/glm-0.9.8.4/glm/vec4.hpp
  ../external/glm-0.9.8.4/glm/vector_relational.hpp
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/MB/Bullet.h
+ /home/rutger/Programming/C++/openGL/Rugine/RUEngine/MB/Mirror.h
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/MB/RailTrack.h
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/MB/Scene.cpp
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/MB/Scene.h
@@ -2147,7 +2273,9 @@ CMakeFiles/MB.dir/RUEngine/MB/main.cpp.o
  ../external/glm-0.9.8.4/glm/vector_relational.hpp
  /home/rutger/Programming/C++/openGL/Rugine/RUEngine/MB/main.cpp
 CMakeFiles/MB.dir/RUEngine/Maths/Collision.cpp.o
+ ../RUEngine/Engine/Camera.h
  ../RUEngine/Engine/Entity.h
+ ../RUEngine/Engine/Input.h
  ../RUEngine/Engine/Mesh.h
  ../external/glew-1.9.0/include/GL/glew.h
  ../external/glfw-3.0.3/include/GLFW/glfw3.h

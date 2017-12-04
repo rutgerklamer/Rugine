@@ -67,7 +67,7 @@ CMakeFiles/MB.dir/all: external/CMakeFiles/GLEW_190.dir/all
 CMakeFiles/MB.dir/all: external/glfw-3.0.3/src/CMakeFiles/GLFW_303.dir/all
 	$(MAKE) -f CMakeFiles/MB.dir/build.make CMakeFiles/MB.dir/depend
 	$(MAKE) -f CMakeFiles/MB.dir/build.make CMakeFiles/MB.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49 "Built target MB"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50 "Built target MB"
 .PHONY : CMakeFiles/MB.dir/all
 
 # Include target in all.
@@ -77,7 +77,7 @@ all: CMakeFiles/MB.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/MB.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles 49
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles 50
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/MB.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles 0
 .PHONY : CMakeFiles/MB.dir/rule

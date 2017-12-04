@@ -635,6 +635,33 @@ RUEngine/MB/Bullet.cpp.s:
 	$(MAKE) -f CMakeFiles/MB.dir/build.make CMakeFiles/MB.dir/RUEngine/MB/Bullet.cpp.s
 .PHONY : RUEngine/MB/Bullet.cpp.s
 
+RUEngine/MB/Mirror.o: RUEngine/MB/Mirror.cpp.o
+
+.PHONY : RUEngine/MB/Mirror.o
+
+# target to build an object file
+RUEngine/MB/Mirror.cpp.o:
+	$(MAKE) -f CMakeFiles/MB.dir/build.make CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.o
+.PHONY : RUEngine/MB/Mirror.cpp.o
+
+RUEngine/MB/Mirror.i: RUEngine/MB/Mirror.cpp.i
+
+.PHONY : RUEngine/MB/Mirror.i
+
+# target to preprocess a source file
+RUEngine/MB/Mirror.cpp.i:
+	$(MAKE) -f CMakeFiles/MB.dir/build.make CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.i
+.PHONY : RUEngine/MB/Mirror.cpp.i
+
+RUEngine/MB/Mirror.s: RUEngine/MB/Mirror.cpp.s
+
+.PHONY : RUEngine/MB/Mirror.s
+
+# target to generate assembly for a file
+RUEngine/MB/Mirror.cpp.s:
+	$(MAKE) -f CMakeFiles/MB.dir/build.make CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.s
+.PHONY : RUEngine/MB/Mirror.cpp.s
+
 RUEngine/MB/RailTrack.o: RUEngine/MB/RailTrack.cpp.o
 
 .PHONY : RUEngine/MB/RailTrack.o
@@ -943,6 +970,9 @@ help:
 	@echo "... RUEngine/MB/Bullet.o"
 	@echo "... RUEngine/MB/Bullet.i"
 	@echo "... RUEngine/MB/Bullet.s"
+	@echo "... RUEngine/MB/Mirror.o"
+	@echo "... RUEngine/MB/Mirror.i"
+	@echo "... RUEngine/MB/Mirror.s"
 	@echo "... RUEngine/MB/RailTrack.o"
 	@echo "... RUEngine/MB/RailTrack.i"
 	@echo "... RUEngine/MB/RailTrack.s"

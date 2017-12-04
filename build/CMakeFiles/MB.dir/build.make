@@ -153,9 +153,33 @@ CMakeFiles/MB.dir/RUEngine/MB/Bullet.cpp.o.provides: CMakeFiles/MB.dir/RUEngine/
 CMakeFiles/MB.dir/RUEngine/MB/Bullet.cpp.o.provides.build: CMakeFiles/MB.dir/RUEngine/MB/Bullet.cpp.o
 
 
+CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.o: CMakeFiles/MB.dir/flags.make
+CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.o: ../RUEngine/MB/Mirror.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/MB/Mirror.cpp
+
+CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rutger/Programming/C++/openGL/Rugine/RUEngine/MB/Mirror.cpp > CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.i
+
+CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rutger/Programming/C++/openGL/Rugine/RUEngine/MB/Mirror.cpp -o CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.s
+
+CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.o.requires:
+
+.PHONY : CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.o.requires
+
+CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.o.provides: CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.o.requires
+	$(MAKE) -f CMakeFiles/MB.dir/build.make CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.o.provides.build
+.PHONY : CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.o.provides
+
+CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.o.provides.build: CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.o
+
+
 CMakeFiles/MB.dir/external/SOIL2/etc1_utils.c.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/external/SOIL2/etc1_utils.c.o: ../external/SOIL2/etc1_utils.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/MB.dir/external/SOIL2/etc1_utils.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/MB.dir/external/SOIL2/etc1_utils.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MB.dir/external/SOIL2/etc1_utils.c.o   -c /home/rutger/Programming/C++/openGL/Rugine/external/SOIL2/etc1_utils.c
 
 CMakeFiles/MB.dir/external/SOIL2/etc1_utils.c.i: cmake_force
@@ -179,7 +203,7 @@ CMakeFiles/MB.dir/external/SOIL2/etc1_utils.c.o.provides.build: CMakeFiles/MB.di
 
 CMakeFiles/MB.dir/external/SOIL2/image_DXT.c.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/external/SOIL2/image_DXT.c.o: ../external/SOIL2/image_DXT.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/MB.dir/external/SOIL2/image_DXT.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/MB.dir/external/SOIL2/image_DXT.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MB.dir/external/SOIL2/image_DXT.c.o   -c /home/rutger/Programming/C++/openGL/Rugine/external/SOIL2/image_DXT.c
 
 CMakeFiles/MB.dir/external/SOIL2/image_DXT.c.i: cmake_force
@@ -203,7 +227,7 @@ CMakeFiles/MB.dir/external/SOIL2/image_DXT.c.o.provides.build: CMakeFiles/MB.dir
 
 CMakeFiles/MB.dir/external/SOIL2/image_helper.c.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/external/SOIL2/image_helper.c.o: ../external/SOIL2/image_helper.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/MB.dir/external/SOIL2/image_helper.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/MB.dir/external/SOIL2/image_helper.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MB.dir/external/SOIL2/image_helper.c.o   -c /home/rutger/Programming/C++/openGL/Rugine/external/SOIL2/image_helper.c
 
 CMakeFiles/MB.dir/external/SOIL2/image_helper.c.i: cmake_force
@@ -227,7 +251,7 @@ CMakeFiles/MB.dir/external/SOIL2/image_helper.c.o.provides.build: CMakeFiles/MB.
 
 CMakeFiles/MB.dir/external/SOIL2/SOIL2.c.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/external/SOIL2/SOIL2.c.o: ../external/SOIL2/SOIL2.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/MB.dir/external/SOIL2/SOIL2.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/MB.dir/external/SOIL2/SOIL2.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/MB.dir/external/SOIL2/SOIL2.c.o   -c /home/rutger/Programming/C++/openGL/Rugine/external/SOIL2/SOIL2.c
 
 CMakeFiles/MB.dir/external/SOIL2/SOIL2.c.i: cmake_force
@@ -251,7 +275,7 @@ CMakeFiles/MB.dir/external/SOIL2/SOIL2.c.o.provides.build: CMakeFiles/MB.dir/ext
 
 CMakeFiles/MB.dir/RUEngine/Engine/Display.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Engine/Display.cpp.o: ../RUEngine/Engine/Display.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Display.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Display.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Engine/Display.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Display.cpp
 
 CMakeFiles/MB.dir/RUEngine/Engine/Display.cpp.i: cmake_force
@@ -275,7 +299,7 @@ CMakeFiles/MB.dir/RUEngine/Engine/Display.cpp.o.provides.build: CMakeFiles/MB.di
 
 CMakeFiles/MB.dir/RUEngine/Engine/Input.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Engine/Input.cpp.o: ../RUEngine/Engine/Input.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Input.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Input.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Engine/Input.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Input.cpp
 
 CMakeFiles/MB.dir/RUEngine/Engine/Input.cpp.i: cmake_force
@@ -299,7 +323,7 @@ CMakeFiles/MB.dir/RUEngine/Engine/Input.cpp.o.provides.build: CMakeFiles/MB.dir/
 
 CMakeFiles/MB.dir/RUEngine/Engine/Renderer.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Engine/Renderer.cpp.o: ../RUEngine/Engine/Renderer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Renderer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Renderer.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Engine/Renderer.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Renderer.cpp
 
 CMakeFiles/MB.dir/RUEngine/Engine/Renderer.cpp.i: cmake_force
@@ -323,7 +347,7 @@ CMakeFiles/MB.dir/RUEngine/Engine/Renderer.cpp.o.provides.build: CMakeFiles/MB.d
 
 CMakeFiles/MB.dir/RUEngine/Engine/Shader.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Engine/Shader.cpp.o: ../RUEngine/Engine/Shader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Shader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Shader.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Engine/Shader.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Shader.cpp
 
 CMakeFiles/MB.dir/RUEngine/Engine/Shader.cpp.i: cmake_force
@@ -347,7 +371,7 @@ CMakeFiles/MB.dir/RUEngine/Engine/Shader.cpp.o.provides.build: CMakeFiles/MB.dir
 
 CMakeFiles/MB.dir/RUEngine/Engine/Mesh.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Engine/Mesh.cpp.o: ../RUEngine/Engine/Mesh.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Mesh.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Mesh.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Engine/Mesh.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Mesh.cpp
 
 CMakeFiles/MB.dir/RUEngine/Engine/Mesh.cpp.i: cmake_force
@@ -371,7 +395,7 @@ CMakeFiles/MB.dir/RUEngine/Engine/Mesh.cpp.o.provides.build: CMakeFiles/MB.dir/R
 
 CMakeFiles/MB.dir/RUEngine/Engine/Superscene.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Engine/Superscene.cpp.o: ../RUEngine/Engine/Superscene.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Superscene.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Superscene.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Engine/Superscene.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Superscene.cpp
 
 CMakeFiles/MB.dir/RUEngine/Engine/Superscene.cpp.i: cmake_force
@@ -395,7 +419,7 @@ CMakeFiles/MB.dir/RUEngine/Engine/Superscene.cpp.o.provides.build: CMakeFiles/MB
 
 CMakeFiles/MB.dir/RUEngine/Engine/Texture.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Engine/Texture.cpp.o: ../RUEngine/Engine/Texture.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Texture.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Texture.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Engine/Texture.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Texture.cpp
 
 CMakeFiles/MB.dir/RUEngine/Engine/Texture.cpp.i: cmake_force
@@ -419,7 +443,7 @@ CMakeFiles/MB.dir/RUEngine/Engine/Texture.cpp.o.provides.build: CMakeFiles/MB.di
 
 CMakeFiles/MB.dir/RUEngine/Maths/Time.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Maths/Time.cpp.o: ../RUEngine/Maths/Time.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/MB.dir/RUEngine/Maths/Time.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/MB.dir/RUEngine/Maths/Time.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Maths/Time.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Maths/Time.cpp
 
 CMakeFiles/MB.dir/RUEngine/Maths/Time.cpp.i: cmake_force
@@ -443,7 +467,7 @@ CMakeFiles/MB.dir/RUEngine/Maths/Time.cpp.o.provides.build: CMakeFiles/MB.dir/RU
 
 CMakeFiles/MB.dir/RUEngine/Engine/Entity.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Engine/Entity.cpp.o: ../RUEngine/Engine/Entity.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Entity.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Entity.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Engine/Entity.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Entity.cpp
 
 CMakeFiles/MB.dir/RUEngine/Engine/Entity.cpp.i: cmake_force
@@ -467,7 +491,7 @@ CMakeFiles/MB.dir/RUEngine/Engine/Entity.cpp.o.provides.build: CMakeFiles/MB.dir
 
 CMakeFiles/MB.dir/RUEngine/Engine/ResourceManager.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Engine/ResourceManager.cpp.o: ../RUEngine/Engine/ResourceManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/ResourceManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/ResourceManager.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Engine/ResourceManager.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/ResourceManager.cpp
 
 CMakeFiles/MB.dir/RUEngine/Engine/ResourceManager.cpp.i: cmake_force
@@ -491,7 +515,7 @@ CMakeFiles/MB.dir/RUEngine/Engine/ResourceManager.cpp.o.provides.build: CMakeFil
 
 CMakeFiles/MB.dir/RUEngine/Engine/Light.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Engine/Light.cpp.o: ../RUEngine/Engine/Light.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Light.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Light.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Engine/Light.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Light.cpp
 
 CMakeFiles/MB.dir/RUEngine/Engine/Light.cpp.i: cmake_force
@@ -515,7 +539,7 @@ CMakeFiles/MB.dir/RUEngine/Engine/Light.cpp.o.provides.build: CMakeFiles/MB.dir/
 
 CMakeFiles/MB.dir/RUEngine/Engine/OBJloader.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Engine/OBJloader.cpp.o: ../RUEngine/Engine/OBJloader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/OBJloader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/OBJloader.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Engine/OBJloader.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/OBJloader.cpp
 
 CMakeFiles/MB.dir/RUEngine/Engine/OBJloader.cpp.i: cmake_force
@@ -539,7 +563,7 @@ CMakeFiles/MB.dir/RUEngine/Engine/OBJloader.cpp.o.provides.build: CMakeFiles/MB.
 
 CMakeFiles/MB.dir/RUEngine/Engine/SceneManager.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Engine/SceneManager.cpp.o: ../RUEngine/Engine/SceneManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/SceneManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/SceneManager.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Engine/SceneManager.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/SceneManager.cpp
 
 CMakeFiles/MB.dir/RUEngine/Engine/SceneManager.cpp.i: cmake_force
@@ -563,7 +587,7 @@ CMakeFiles/MB.dir/RUEngine/Engine/SceneManager.cpp.o.provides.build: CMakeFiles/
 
 CMakeFiles/MB.dir/RUEngine/Engine/Skybox.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Engine/Skybox.cpp.o: ../RUEngine/Engine/Skybox.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Skybox.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Skybox.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Engine/Skybox.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Skybox.cpp
 
 CMakeFiles/MB.dir/RUEngine/Engine/Skybox.cpp.i: cmake_force
@@ -587,7 +611,7 @@ CMakeFiles/MB.dir/RUEngine/Engine/Skybox.cpp.o.provides.build: CMakeFiles/MB.dir
 
 CMakeFiles/MB.dir/RUEngine/Engine/Framebuffer.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Engine/Framebuffer.cpp.o: ../RUEngine/Engine/Framebuffer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Framebuffer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Framebuffer.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Engine/Framebuffer.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Framebuffer.cpp
 
 CMakeFiles/MB.dir/RUEngine/Engine/Framebuffer.cpp.i: cmake_force
@@ -611,7 +635,7 @@ CMakeFiles/MB.dir/RUEngine/Engine/Framebuffer.cpp.o.provides.build: CMakeFiles/M
 
 CMakeFiles/MB.dir/RUEngine/Engine/Raycast.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Engine/Raycast.cpp.o: ../RUEngine/Engine/Raycast.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Raycast.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Raycast.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Engine/Raycast.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Raycast.cpp
 
 CMakeFiles/MB.dir/RUEngine/Engine/Raycast.cpp.i: cmake_force
@@ -635,7 +659,7 @@ CMakeFiles/MB.dir/RUEngine/Engine/Raycast.cpp.o.provides.build: CMakeFiles/MB.di
 
 CMakeFiles/MB.dir/RUEngine/Engine/Water.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Engine/Water.cpp.o: ../RUEngine/Engine/Water.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Water.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Water.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Engine/Water.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Water.cpp
 
 CMakeFiles/MB.dir/RUEngine/Engine/Water.cpp.i: cmake_force
@@ -659,7 +683,7 @@ CMakeFiles/MB.dir/RUEngine/Engine/Water.cpp.o.provides.build: CMakeFiles/MB.dir/
 
 CMakeFiles/MB.dir/RUEngine/Engine/Terrain.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Engine/Terrain.cpp.o: ../RUEngine/Engine/Terrain.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Terrain.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/MB.dir/RUEngine/Engine/Terrain.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Engine/Terrain.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Engine/Terrain.cpp
 
 CMakeFiles/MB.dir/RUEngine/Engine/Terrain.cpp.i: cmake_force
@@ -683,7 +707,7 @@ CMakeFiles/MB.dir/RUEngine/Engine/Terrain.cpp.o.provides.build: CMakeFiles/MB.di
 
 CMakeFiles/MB.dir/RUEngine/Maths/Collision.cpp.o: CMakeFiles/MB.dir/flags.make
 CMakeFiles/MB.dir/RUEngine/Maths/Collision.cpp.o: ../RUEngine/Maths/Collision.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/MB.dir/RUEngine/Maths/Collision.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/MB.dir/RUEngine/Maths/Collision.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MB.dir/RUEngine/Maths/Collision.cpp.o -c /home/rutger/Programming/C++/openGL/Rugine/RUEngine/Maths/Collision.cpp
 
 CMakeFiles/MB.dir/RUEngine/Maths/Collision.cpp.i: cmake_force
@@ -711,6 +735,7 @@ MB_OBJECTS = \
 "CMakeFiles/MB.dir/RUEngine/MB/Scene.cpp.o" \
 "CMakeFiles/MB.dir/RUEngine/MB/RailTrack.cpp.o" \
 "CMakeFiles/MB.dir/RUEngine/MB/Bullet.cpp.o" \
+"CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.o" \
 "CMakeFiles/MB.dir/external/SOIL2/etc1_utils.c.o" \
 "CMakeFiles/MB.dir/external/SOIL2/image_DXT.c.o" \
 "CMakeFiles/MB.dir/external/SOIL2/image_helper.c.o" \
@@ -742,6 +767,7 @@ MB: CMakeFiles/MB.dir/RUEngine/MB/main.cpp.o
 MB: CMakeFiles/MB.dir/RUEngine/MB/Scene.cpp.o
 MB: CMakeFiles/MB.dir/RUEngine/MB/RailTrack.cpp.o
 MB: CMakeFiles/MB.dir/RUEngine/MB/Bullet.cpp.o
+MB: CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.o
 MB: CMakeFiles/MB.dir/external/SOIL2/etc1_utils.c.o
 MB: CMakeFiles/MB.dir/external/SOIL2/image_DXT.c.o
 MB: CMakeFiles/MB.dir/external/SOIL2/image_helper.c.o
@@ -779,7 +805,7 @@ MB: /usr/lib/librt.so
 MB: /usr/lib/libm.so
 MB: /usr/lib/libGL.so
 MB: CMakeFiles/MB.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Linking CXX executable MB"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/rutger/Programming/C++/openGL/Rugine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Linking CXX executable MB"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MB.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -791,6 +817,7 @@ CMakeFiles/MB.dir/requires: CMakeFiles/MB.dir/RUEngine/MB/main.cpp.o.requires
 CMakeFiles/MB.dir/requires: CMakeFiles/MB.dir/RUEngine/MB/Scene.cpp.o.requires
 CMakeFiles/MB.dir/requires: CMakeFiles/MB.dir/RUEngine/MB/RailTrack.cpp.o.requires
 CMakeFiles/MB.dir/requires: CMakeFiles/MB.dir/RUEngine/MB/Bullet.cpp.o.requires
+CMakeFiles/MB.dir/requires: CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.o.requires
 CMakeFiles/MB.dir/requires: CMakeFiles/MB.dir/external/SOIL2/etc1_utils.c.o.requires
 CMakeFiles/MB.dir/requires: CMakeFiles/MB.dir/external/SOIL2/image_DXT.c.o.requires
 CMakeFiles/MB.dir/requires: CMakeFiles/MB.dir/external/SOIL2/image_helper.c.o.requires

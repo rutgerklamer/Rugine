@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/MB.dir/RUEngine/MB/Scene.cpp.o"
   "CMakeFiles/MB.dir/RUEngine/MB/RailTrack.cpp.o"
   "CMakeFiles/MB.dir/RUEngine/MB/Bullet.cpp.o"
+  "CMakeFiles/MB.dir/RUEngine/MB/Mirror.cpp.o"
   "CMakeFiles/MB.dir/external/SOIL2/etc1_utils.c.o"
   "CMakeFiles/MB.dir/external/SOIL2/image_DXT.c.o"
   "CMakeFiles/MB.dir/external/SOIL2/image_helper.c.o"
