@@ -35,7 +35,8 @@ class Camera
           this->pitch = pitch;
           this->updateCameraVector();
           mouseMovement = true;
-
+          orthographic = false;
+          orthoSettings = glm::vec4(-1024.0f/8.0f,1024.0f/8.0f,-720.0f/8.0f,720.0f/8.0f);
         }
         /**
                 *  set everything Manually.
@@ -48,6 +49,8 @@ class Camera
           this->pitch = pitch;
           this->updateCameraVector();
           mouseMovement = true;
+          orthographic = false;
+          orthoSettings = glm::vec4(-1024.0f/8.0f,1024.0f/8.0f,-720.0f/8.0f,720.0f/8.0f);
         }
         /**
                 *  Destructor.
@@ -66,9 +69,18 @@ class Camera
         /**
                 *  return projection matrix.
                 */
+        glm::mat4 getProjectionOrthoMatrix()
+        {
+          if (orthographic) {
+            return glm::ortho(orthoSettings.x, orthoSettings.y, orthoSettings.z, orthoSettings.w ,0.1f,1000.0f);
+          } else {
+            return glm::perspective(this->getZoom(), (GLfloat) 1024 / (GLfloat) 720, 0.1f, 1000.0f);
+          }
+        }
+
         glm::mat4 getProjectionMatrix()
         {
-          return glm::perspective(this->getZoom(), (GLfloat) 1024 / (GLfloat) 720, 0.1f, 1000.0f);
+            return glm::perspective(this->getZoom(), (GLfloat) 1024 / (GLfloat) 720, 0.1f, 1000.0f);
         }
         /**
                 *  return the position in 3D space.
@@ -77,6 +89,15 @@ class Camera
         {
           //return position
           return this->position;
+        }
+        void setOrthoSettings(glm::vec4 settings)
+        {
+          orthoSettings = settings;
+        }
+
+        glm::vec4 getOrthoSettings()
+        {
+          return orthoSettings;
         }
         /**
                 *  set the position in 3D space.
@@ -236,6 +257,16 @@ class Camera
             this->pitch = -pitch;
         }
 
+        void setOrthoCam()
+        {
+          orthographic = true;
+        }
+
+        void setProjCam()
+        {
+          orthographic = false;
+        }
+
     protected:
     private:
       glm::vec3 position;
@@ -244,11 +275,14 @@ class Camera
       glm::vec3 right;
       glm::vec3 worldUp;
 
+      glm::vec4 orthoSettings;
+
       GLfloat yaw;
       GLfloat pitch;
       GLfloat movementSpeed;
       GLfloat mouseSensitivity;
       GLfloat zoom;
+      bool orthographic;
 
       bool mouseMovement;
 

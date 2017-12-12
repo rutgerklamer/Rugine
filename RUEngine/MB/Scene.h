@@ -17,6 +17,8 @@
 #include "Bullet.h"
 #include "Maths/Collision.h"
 #include "Mirror.h"
+#include "Wall.h"
+#include "Enemy.h"
 
 class Scene : public Superscene
 {
@@ -24,20 +26,24 @@ class Scene : public Superscene
         Scene(Input* ip);
         virtual ~Scene();
         void Update(float deltaTime);
-
-
-
+        void collisionManager();
     private:
+
+      Mirror* mirror;
       RailTrack* rt;
       Entity* mesh;
-      Entity* GUI;
       Light* light;
       Bullet* bullet;
-      Mirror* mirror;
+      Wall* wall;
+      Enemy* enemy;
       float t;
       std::vector<Bullet*> bullets;
       std::vector<Mirror*> mirrors;
+      std::vector<Wall*> walls;
+      std::vector<Enemy*> enemies;
       std::vector<float> speeds;
+      glm::vec4 orthoCameraView;
+      float camPosY3D;
 };
 
 #endif // SCENE_H

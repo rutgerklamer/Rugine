@@ -28,7 +28,7 @@ void ResourceManager::setProjectionMatrix(Shader* shader, Camera* camera)
 {
   shader->Use();
   //Get the projection
-  glm::mat4 projection = camera->getProjectionMatrix();
+  glm::mat4 projection = camera->getProjectionOrthoMatrix();
   //Send projection to the vertex shader
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "proj"), 1, GL_FALSE, glm::value_ptr(projection));
 }

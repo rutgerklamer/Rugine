@@ -313,7 +313,8 @@ IF(MAKE_MB)
 		RUEngine/MB/RailTrack.cpp
 		RUEngine/MB/Bullet.cpp
 		RUEngine/MB/Mirror.cpp
-
+		RUEngine/MB/Wall.cpp
+		RUEngine/MB/Enemy.cpp
   )
 
   add_executable(MB ${SOURCES} ${SOILSOURCE} ${RUGINESOURCE})

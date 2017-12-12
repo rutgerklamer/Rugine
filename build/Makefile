@@ -635,6 +635,33 @@ RUEngine/MB/Bullet.cpp.s:
 	$(MAKE) -f CMakeFiles/MB.dir/build.make CMakeFiles/MB.dir/RUEngine/MB/Bullet.cpp.s
 .PHONY : RUEngine/MB/Bullet.cpp.s
 
+RUEngine/MB/Enemy.o: RUEngine/MB/Enemy.cpp.o
+
+.PHONY : RUEngine/MB/Enemy.o
+
+# target to build an object file
+RUEngine/MB/Enemy.cpp.o:
+	$(MAKE) -f CMakeFiles/MB.dir/build.make CMakeFiles/MB.dir/RUEngine/MB/Enemy.cpp.o
+.PHONY : RUEngine/MB/Enemy.cpp.o
+
+RUEngine/MB/Enemy.i: RUEngine/MB/Enemy.cpp.i
+
+.PHONY : RUEngine/MB/Enemy.i
+
+# target to preprocess a source file
+RUEngine/MB/Enemy.cpp.i:
+	$(MAKE) -f CMakeFiles/MB.dir/build.make CMakeFiles/MB.dir/RUEngine/MB/Enemy.cpp.i
+.PHONY : RUEngine/MB/Enemy.cpp.i
+
+RUEngine/MB/Enemy.s: RUEngine/MB/Enemy.cpp.s
+
+.PHONY : RUEngine/MB/Enemy.s
+
+# target to generate assembly for a file
+RUEngine/MB/Enemy.cpp.s:
+	$(MAKE) -f CMakeFiles/MB.dir/build.make CMakeFiles/MB.dir/RUEngine/MB/Enemy.cpp.s
+.PHONY : RUEngine/MB/Enemy.cpp.s
+
 RUEngine/MB/Mirror.o: RUEngine/MB/Mirror.cpp.o
 
 .PHONY : RUEngine/MB/Mirror.o
@@ -715,6 +742,33 @@ RUEngine/MB/Scene.s: RUEngine/MB/Scene.cpp.s
 RUEngine/MB/Scene.cpp.s:
 	$(MAKE) -f CMakeFiles/MB.dir/build.make CMakeFiles/MB.dir/RUEngine/MB/Scene.cpp.s
 .PHONY : RUEngine/MB/Scene.cpp.s
+
+RUEngine/MB/Wall.o: RUEngine/MB/Wall.cpp.o
+
+.PHONY : RUEngine/MB/Wall.o
+
+# target to build an object file
+RUEngine/MB/Wall.cpp.o:
+	$(MAKE) -f CMakeFiles/MB.dir/build.make CMakeFiles/MB.dir/RUEngine/MB/Wall.cpp.o
+.PHONY : RUEngine/MB/Wall.cpp.o
+
+RUEngine/MB/Wall.i: RUEngine/MB/Wall.cpp.i
+
+.PHONY : RUEngine/MB/Wall.i
+
+# target to preprocess a source file
+RUEngine/MB/Wall.cpp.i:
+	$(MAKE) -f CMakeFiles/MB.dir/build.make CMakeFiles/MB.dir/RUEngine/MB/Wall.cpp.i
+.PHONY : RUEngine/MB/Wall.cpp.i
+
+RUEngine/MB/Wall.s: RUEngine/MB/Wall.cpp.s
+
+.PHONY : RUEngine/MB/Wall.s
+
+# target to generate assembly for a file
+RUEngine/MB/Wall.cpp.s:
+	$(MAKE) -f CMakeFiles/MB.dir/build.make CMakeFiles/MB.dir/RUEngine/MB/Wall.cpp.s
+.PHONY : RUEngine/MB/Wall.cpp.s
 
 RUEngine/MB/main.o: RUEngine/MB/main.cpp.o
 
@@ -970,6 +1024,9 @@ help:
 	@echo "... RUEngine/MB/Bullet.o"
 	@echo "... RUEngine/MB/Bullet.i"
 	@echo "... RUEngine/MB/Bullet.s"
+	@echo "... RUEngine/MB/Enemy.o"
+	@echo "... RUEngine/MB/Enemy.i"
+	@echo "... RUEngine/MB/Enemy.s"
 	@echo "... RUEngine/MB/Mirror.o"
 	@echo "... RUEngine/MB/Mirror.i"
 	@echo "... RUEngine/MB/Mirror.s"
@@ -979,6 +1036,9 @@ help:
 	@echo "... RUEngine/MB/Scene.o"
 	@echo "... RUEngine/MB/Scene.i"
 	@echo "... RUEngine/MB/Scene.s"
+	@echo "... RUEngine/MB/Wall.o"
+	@echo "... RUEngine/MB/Wall.i"
+	@echo "... RUEngine/MB/Wall.s"
 	@echo "... RUEngine/MB/main.o"
 	@echo "... RUEngine/MB/main.i"
 	@echo "... RUEngine/MB/main.s"

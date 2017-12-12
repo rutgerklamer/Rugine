@@ -1,4 +1,3 @@
-
 #include "Display.h"
 #include "math.h"
 
@@ -23,7 +22,6 @@ Display::Display()
   shaderReflection = new Shader("Shaders/StrongReflection/shader.vert", "Shaders/StrongReflection/shader.frag","","","");
   shaderTransparent = new Shader("Shaders/Transparent/shader.vert", "Shaders/Transparent/shader.frag","","","");
   waterShader = new Shader("Shaders/Water/shader.vert", "Shaders/Water/shader.frag","","","");
-  GUIShader = new Shader("Shaders/2D/shader.vert", "Shaders/2D/shader.frag","","","");
   dtime = new Time();
   scenemanager = new SceneManager(input);
   raycaster = new Raycast(&camera, input);
@@ -43,13 +41,8 @@ void Display::whatToRender(glm::vec4 waterPlane)
 
   for (int i = 0; i < scenemanager->scenes[currentscene]->entities.size(); i++) {
     if (scenemanager->scenes[currentscene]->entities[i] != nullptr) {
-      if (scenemanager->scenes[currentscene]->entities[i]->check2D()) {
-        renderer->render2D(glfwGetTime(), GUIShader, scenemanager->scenes[currentscene]->entities[i]);
-      }else
-  //    raycaster->checkCollision(scenemanager->scenes[currentscene]->entities[i]);
       if (scenemanager->scenes[currentscene]->lights.size() > 0 && scenemanager->scenes[currentscene]->entities[i]->enabled && !scenemanager->scenes[currentscene]->entities[i]->reflective && !scenemanager->scenes[currentscene]->entities[i]->transparent) {
          renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(),waterPlane, &scenemanager->scenes[currentscene]->lights);
-
        } else if (scenemanager->scenes[currentscene]->entities[i]->enabled && !scenemanager->scenes[currentscene]->entities[i]->reflective && !scenemanager->scenes[currentscene]->entities[i]->transparent) {
          renderer->render(glfwGetTime(), shader, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->entities[i], scenemanager->scenes[currentscene]->getSceneData(), waterPlane);
        } else if (scenemanager->scenes[currentscene]->entities[i]->reflective  && !scenemanager->scenes[currentscene]->entities[i]->transparent)
@@ -76,10 +69,11 @@ void Display::gameLoop()
   scenemanager->scenes[currentscene]->input->setCamera(scenemanager->scenes[currentscene]->camera);
   raycaster->setCamera(scenemanager->scenes[currentscene]->camera);
   resourcemanager->setProjectionMatrix(shaderNormals, scenemanager->scenes[currentscene]->camera);
-  resourcemanager->setProjectionMatrix(shader, scenemanager->scenes[currentscene]->camera);
   resourcemanager->setProjectionMatrix(shaderSkybox, scenemanager->scenes[currentscene]->camera);
   resourcemanager->setProjectionMatrix(waterShader, scenemanager->scenes[currentscene]->camera);
   do {
+    resourcemanager->setProjectionMatrix(shader, scenemanager->scenes[currentscene]->camera);
+    resourcemanager->setProjectionMatrix(shaderReflection, scenemanager->scenes[currentscene]->camera);
     if (input->isDown(93) && currentscene < scenemanager->scenes.size() - 1) {
       currentscene++;
       input->setKey(93, false);
@@ -141,7 +135,9 @@ void Display::gameLoop()
       resourcemanager->updateShaders(shaderSkybox, scenemanager->scenes[currentscene]->camera);
       renderer->renderSkybox(glfwGetTime(), shaderSkybox, scenemanager->scenes[currentscene]->camera, scenemanager->scenes[currentscene]->skybox, scenemanager->scenes[currentscene]->getSceneData(), glm::vec4(0,0,0,0), scenemanager->scenes[currentscene]->skybox->getTexture());
       shader->Use();
+
     }
+
     glDisable(GL_CLIP_DISTANCE0);
     whatToRender(glm::vec4(0,0,0,0));
     if (scenemanager->scenes[currentscene]->water != nullptr) {

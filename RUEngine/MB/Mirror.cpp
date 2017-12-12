@@ -1,21 +1,21 @@
 #include "Mirror.h"
 
 
-Mirror::Mirror(float ma, float mi, bool y, glm::vec3 o) : Entity()
+Mirror::Mirror(float ma, float mi, bool z, glm::vec3 o) : Entity()
 {
-  this->make2D();
+  this->LoadObject("Assets/untitled.obj", false);
   this->setColor(glm::vec3(0,0,1));
   this->reflective = true;
-  isY = true;
+  isZ = true;
   max = ma;
   min = mi;
-  isY = y;
-  if (isY) {
-    cur = this->position.y;
-    this->scale  = glm::vec3(0.01f,0.03f,1.0f);
+  isZ = z;
+  if (isZ) {
+    cur = this->position.z;
+    this->scale  = glm::vec3(1.5f,10,10);
   } else {
     cur = this->position.x;
-    this->scale  = glm::vec3(0.03,0.01f,1.0f);
+    this->scale  = glm::vec3(10,10,1.5f);
   }
   origin = o;
 }
@@ -25,19 +25,19 @@ Mirror::~Mirror()
 
 }
 
-bool Mirror::checkY()
+bool Mirror::checkZ()
 {
-  return isY;
+  return isZ;
 }
 
 void Mirror::update(float deltaTime) {
-  if (input()->isDown(GLFW_KEY_S) && cur < max && !isY || input()->isDown(GLFW_KEY_D) && cur < max && isY) {
+  if (input()->isDown(GLFW_KEY_S) && cur < max && !isZ || input()->isDown(GLFW_KEY_D) && cur < max && isZ) {
     cur += 10.0f * deltaTime;
-  } else if (input()->isDown(GLFW_KEY_W) && cur > min && !isY || input()->isDown(GLFW_KEY_A) && cur > min && isY) {
+  } else if (input()->isDown(GLFW_KEY_W) && cur > min && !isZ || input()->isDown(GLFW_KEY_A) && cur > min && isZ) {
     cur -= 10.0f * deltaTime;
   }
-  if (isY) {
-    this->position.y = origin.y + cur;
+  if (isZ) {
+    this->position.z = origin.z + cur;
   } else {
     this->position.x = origin.x + cur;
   }

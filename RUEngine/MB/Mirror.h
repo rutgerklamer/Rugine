@@ -10,10 +10,10 @@ public:
     ~Mirror();
 
     virtual void update(float deltaTime);
-    bool checkY();
+    bool checkZ();
 private:
   float max,cur,min;
-  bool isY;
+  bool isZ;
   glm::vec3 origin;
 
 };

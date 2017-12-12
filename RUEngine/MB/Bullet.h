@@ -6,14 +6,19 @@
 class Bullet : public Entity
 {
 public:
-    Bullet(glm::vec3 direction);
+    enum Origin {
+      ENEMY, PLAYER
+    };
+    Bullet(glm::vec3 direction, Origin o);
     ~Bullet();
 
     virtual void update(float deltaTime);
     void mirrorDirX();
-    void mirrorDirY();
+    void mirrorDirZ();
+    Origin origin;
 private:
     glm::vec3 dir;
+
 
 };
 

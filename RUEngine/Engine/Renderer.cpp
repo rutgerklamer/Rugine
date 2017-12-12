@@ -143,6 +143,9 @@ void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, 
 
   glm::mat4 view;
   if (!entity->reflective && !entity->transparent) {
+    glm::mat4 projection = camera->getProjectionOrthoMatrix();
+    glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "proj"), 1, GL_FALSE, glm::value_ptr(camera->getProjectionMatrix()));
+
     glm::mat4 model;
     //Manipulate model matrix
     model =  glm::translate(model,glm::vec3(0,0,0));
@@ -162,9 +165,7 @@ void Renderer::renderSkybox(double currentTime, Shader* shader, Camera* camera, 
   glBindTexture(GL_TEXTURE_CUBE_MAP, skybox);
   glUniform1i(glGetUniformLocation(shader->shaderProgram, "skybox"), 0);
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "view"), 1, GL_FALSE, glm::value_ptr(view));
-  glm::mat4 projection = camera->getProjectionMatrix();
-  glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "proj"), 1, GL_FALSE, glm::value_ptr(projection));
-  glUniform3f(glGetUniformLocation(shader->shaderProgram, "camPos"), camera->getPosition().x,camera->getPosition().y,camera->getPosition().z);
+glUniform3f(glGetUniformLocation(shader->shaderProgram, "camPos"), camera->getPosition().x,camera->getPosition().y,camera->getPosition().z);
   glUniform4f(glGetUniformLocation(shader->shaderProgram, "planeYPosition"), waterPlane.x, waterPlane.y, waterPlane.z, waterPlane.w);
   //Send a texture
 

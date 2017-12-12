@@ -37,7 +37,6 @@ class Entity : public Mesh
         glm::mat4 getScaleMatrix();
         glm::quat getQuaternation();
         void setInput(Input* i);
-        glm::vec4 getScreenPosition();
         Input* input();
         /**
             *  Return the 3D position of the mesh.

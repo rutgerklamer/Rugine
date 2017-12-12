@@ -41,8 +41,21 @@ void Superscene::addFramebuffer(const char* vertexPath, const char* fragmentPath
 
 void Superscene::addChild(Entity* mesh)
 {
-  mesh->setInput(input);
   entities.push_back(mesh);
+}
+
+void Superscene::removeChild(Entity* mesh)
+{
+    std::vector<Entity*>::iterator it = entities.begin();
+    while (it != entities.end())
+    {
+      if (*it == mesh) {
+        it = entities.erase(it);
+        return;
+      } else {
+        ++it;
+      }
+    }
 }
 
 void Superscene::addWater(Water* w)
@@ -65,7 +78,6 @@ void Superscene::updateEntities(float deltaTime) {
   for (unsigned int i = 0; i < entities.size(); i++)
   {
     entities[i]->update(deltaTime);
-    entities[i]->fixedUpdate(deltaTime);
   }
 }
 

@@ -45,6 +45,7 @@ class Superscene
             *  Add a mesh to the vector of meshes.
             */
         void addChild(Entity* mesh);
+        void removeChild(Entity* mesh);
         /**
             *  Add a skybox to the scene
             *  Takes in a Skybox pointer.
