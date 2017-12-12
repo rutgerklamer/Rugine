@@ -50,6 +50,7 @@ class Display
                 */
         void whatToRender(glm::vec4 waterPlane);
         Input* input;
+        SceneManager* scenemanager;
     private:
       GLFWwindow* window;
       Renderer* renderer;
@@ -64,9 +65,7 @@ class Display
       GLuint skyboxTexture;
       Camera camera;
       Time* dtime;
-      SceneManager* scenemanager;
       ResourceManager* resourcemanager;
-      int currentscene;
       std::vector<Superscene*> scenes;
       struct WINDOWINFO
       {

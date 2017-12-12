@@ -31,7 +31,11 @@ struct SceneData
 
 class Superscene
 {
+
     public:
+      enum SceneState {
+        PREV, STAY, NEXT
+      };
       /**
           *  Constructor
           *  Takes in a pointer of input so we can control it.
@@ -98,6 +102,7 @@ class Superscene
         Skybox* skybox;
         Framebuffer* framebuffer;
         Water* water;
+        SceneState sceneState;
         /**
             *  Update the scene and update the meshes.
             *  Takes in the deltaTime of the scene.

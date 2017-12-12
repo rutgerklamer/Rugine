@@ -12,6 +12,7 @@ Superscene::Superscene(Input* input)
   skybox = NULL;
   framebuffer = NULL;
   water = nullptr;
+  sceneState = STAY;
 }
 
 Superscene::~Superscene()

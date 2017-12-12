@@ -28,7 +28,6 @@ class Scene : public Superscene
         void Update(float deltaTime);
         void collisionManager();
     private:
-
       Mirror* mirror;
       RailTrack* rt;
       Entity* mesh;

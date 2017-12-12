@@ -167,7 +167,6 @@ void Scene::Update(float deltaTime)
       }
 
       collisionManager();
-
       camera->setYawPitch(glm::vec2(0.0f,-90.0f));
       camera->setOrthoSettings(orthoCameraView);
       camera->setOrthoCam();
