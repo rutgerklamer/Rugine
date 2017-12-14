@@ -12,10 +12,10 @@ Mirror::Mirror(float ma, float mi, bool z, glm::vec3 o) : Entity()
   isZ = z;
   if (isZ) {
     cur = this->position.z;
-    this->scale  = glm::vec3(1.5f,10,10);
+    this->scale  = glm::vec3(2.5f,10,10);
   } else {
     cur = this->position.x;
-    this->scale  = glm::vec3(10,10,1.5f);
+    this->scale  = glm::vec3(10,10,2.5f);
   }
   origin = o;
 }
