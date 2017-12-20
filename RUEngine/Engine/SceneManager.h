@@ -25,6 +25,7 @@ class SceneManager
             */
         void nextScene();
         void prevScene();
+        void destroyScene();
         void checkState();
         std::vector<Superscene*> scenes;
         int currentscene;

@@ -41,8 +41,11 @@ void Display::whatToRender(glm::vec4 waterPlane)
 
   for (int i = 0; i < scenemanager->scenes[scenemanager->currentscene]->entities.size(); i++) {
     if (scenemanager->scenes[scenemanager->currentscene]->entities[i] != nullptr) {
+  //    raycaster->checkCollision(scenemanager->scenes[scenemanager->currentscene]->entities[i]);
+    }
       if (scenemanager->scenes[scenemanager->currentscene]->lights.size() > 0 && scenemanager->scenes[scenemanager->currentscene]->entities[i]->enabled && !scenemanager->scenes[scenemanager->currentscene]->entities[i]->reflective && !scenemanager->scenes[scenemanager->currentscene]->entities[i]->transparent) {
          renderer->render(glfwGetTime(), shader, scenemanager->scenes[scenemanager->currentscene]->camera, scenemanager->scenes[scenemanager->currentscene]->entities[i], scenemanager->scenes[scenemanager->currentscene]->getSceneData(),waterPlane, &scenemanager->scenes[scenemanager->currentscene]->lights);
+
        } else if (scenemanager->scenes[scenemanager->currentscene]->entities[i]->enabled && !scenemanager->scenes[scenemanager->currentscene]->entities[i]->reflective && !scenemanager->scenes[scenemanager->currentscene]->entities[i]->transparent) {
          renderer->render(glfwGetTime(), shader, scenemanager->scenes[scenemanager->currentscene]->camera, scenemanager->scenes[scenemanager->currentscene]->entities[i], scenemanager->scenes[scenemanager->currentscene]->getSceneData(), waterPlane);
        } else if (scenemanager->scenes[scenemanager->currentscene]->entities[i]->reflective  && !scenemanager->scenes[scenemanager->currentscene]->entities[i]->transparent)
@@ -59,8 +62,7 @@ void Display::whatToRender(glm::vec4 waterPlane)
           renderer->render(glfwGetTime(), shaderNormals, scenemanager->scenes[scenemanager->currentscene]->camera, scenemanager->scenes[scenemanager->currentscene]->entities[i], scenemanager->scenes[scenemanager->currentscene]->getSceneData(), waterPlane);
           shader->Use();
         }
-      }
-  }
+}
 }
 
 

@@ -34,7 +34,7 @@ class Superscene
 
     public:
       enum SceneState {
-        PREV, STAY, NEXT
+        PREV, STAY, NEXT, DESTROY
       };
       /**
           *  Constructor

@@ -47,5 +47,10 @@ Scene1::~Scene1()
 
 void Scene1::Update(float deltaTime)
 {
-
+  if (input->getKeyDown(GLFW_KEY_RIGHT)) {
+    sceneState = Superscene::NEXT;
+  }
+  if (input->getKeyDown(GLFW_KEY_LEFT)) {
+    sceneState = Superscene::PREV;
+  }
 }

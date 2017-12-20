@@ -46,5 +46,10 @@ Scene0::~Scene0()
 
 void Scene0::Update(float deltaTime)
 {
-  std::cout << sizeof(long) << std::endl;
+  if (input->getKeyDown(GLFW_KEY_RIGHT)) {
+    sceneState = Superscene::NEXT;
+  }
+  if (input->getKeyDown(GLFW_KEY_LEFT)) {
+    sceneState = Superscene::PREV;
+  }
 }

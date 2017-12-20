@@ -119,11 +119,7 @@ void Mesh::LoadObject(const char* objectPath, bool isNormalMap)
    } else {
      multiplier = 8;
    }
-
-   std::cout << "hello 1" << std::endl;
-
    meshData = OBJloader::loadModel(objectPath, isNormalMap);
-   std::cout << "hello 2" << std::endl;
 
    meshData.texture = NULL;
    meshData.normalMap = NULL;

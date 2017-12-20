@@ -92,7 +92,7 @@ glm::vec2 Input::getMouseVelocity()
   return lastMouse - glm::vec2(currentX, currentY);
 }
 void Input::setCamera(Camera* camera)
-{
+{  
   this->camera = camera;
 }
 

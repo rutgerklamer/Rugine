@@ -47,6 +47,13 @@ Scene2::~Scene2()
 
 void Scene2::Update(float deltaTime)
 {
+  if (input->getKeyDown(GLFW_KEY_RIGHT)) {
+    sceneState = Superscene::NEXT;
+  }
+  if (input->getKeyDown(GLFW_KEY_LEFT)) {
+    sceneState = Superscene::PREV;
+  }
+  
   input->getCamera()->setPosition(glm::vec3(input->getCamera()->getPosition().x, mesh->GetTerrainHeight(input->getCamera()->getPosition().x, input->getCamera()->getPosition().z), input->getCamera()->getPosition().z));
   float up, down, right, left, leftup, leftdown, rightup, rightdown;
   up = mesh->GetTerrainHeight(ball->position.x, ball->position.z + 0.3f);

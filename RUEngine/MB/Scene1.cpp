@@ -1,10 +1,10 @@
-#include "Scene.h"
+#include "Scene1.h"
 #include <stdlib.h>
 #include <time.h>
 #include <fstream>
 #include <iterator>
 
-Scene::Scene(Input* input) : Superscene(input)
+Scene1::Scene1(Input* input) : Superscene(input)
 {
       rt = new RailTrack();
       t = 0.0f;
@@ -21,44 +21,48 @@ Scene::Scene(Input* input) : Superscene(input)
       camEffects = new CameraEffects(camera, mesh);
       this->addChild(camEffects);
 
+      setGamma(0.5f);
+      setExposure(0.3f);
+
+      bullet = new Bullet(glm::vec3(1,1,1), Bullet::PLAYER);
+
       wall = new Wall();
       this->addChild(wall);
-      wall->position = glm::vec3(25.0f,0,60.0f);
-      wall->scale = glm::vec3(40,1,1);
+      wall->position = glm::vec3(100.0f,0,20.0f);
+      wall->scale = glm::vec3(20,1,1);
       walls.push_back(wall);
 
       wall = new Wall();
       this->addChild(wall);
-      wall->scale = glm::vec3(1,1,10);
-      wall->position = glm::vec3(60.0f,0,70.0f);
+      wall->position = glm::vec3(100.0f,0,22.5f);
+      wall->scale = glm::vec3(1,1,17.5f);
       walls.push_back(wall);
 
       wall = new Wall();
       this->addChild(wall);
-      wall->scale = glm::vec3(1,1,100);
-      wall->position = glm::vec3(-10.0f,0,160.0f);
-      walls.push_back(wall);
-
-      wall = new Wall();
-      this->addChild(wall);
+      wall->position = glm::vec3(15.0f,0,10.0f);
       wall->scale = glm::vec3(50,1,1);
-      wall->position = glm::vec3(-10.0f,0,160.0f);
       walls.push_back(wall);
-
 
       wall = new Wall();
       this->addChild(wall);
-      wall->scale = glm::vec3(50,1,1);
-      wall->position = glm::vec3(50.0f,0,100.0f);
+      wall->position = glm::vec3(125.0f,0,-20.0f);
+      wall->scale = glm::vec3(1,1,15);
       walls.push_back(wall);
 
-      mirror = new Mirror(10.0f,-10.0f,false, glm::vec3(60.0f,0.0f,100.0f));
-      mirror->position = glm::vec3(60.0f,0.0f,100.0f);
+      wall = new Wall();
+      this->addChild(wall);
+      wall->position = glm::vec3(132.5f,0,-12.5f);
+      wall->scale = glm::vec3(15,1,1);
+      walls.push_back(wall);
+
+      mirror = new Mirror(20.0f,-20.0f,false, glm::vec3(100.0f,0.0f,65.0f));
+      mirror->position = glm::vec3(100.0f,0.0f,65.0f);
       this->addChild(mirror);
       mirrors.push_back(mirror);
 
-      mirror = new Mirror(10.0f,-10.0f,true, glm::vec3(-10.0f,0.0f,100.0f));
-      mirror->position = glm::vec3(-10.0f,0.0f,100.0f);
+      mirror = new Mirror(25.0f,-25.0f,true, glm::vec3(160.0f,0.0f,25.0f));
+      mirror->position = glm::vec3(180.0f,0.0f,25.0f);
       this->addChild(mirror);
       mirrors.push_back(mirror);
 
@@ -66,29 +70,21 @@ Scene::Scene(Input* input) : Superscene(input)
       enemy->LoadObject("Assets/untitled.obj", false);
       enemy->scale  = glm::vec3(5.3,5.3,5.3);
       enemy->setColor(glm::vec3(1,0,0));
-      enemy->position = glm::vec3(30,0,80);
+      enemy->position = glm::vec3(132.5f,0,-22.5f);
       enemy->reflective = true;
       this->addChild(enemy);
       enemies.push_back(enemy);
 
-      Enemy* e = new Enemy(mesh);
-      e->LoadObject("Assets/untitled.obj", false);
-      e->scale  = glm::vec3(5.3,5.3,5.3);
-      e->setColor(glm::vec3(1,0,0));
-      e->position = glm::vec3(20.0f,0.0f,130.0f);
-      e->reflective = true;
-      this->addChild(e);
-      enemies.push_back(e);
+      enemy = new Enemy(mesh);
+      enemy->LoadObject("Assets/untitled.obj", false);
+      enemy->scale  = glm::vec3(5.3,5.3,5.3);
+      enemy->setColor(glm::vec3(1,0,0));
+      enemy->position = glm::vec3(95.0,0,25.0f);
+      enemy->reflective = true;
+      this->addChild(enemy);
+      enemies.push_back(enemy);
 
-      setGamma(0.5f);
-      setExposure(0.3f);
-
-      bullet = new Bullet(glm::vec3(1,1,1), Bullet::PLAYER);
-
-
-      //addFramebuffer("Shaders/Framebuffer/Pixelization/shader.vert", "Shaders/Framebuffer/Pixelization/shader.frag");
-
-        rt->path.points = { {0,0}, {0,50}, {70,50}, {70,80}, {50,80}, {50,70}, {0,70}, {0,150}, {50,150}, {50,180}};
+      rt->path.points = { {0,0}, {-40,0}, {75,0}, {100,0}, {125,0}, {125,30},{100,50}, {75,30},{75,0}, {125,0}, {150,0}, {175,0}, {200,0}, {225,0}};
 
       for (unsigned int i = 0; i < rt->path.points.size()+1 ; i++) {
         speeds.push_back(glm::length(glm::vec2(rt->path.points[i].x,rt->path.points[i].y) - glm::vec2(rt->path.points[i+1].x,rt->path.points[i+1].y)));
@@ -125,13 +121,13 @@ Scene::Scene(Input* input) : Superscene(input)
       }
 }
 
-Scene::~Scene()
+Scene1::~Scene1()
 {
   delete mesh;
   delete light;
 }
 
-void Scene::Update(float deltaTime)
+void Scene1::Update(float deltaTime)
 {
   if (deltaTime < 1.0f && deltaTime > -1.0f && camEffects->getCanPlay()) {
       t+=(speeds[floor(t)] / 500.0f) * deltaTime;
@@ -166,7 +162,7 @@ void Scene::Update(float deltaTime)
       collisionManager();
 }
 
-void Scene::spawnExplosion(glm::vec3 position)
+void Scene1::spawnExplosion(glm::vec3 position)
 {
   for (unsigned int i = 0; i < 500; i++) {
     bullet = new Bullet(glm::vec3(sin(i) * 30.0f, 0 , cos(i)*30.0f), Bullet::PLAYER);
@@ -177,7 +173,7 @@ void Scene::spawnExplosion(glm::vec3 position)
   }
 }
 
-void Scene::collisionManager()
+void Scene1::collisionManager()
 {
   for (unsigned int j = 0; j < walls.size(); j++)
   {

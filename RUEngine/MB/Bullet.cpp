@@ -9,6 +9,7 @@ Bullet::Bullet(glm::vec3 direction, Origin o) : Entity()
   this->setColor(glm::vec3(0,0,1));
   this->reflective = true;
   origin = o;
+  time.timer.start();
 }
 
 Bullet::~Bullet()
@@ -18,6 +19,7 @@ Bullet::~Bullet()
 
 void Bullet::update(float deltaTime) {
   this->position += dir  * deltaTime;
+  this->setColor(glm::vec3(sin(glfwGetTime()*5.0f),cos(glfwGetTime()*5.0f),cos(glfwGetTime())));
 }
 
 void Bullet::mirrorDirX()

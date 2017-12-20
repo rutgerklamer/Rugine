@@ -29,5 +29,11 @@ Scene::~Scene()
 
 void Scene::Update(float deltaTime)
 {
+if (input->getKeyDown(GLFW_KEY_RIGHT)) {
+  sceneState = Superscene::NEXT;
+}
+if (input->getKeyDown(GLFW_KEY_LEFT)) {
+  sceneState = Superscene::PREV;
+}
   //mesh->eularAngles.y += 0.1* deltaTime;
 }

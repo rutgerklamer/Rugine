@@ -45,8 +45,6 @@ void Renderer::renderWater(Shader* shader, GLuint reflectionTexture, GLuint refr
 void Renderer::render2D(double currentTime, Shader* shader, Entity* entity)
 {
   shader->Use();
-
-
   glm::mat4 model;
   model =  entity->getModelMatrix();
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));

@@ -1,5 +1,5 @@
-#ifndef SCENE_H
-#define SCENE_H
+#ifndef SCENE1_H
+#define SCENE1_H
 
 #include <iostream>
 #include <GL/glew.h>
@@ -22,11 +22,11 @@
 #include "CameraEffects.h"
 #include "Maths/Time.h"
 
-class Scene : public Superscene
+class Scene1 : public Superscene
 {
     public:
-        Scene(Input* ip);
-        virtual ~Scene();
+        Scene1(Input* ip);
+        virtual ~Scene1();
         void Update(float deltaTime);
         void collisionManager();
         void spawnExplosion(glm::vec3 position);
@@ -49,4 +49,4 @@ class Scene : public Superscene
 
 };
 
-#endif // SCENE_H
+#endif // SCENE1_H

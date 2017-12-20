@@ -12,10 +12,10 @@ Mirror::Mirror(float ma, float mi, bool z, glm::vec3 o) : Entity()
   isZ = z;
   if (isZ) {
     cur = this->position.z;
-    this->scale  = glm::vec3(2.5f,10,10);
+    this->scale  = glm::vec3(2.5f,7.5,10);
   } else {
     cur = this->position.x;
-    this->scale  = glm::vec3(10,10,2.5f);
+    this->scale  = glm::vec3(10,7.5,2.5f);
   }
   origin = o;
 }
@@ -31,9 +31,9 @@ bool Mirror::checkZ()
 }
 
 void Mirror::update(float deltaTime) {
-  if (input()->isDown(GLFW_KEY_S) && cur < max && !isZ || input()->isDown(GLFW_KEY_D) && cur < max && isZ) {
+  if (input()->isDown(GLFW_KEY_S) && cur < max && !isZ || input()->isDown(GLFW_KEY_A) && cur < max && isZ) {
     cur += 10.0f * deltaTime;
-  } else if (input()->isDown(GLFW_KEY_W) && cur > min && !isZ || input()->isDown(GLFW_KEY_A) && cur > min && isZ) {
+  } else if (input()->isDown(GLFW_KEY_W) && cur > min && !isZ || input()->isDown(GLFW_KEY_D) && cur > min && isZ) {
     cur -= 10.0f * deltaTime;
   }
   if (isZ) {

@@ -2,6 +2,7 @@
 #define BULLET_H
 
 #include "Engine/Entity.h"
+#include "Maths/Time.h"
 
 class Bullet : public Entity
 {
@@ -16,6 +17,7 @@ public:
     void mirrorDirX();
     void mirrorDirZ();
     Origin origin;
+    Time time;
 private:
     glm::vec3 dir;
 
