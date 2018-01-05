@@ -4,7 +4,7 @@ project (ruengine)
 
 # delete CMakeCache.txt from the build directory when you edit these options
 ####################################################################
-OPTION(MAKE_DEMO "Create DEMO" OFF)
+OPTION(MAKE_DEMO "Create DEMO" ON)
 OPTION(MAKE_NMHD "Create NormalMap vs HighDetail" OFF)
 OPTION(MAKE_GOL "Create Game of Life" OFF)
 OPTION(MAKE_LA "Create Langtons Ant" OFF)
@@ -310,11 +310,13 @@ IF(MAKE_MB)
   set(SOURCES
     RUEngine/MB/main.cpp
     RUEngine/MB/Scene.cpp
+		RUEngine/MB/Scene1.cpp
 		RUEngine/MB/RailTrack.cpp
 		RUEngine/MB/Bullet.cpp
 		RUEngine/MB/Mirror.cpp
 		RUEngine/MB/Wall.cpp
 		RUEngine/MB/Enemy.cpp
+		RUEngine/MB/CameraEffects.cpp;
   )
 
   add_executable(MB ${SOURCES} ${SOILSOURCE} ${RUGINESOURCE})
