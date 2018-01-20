@@ -11,6 +11,7 @@ class Collision
         Collision();
         virtual ~Collision();
         static bool intersectAABB(Entity* e1, Entity* e2);
+        static bool intersectMouse2D(Entity* e1, glm::vec2 mp);
     private:
 };
 

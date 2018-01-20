@@ -61,6 +61,7 @@ class Display
       Shader* shaderReflection;
       Shader* shaderTransparent;
       Shader* waterShader;
+      Shader* shader2D;
       Raycast* raycaster;
       GLuint skyboxTexture;
       Camera camera;

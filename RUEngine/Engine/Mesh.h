@@ -4,16 +4,13 @@
 #include <iostream>
 #include <GL/glew.h>
 #include "glfw3.h"
-
 #include <vector>
-
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
-
 
 struct MeshData
 {
@@ -62,6 +59,8 @@ class Mesh
             *  return the texture of this mesh.
             */
         GLuint getTexture();
+        void make2D();
+        bool check2D();
         /**
             *  return the color of this mesh.
             */
@@ -111,6 +110,7 @@ class Mesh
             */
         virtual glm::vec3 getPosition();
     private:
+      bool is2D;
       GLuint VAO, VBO, EBO;
       int lighting;
       Material material;

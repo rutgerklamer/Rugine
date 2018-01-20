@@ -37,6 +37,7 @@ class Entity : public Mesh
         glm::mat4 getScaleMatrix();
         glm::quat getQuaternation();
         void setInput(Input* i);
+        glm::vec4 getScreenPosition();
         Input* input();
         /**
             *  Return the 3D position of the mesh.
@@ -52,5 +53,41 @@ class Entity : public Mesh
       Input* _input;
 
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if (vandaag == donderdag) {
+  // het is vandaag donderdag
+  // en hij doet wat binnen de
+  // { } haakjes staat
+} else {
+  // het is vandaag geen donderdag
+  // en hij doet wat binnen de
+  // { } haakjes na else staat
+}
+
+
+
+
+
+
+
+
+
+
 
 #endif // ENTITY_H

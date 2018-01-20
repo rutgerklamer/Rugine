@@ -45,14 +45,16 @@ void Renderer::renderWater(Shader* shader, GLuint reflectionTexture, GLuint refr
 void Renderer::render2D(double currentTime, Shader* shader, Entity* entity)
 {
   shader->Use();
+
+
   glm::mat4 model;
   model =  entity->getModelMatrix();
   glUniformMatrix4fv(glGetUniformLocation(shader->shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
 
   if (entity != nullptr && entity->getColor().x + entity->getColor().y + entity->getColor().z == 0) {
-    glActiveTexture(GL_TEXTURE0);
+    glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, entity->getTexture());
-    glUniform1i(glGetUniformLocation(shader->shaderProgram, "Texture"), 0);
+    glUniform1i(glGetUniformLocation(shader->shaderProgram, "texture"), 1);
     glUniform3f(glGetUniformLocation(shader->shaderProgram, "Color"), 0, 0, 0);
   } else {
     glUniform3f(glGetUniformLocation(shader->shaderProgram, "Color"), entity->getColor().x, entity->getColor().y, entity->getColor().z);
@@ -72,7 +74,7 @@ void Renderer::render(double currentTime, Shader* shader, Camera* camera, Entity
       LightData lightData = lightPointer[i]->getLightData();
       //Send lights position;
       glUniform3f(glGetUniformLocation(shader->shaderProgram, ("lightData[" + std::to_string(i) + "].lightPos").c_str()), lightData.lightPosition.x, lightData.lightPosition.y, lightData.lightPosition.z);
-      //Send cameras position
+      //Send cameras position`
       glUniform3f(glGetUniformLocation(shader->shaderProgram, "camPos"), camera->getPosition().x,camera->getPosition().y,camera->getPosition().z);
       //Send light color (rgb)
       glUniform3f(glGetUniformLocation(shader->shaderProgram, ("lightData[" + std::to_string(i) + "].lightColor").c_str()),  lightData.lightColor.x, lightData.lightColor.y, lightData.lightColor.z);

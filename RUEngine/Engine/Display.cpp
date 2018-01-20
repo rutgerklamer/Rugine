@@ -22,6 +22,7 @@ Display::Display()
   shaderReflection = new Shader("Shaders/StrongReflection/shader.vert", "Shaders/StrongReflection/shader.frag","","","");
   shaderTransparent = new Shader("Shaders/Transparent/shader.vert", "Shaders/Transparent/shader.frag","","","");
   waterShader = new Shader("Shaders/Water/shader.vert", "Shaders/Water/shader.frag","","","");
+  shader2D = new Shader("Shaders/2D/shader.vert", "Shaders/2D/shader.frag","","","");
   dtime = new Time();
   scenemanager = new SceneManager(input, resourcemanager, shader);
   raycaster = new Raycast(&camera, input);
@@ -43,6 +44,9 @@ void Display::whatToRender(glm::vec4 waterPlane)
     if (scenemanager->scenes[scenemanager->currentscene]->entities[i] != nullptr) {
   //    raycaster->checkCollision(scenemanager->scenes[scenemanager->currentscene]->entities[i]);
     }
+    if (scenemanager->scenes[scenemanager->currentscene]->entities[i]->check2D()) {
+      renderer->render2D(glfwGetTime(), shader2D, scenemanager->scenes[scenemanager->currentscene]->entities[i]);
+    } else
       if (scenemanager->scenes[scenemanager->currentscene]->lights.size() > 0 && scenemanager->scenes[scenemanager->currentscene]->entities[i]->enabled && !scenemanager->scenes[scenemanager->currentscene]->entities[i]->reflective && !scenemanager->scenes[scenemanager->currentscene]->entities[i]->transparent) {
          renderer->render(glfwGetTime(), shader, scenemanager->scenes[scenemanager->currentscene]->camera, scenemanager->scenes[scenemanager->currentscene]->entities[i], scenemanager->scenes[scenemanager->currentscene]->getSceneData(),waterPlane, &scenemanager->scenes[scenemanager->currentscene]->lights);
 

@@ -45,3 +45,36 @@ bool Collision::intersectAABB(Entity* e1, Entity* e2)
     return false;
   }
 }
+
+bool Collision::intersectMouse2D(Entity* e1, glm::vec2 mp)
+{
+  glm::vec3 e1min = glm::vec3(e1->position) - (glm::vec3(1024/4.0f,720/4.0f,0) * e1->scale);
+  glm::vec3 e1max = glm::vec3(e1->position) + (glm::vec3(1024/4.0f,720/4.0f,0) * e1->scale);
+  std::cout << mp.x << "  " << e1max.x << std::endl;
+  int intersectionCount = 0;
+  if (mp.x > e1->position.x) {
+    if (mp.x < e1max.x) {
+      intersectionCount++;
+    }
+  } else {
+    if (mp.x > e1min.x) {
+      intersectionCount++;
+    }
+  }
+
+  if (mp.y > e1->position.y) {
+    if (mp.y < e1max.y) {
+      intersectionCount++;
+    }
+  } else {
+    if (mp.y > e1min.y) {
+      intersectionCount++;
+    }
+  }
+
+  if (intersectionCount == 2) {
+    return true;
+  } else {
+    return false;
+  }
+}

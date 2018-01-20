@@ -7,7 +7,7 @@ project (ruengine)
 OPTION(MAKE_DEMO "Create DEMO" ON)
 OPTION(MAKE_NMHD "Create NormalMap vs HighDetail" OFF)
 OPTION(MAKE_GOL "Create Game of Life" OFF)
-OPTION(MAKE_LA "Create Langtons Ant" OFF)
+	OPTION(MAKE_LA "Create Langtons Ant" OFF)
 OPTION(MAKE_BB "Create Brian's Brain" OFF)
 OPTION(MAKE_WW "Create Wire World" OFF)
 OPTION(MAKE_MAZE "Create Maze" OFF)
@@ -309,6 +309,7 @@ ENDIF()
 IF(MAKE_MB)
   set(SOURCES
     RUEngine/MB/main.cpp
+		RUEngine/MB/StartMenu.cpp
     RUEngine/MB/Scene.cpp
 		RUEngine/MB/Scene1.cpp
 		RUEngine/MB/RailTrack.cpp
