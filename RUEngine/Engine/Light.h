@@ -22,41 +22,41 @@ class Light : public Entity
 {
     public:
       /**
-          *  Constructor
+          * Constructor
           */
         Light();
         /**
-            *  Destructor
+            * Destructor
             */
         virtual ~Light();
         /**
-            *  Return the struct of lightdate this light has.
+            * Return the struct of lightdata this light has
             */
         LightData getLightData();
         /**
-            *  Set the lightColor.
-            *  Takes in a vector3 with (r,g,b) values.
+            * Set the lightColor
+            * Takes in a vector3 with (r,g,b) values
             */
         void setLightColor(glm::vec3 color);
         /**
-            *  Set the strength of the light.
-            *  takes in the strength
+            * Set the strength of the light
+            * takes in the strength
             */
         void setStrength(float strength);
         /**
-            *  Set the extinction of the light.
-            *  takes in the extinction
+            * Set the extinction of the light
+            * takes in the extinction
             */
         void setExtinction(float extinction);
         /**
-            *  Set the specular strength of the light
-            *  takes in the strength
+            * Set the specular strength of the light
+            * takes in the strength
             //TODO Move to mesh!!!!!
             */
         void setSpecularStrength(float strength);
         /**
-            *  Change the position of the light
-            *  takes in a vector3 of the position.
+            * Change the position of the light
+            * takes in a vector3 of the position
             */
         void setPosition(glm::vec3 position);
     private:
