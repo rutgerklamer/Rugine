@@ -16,19 +16,20 @@ class Entity : public Mesh
 {
     public:
       /**
-              *  Constructor
+              * Constructor
               */
         Entity();
         /**
-                *  Deconstructor
+                * Deconstructor
                 */
         virtual ~Entity();
         /**
-                *  called by the Superscene
+                * Called by the Superscene
+                * Takes in a float deltaTime, this is the deltatime you probably want to use
                 */
         virtual void update(float deltaTime);
         /**
-            *  Return the modelMatrix by translating, rotating and scaling the model matrix.
+            * Return the modelMatrix by translating, rotating and scaling the model matrix.
             */
         glm::mat4 getModelMatrix();
         void fixedUpdate(float deltaTime);
