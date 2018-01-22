@@ -20,7 +20,6 @@
 #include "Skybox.h"
 #include "Engine/Framebuffer.h"
 #include "Water.h"
-
 struct SceneData
 {
   float gamma;
@@ -37,62 +36,68 @@ class Superscene
         PREV, STAY, NEXT, DESTROY
       };
       /**
-          *  Constructor
-          *  Takes in a pointer of input so we can control it.
+          * Constructor
+          * Takes in a pointer of input so we can control it
           */
         Superscene(Input* input);
         /**
-            *  Destructor
+            * Destructor
             */
         virtual ~Superscene();
         /**
-            *  Add a mesh to the vector of meshes.
+            * Add a entity to the vector of meshes
+            * Takes in a Entity* you want to add
             */
         void addChild(Entity* mesh);
+        /**
+          * Remove a child from the vector of entities
+          * Takes in a Entity* you want to remove
+          * BEWARE this does not delete the given entity!
+          */
         void removeChild(Entity* mesh);
         /**
-            *  Add a skybox to the scene
-            *  Takes in a Skybox pointer.
+            * Add a skybox to the scene
+            * Takes in a Skybox pointer
             */
         void addSkybox(Skybox* sb);
         /**
-            *  Add a light to the vector of lights.
-            *  Takes in a Entity pointer.
+            * Add a light to the vector of lights
+            * Takes in a Entity pointer
             */
         void addLight(Light* light);
         /**
-            *  Set the gamma of this scene.
-            *  Takes in a Light pointer.
+            * Set the gamma of this scene
+            * Takes in a Light pointer
             */
         void setGamma(float gamma);
         /**
-            *  Set the exposure of this scene.
-            *  Takes in a gamma value
+            * Set the exposure of this scene
+            * Takes in a gamma value
             */
         void setExposure(float exposure);
         /**
-            *  Set the size and position of the water
-            *  Takes the size a water object
+            * Set the size and position of the water
+            * Takes the size a water object
             */
         void addWater(Water* w);
         /**
-            *  Set the exposure of this scene.
-            *  Takes in a density value
+            * Set the exposure of this scene.
+            * Takes in a density value
             */
         void setFogDensity(float density);
         /**
-            *  Set the fogColor of this scene.
-            *  Takes in a vec3 which represents RGB
+            * Set the fogColor of this scene.
+            * Takes in a vec3 which represents RGB
             */
         void setFogColor(glm::vec3 color);
         /**
-            *  Tell the scene we want to use a framebuffer
-            *  Takes in 5 const chars of all supported shader stages
+            * Tell the scene we want to use a framebuffer
+            * Takes in 5 const chars of all supported shader stages
             */
         void addFramebuffer(const char* vertexPath, const char* fragmentPath);
         /**
-            *  Return the scenedata of this scene.
-            *  Takes in a exposure value.
+            * Return the scenedata of this scene.
+            * Takes in a exposure value.
             */
         SceneData getSceneData();
         std::vector<Entity*> entities;
@@ -108,6 +113,10 @@ class Superscene
             *  Takes in the deltaTime of the scene.
             */
         virtual void Update(float deltaTime);
+        /**
+            *  Update the scene's entities.
+            *  Takes in the deltaTime of the scene.
+            */
         virtual void updateEntities(float deltaTime);
     private:
       SceneData sceneData;
