@@ -31,35 +31,41 @@ class Renderer
             */
         virtual ~Renderer();
         /**
-            *  render the scene
-            *  takes in the current Time //TODO remove <-
-            *  the shader we want to use //TODO improve performance <-
-            *  the camera we want to get the view from //TODO improve performance <-
-            *  the entity we want to render.
-            *  the data of the scene.
-            *  and a vector of light if we want multiple lights.
+            *  Render the scene
+            *  Takes in the current Time //TODO remove <-
+            *  The shader we want to use //TODO improve performance <-
+            *  The camera we want to get the view from //TODO improve performance <-
+            *  The entity we want to render
+            *  The data of the scene
+            *  And a vector of light if we want multiple lights
             */
         void render(double currentTime, Shader* shader, Camera* camera, Entity* entity, SceneData scenedata, glm::vec4 waterPlane, std::vector<Light*>* lights = nullptr);
+        /**
+            * Render the 2D GUI stuff of the scene
+            * Takes in current time //TODO remove 
+            * Takes in the shader we want to use
+            * Takes in the entity 
+            */
         void render2D(double currentTime, Shader* shader, Entity* entity);
         /**
-            *  render the scene's skybox
-            *  takes in the current Time //TODO remove <-
-            *  the shader we want to use //TODO improve performance <-
-            *  the camera we want to get the view from //TODO improve performance <-
-            *  the entity we want to render.
-            *  the data of the scene.
+            *  Render the scene's skybox
+            *  Takes in the current Time //TODO remove <-
+            *  The shader we want to use //TODO improve performance <-
+            *  The camera we want to get the view from //TODO improve performance <-
+            *  The entity we want to render
+            *  The data of the scene
             */
         void renderSkybox(double currentTime, Shader* shader, Camera* camera, Mesh* entity, SceneData scenedata, glm::vec4 waterPlane, GLuint skybox);
         /**
-            *  render the scene
-            *  takes in the shader we want to use //TODO improve performance <-
-            *  the texture to display on the quad
+            *  Tender the scene
+            *  Takes in the shader we want to use //TODO improve performance <-
+            *  The texture to display on the quad
             */
         void renderFramebuffer(Shader* shader, GLuint texture, Input* input);
         /**
-            *  render the water of the scene
-            *  takes in the shader we want to use //TODO improve performance <-
-            *  the texture to display on the water quad
+            *  Tender the water of the scene
+            *  Takes in the shader we want to use //TODO improve performance <-
+            *  The texture to display on the water quad
             */
         void renderWater(Shader* shader, GLuint reflectionTexture, GLuint refractionTexture, GLuint waterTexture, GLuint normalTexture, Entity* entity);
 
