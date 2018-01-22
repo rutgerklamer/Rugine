@@ -1,4 +1,4 @@
-#ifndef LIGHT_H
+Tifndef LIGHT_H
 #define LIGHT_H
 
 #include <iostream>
@@ -40,23 +40,23 @@ class Light : public Entity
         void setLightColor(glm::vec3 color);
         /**
             * Set the strength of the light
-            * takes in the strength
+            * Takes in the strength
             */
         void setStrength(float strength);
         /**
             * Set the extinction of the light
-            * takes in the extinction
+            * Takes in the extinction
             */
         void setExtinction(float extinction);
         /**
             * Set the specular strength of the light
-            * takes in the strength
+            * Takes in the strength
             //TODO Move to mesh!!!!!
             */
         void setSpecularStrength(float strength);
         /**
             * Change the position of the light
-            * takes in a vector3 of the position
+            * Takes in a vector3 of the position
             */
         void setPosition(glm::vec3 position);
     private:
