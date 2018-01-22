@@ -20,6 +20,7 @@ struct MeshData
   int indsize;
   GLuint texture;
   GLuint normalMap;
+
   glm::vec3 min;
   glm::vec3 max;
 };
@@ -59,7 +60,13 @@ class Mesh
             *  return the texture of this mesh.
             */
         GLuint getTexture();
+        /**
+            * Make a mesh 2D so it will be rendered in 2D
+            */
         void make2D();
+        /**
+            *Check if the mesh has been made 2D
+            */
         bool check2D();
         /**
             *  return the color of this mesh.
@@ -78,8 +85,13 @@ class Mesh
             *  return the normalMap texture of this mesh.
             */
         void bind();
-
+         /**
+            * Set the shininess of this mesh
+            */
         void setShininess(float s);
+        /**
+            * Returns the shininess of this mesh
+            */
         float getShininess();
 
         GLuint getNormalMap();
