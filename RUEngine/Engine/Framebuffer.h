@@ -12,15 +12,17 @@ class Framebuffer
 {
     public:
       /**
-          *  Constructor
+          * Constructor
+          * Takes in a const char*, this is the path where the vertex shader for this framebuffer is located //TODO Give default value
+          * Takes in a const char*, this is the path where the fragment shader for this framebuffer is located //TODO Give default value?
           */
         Framebuffer(const char* vertexPath, const char* fragmentPath);
         /**
-            *  Destructor
+            * Destructor
             */
         virtual ~Framebuffer();
         /**
-            *  Setup a custom framebuffer
+            * Setup a custom framebuffer
             */
         void initFramebuffer();
 
