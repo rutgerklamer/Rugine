@@ -34,30 +34,31 @@ class Mesh
 {
     public:
         /**
-            * Initialize the mesh, Calls the LoadObject().
-            * \see Mesh::LoadObject().
-            * So we have a standard mesh for an object.
+            * Constructor
+            * Initialize the mesh, Calls the LoadObject()
+            * \see Mesh::LoadObject()
+            * So we have a standard mesh for an object
             */
         Mesh();
         /**
-            * deconstructor.
+            * Deconstructor
             */
         virtual ~Mesh();
         /**
-            * Update the framebuffer to the VAO of our mesh.
+            * Update the framebuffer to the VAO of our mesh
             */
         void Draw();
         /**
-            *  return the size of the VAO.
+            *  return the size of the VAO
             */
         int getSize();
         /**
-            * Set the texture of our mesh by calling.
-            * /see Texture::loadTexture().
+            * Set the texture of our mesh by calling
+            * /see Texture::loadTexture()
             */
         void setTexture(GLuint tex);
         /**
-            *  return the texture of this mesh.
+            * Return the texture of this mesh
             */
         GLuint getTexture();
         /**
@@ -65,24 +66,24 @@ class Mesh
             */
         void make2D();
         /**
-            *Check if the mesh has been made 2D
+            * Check if the mesh has been made 2D
             */
         bool check2D();
         /**
-            *  return the color of this mesh.
+            * Return the color of this mesh
             */
         glm::vec3 getColor();
         /**
-            *  set the color of this mesh.
-            *  takes in a vec3 representing the RGB values.
+            * Set the color of this mesh
+            * Takes in a vec3 representing the RGB values
             */
         void setColor(glm::vec3 color);
         /**
-            *  return the diffuse texture of this mesh.
+            * Return the diffuse texture of this mesh
             */
         void setNormalMap(GLuint tex);
         /**
-            *  return the normalMap texture of this mesh.
+            * Return the normalMap texture of this mesh
             */
         void bind();
          /**
@@ -96,16 +97,16 @@ class Mesh
 
         GLuint getNormalMap();
         /**
-            *  load an obj file, This will not load ANY obj files.
-            *  this will take in the location of this file.
-            *  And if the model will use a normal map.
+            *  load an obj file, This will not load ANY obj files
+            *  this will take in the location of this file
+            *  And if the model will use a normal map
             *  Because we don't want to send tangent space if we have no normal map
-            *  /see OBJLoader::loadModel().
-            *  This will also bind the Array of vertices, uv's, normals, (tangents, bittangents(binormals)).
+            *  /see OBJLoader::loadModel()
+            *  This will also bind the Array of vertices, uv's, normals, (tangents, bittangents(binormals))
             */
         void LoadObject(const char* objectPath, bool isNormalMap);
         /**
-            *  Check if this model will will use lighting.
+            * Check if this model will will use lighting
             */
         int hasLighting();
         bool showNormals;
@@ -114,11 +115,11 @@ class Mesh
         bool transparent;
         MeshData meshData;
         /**
-            *  Return the modelMatrix by translating, rotating and scaling the model matrix.
+            * Return the modelMatrix by translating, rotating and scaling the model matrix
             */
         virtual glm::mat4 getModelMatrix();
         /**
-            *  Return the 3D position of the mesh.
+            * Return the 3D position of the mesh
             */
         virtual glm::vec3 getPosition();
     private:
