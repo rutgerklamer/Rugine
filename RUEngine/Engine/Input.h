@@ -88,10 +88,21 @@ class Input
             *  get the mouse velocity, For example for motion blur
             */
         glm::vec2 getMouseVelocity();
-
+         /**
+            * Returns if a mouseKey is has just bee pressed.
+            */
         bool getMouseKeyDown(int key);
+        /**
+            * Returns if a mouseKey is has just bee released.
+            */
         bool getMouseKeyUp(int key);
+         /**
+            * Returns if a keyboardKey is has just bee pressed.
+            */
         bool getKeyDown(int key);
+        /**
+            * Returns if a keyboardKey is has just bee released.
+            */
         bool getKeyUp(int key);
     private:
       glm::vec2 lastMouse;
