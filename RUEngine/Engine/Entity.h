@@ -54,40 +54,4 @@ class Entity : public Mesh
 
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if (vandaag == donderdag) {
-  // het is vandaag donderdag
-  // en hij doet wat binnen de
-  // { } haakjes staat
-} else {
-  // het is vandaag geen donderdag
-  // en hij doet wat binnen de
-  // { } haakjes na else staat
-}
-
-
-
-
-
-
-
-
-
-
-
 #endif // ENTITY_H
