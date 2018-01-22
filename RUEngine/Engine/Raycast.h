@@ -17,10 +17,28 @@
 class Raycast
 {
 public:
+     /**
+            * Constructor
+            * Takes in a camera and input
+            */
     Raycast(Camera* camera, Input* input);
+     /**
+            * Destructor
+            */
     ~Raycast();
+     /**
+            * Update loop
+            */
     void Update();
+     /**
+            * Check if the ray is colliding with a entity
+            * Takes in a 3D entity, 2D entities can be send but calculations won't make any sense
+            */
     void checkCollision(Entity* entity);
+    /**
+            * Change the camera we are sending the ray from
+            * Takes in the camera you want to use
+            */
     void setCamera(Camera*camera);
     glm::mat4 projection;
     glm::mat4 view;
