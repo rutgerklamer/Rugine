@@ -30,7 +30,7 @@ class Camera
     public:
         /**
             *  Either set the it automatically or set it manual
-            *  /see Camera::Camera().
+            *  /see Camera::Camera()
             */
         Camera(glm::vec3 position = glm::vec3( 0.01f, 0.01f, 0.01f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), GLfloat yaw = YAW,
         GLfloat pitch = PITCH): front(glm::vec3(0.0f,0.0f,-1.0f)), movementSpeed(SPEED), mouseSensitivity(SENSITIVITY), zoom(ZOOM)
@@ -45,7 +45,15 @@ class Camera
           orthoSettings = glm::vec4(-1024.0f/8.0f,1024.0f/8.0f,-720.0f/8.0f,720.0f/8.0f);
         }
         /**
-                *  set everything Manually.
+                * set everything Manually
+                * takes in a float, this is the X position in 3D space
+                * takes in a float, this is the Y position in 3D space
+                * takes in a float, this is the Z position in 3D space
+                * takes in a float, this is where you want the upX to be
+                * takes in a float, this is where you want the upY to be
+                * takes in a float, this is where you want the upZ to be
+                * takes in a float, this is the yaw you want to start with
+                * takes in a float, this is the pitch you want to start with
                 */
         Camera(GLfloat posX, GLfloat posY, GLfloat posZ, GLfloat upX, GLfloat upY, GLfloat upZ, GLfloat yaw, GLfloat pitch) : front(glm::vec3(0.0f, 0.0f, -1.0f)), movementSpeed(SPEED), mouseSensitivity(SENSITIVITY), zoom(ZOOM)
         {
@@ -59,14 +67,14 @@ class Camera
           orthoSettings = glm::vec4(-1024.0f/8.0f,1024.0f/8.0f,-720.0f/8.0f,720.0f/8.0f);
         }
         /**
-                *  Destructor.
+                *  Destructor
                 */
         virtual ~Camera()
         {
 
         }
         /**
-                *  Return the view matrix.
+                *  Return the view matrix
                 */
         glm::mat4 getViewMatrix()
         {
@@ -84,7 +92,7 @@ class Camera
           }
         }
        /**
-                *  return the projection matrix, We need this because soethimes we want the
+                * return the projection matrix, We need this because soethimes we want the
                 * projection matrix when orthographic is true;
                 */
         glm::mat4 getProjectionMatrix()
@@ -92,30 +100,30 @@ class Camera
             return glm::perspective(this->getZoom(), (GLfloat) 1024 / (GLfloat) 720, 0.1f, 1000.0f);
         }
         /**
-                *  return the position in 3D space.
+                * return the position in 3D space
                 */
         glm::vec3 getPosition()
         {
-          //return position
           return this->position;
         }
         /**
-                *  Set the orthographic settings, size left, size up, size right, size down.
+                * Set the orthographic settings
+                * takes in a vector 3, size left, size up, size right, size down
                 */
         void setOrthoSettings(glm::vec4 settings)
         {
           orthoSettings = settings;
         }
         /**
-                *  return the orthographic settings.
+                *  return the orthographic settings
                 */
         glm::vec4 getOrthoSettings()
         {
           return orthoSettings;
         }
         /**
-                *  set the position in 3D space.
-                *  takes in a vector3 of a 3D position.
+                *  set the position in 3D space
+                *  takes in a vector3 of a 3D position
                 */
         void setPosition(glm::vec3 pos)
         {
@@ -123,26 +131,26 @@ class Camera
         }
 
         /**
-                *  return yaw.
+                *  return yaw
                 */
         float getYaw(){
           return this->yaw;
         }
         /**
-                *  return pitch.
+                *  return pitch
                 */
         float getPitch(){
           return this->pitch;
         }
         /**
-                *  return front/forward vector of the camera.
+                *  return front/forward vector of the camera
                 */
         glm::vec3 getFront()
         {
           return glm::vec3(front);
         }
         /**
-                *  return the right/side vector of the camera.
+                *  return the right/side vector of the camera
                 */
         glm::vec3 getRight()
         {
@@ -156,8 +164,8 @@ class Camera
           return this->up;
         }
         /**
-                *  handle keyboard input to move the camera.
-                *  Takes in an enum of CameraMovement.
+                *  handle keyboard input to move the camera
+                *  Takes in an enum of CameraMovement
                 */
         void processKeyboard(CameraMovement direction, GLfloat deltaTime)
         {
@@ -180,9 +188,9 @@ class Camera
           }
         }
         /**
-                *  change the yaw and pitch of the camera according to mouse movement.
+                *  change the yaw and pitch of the camera according to mouse movement
                 *  Takes in the X and Y offset of the mouse calculated by,
-                *  /see Input::processMouseMovement().
+                *  /see Input::processMouseMovement()
                 */
         void processMouseMovement(GLfloat xOffset, GLfloat yOffset, GLboolean constrainPitch = true)
         {
@@ -214,8 +222,8 @@ class Camera
           mouseMovement = m;
         }
         /**
-                *  set the zoom(FOV) of the camera.
-                *  Takes in the difference calculated by,
+                *  set the zoom(FOV) of the camera
+                *  Takes in the difference calculated by
                 *  /see Input::processMouseScroll()
                 */
         void processMouseScroll(GLfloat yOffset)
@@ -247,8 +255,8 @@ class Camera
           this->pitch = yp.y;
         }
         /**
-                *  calculate the new front of the camera according to,
-                *  The pitch and yaw.
+                *  calculate the new front of the camera according to
+                *  The pitch and yaw
                 */
         void updateCameraVector()
         {
@@ -263,7 +271,7 @@ class Camera
           this->up = glm::normalize(glm::cross(this->right, this->front));
         }
         /**
-                *  Invert the pitch, Usefull for reflections of water etc.
+                *  Invert the pitch, Usefull for reflections of water etc
                 */
 
         void invertPitch()
@@ -271,14 +279,14 @@ class Camera
             this->pitch = -pitch;
         }
         /**
-                *  Make the camera projection orthographic.
+                *  Make the camera projection orthographic
                 */
         void setOrthoCam()
         {
           orthographic = true;
         }
          /**
-                *  Make the camera projection normal.
+                *  Make the camera projection normal
                 */
         void setProjCam()
         {
