@@ -5,6 +5,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+/**
+*  States in which the camera can move.
+*/
 enum CameraMovement
 {
   FORWARD,
@@ -13,6 +16,9 @@ enum CameraMovement
   RIGHT
 };
 
+/**
+* Define preset variables.
+*/
 const GLfloat YAW = -90.f;
 const GLfloat PITCH = 0.0f;
 const GLfloat SPEED = 4.0f;
@@ -67,7 +73,7 @@ class Camera
           return glm::lookAt(this->position, this->position + this->front, this->up);
         }
         /**
-                *  return projection matrix.
+                *  return the projection or ortho matrix, depending on the orthographic state.
                 */
         glm::mat4 getProjectionOrthoMatrix()
         {
@@ -77,7 +83,10 @@ class Camera
             return glm::perspective(this->getZoom(), (GLfloat) 1024 / (GLfloat) 720, 0.1f, 1000.0f);
           }
         }
-
+       /**
+                *  return the projection matrix, We need this because soethimes we want the
+                * projection matrix when orthographic is true;
+                */
         glm::mat4 getProjectionMatrix()
         {
             return glm::perspective(this->getZoom(), (GLfloat) 1024 / (GLfloat) 720, 0.1f, 1000.0f);
@@ -90,11 +99,16 @@ class Camera
           //return position
           return this->position;
         }
+        /**
+                *  Set the orthographic settings, size left, size up, size right, size down.
+                */
         void setOrthoSettings(glm::vec4 settings)
         {
           orthoSettings = settings;
         }
-
+        /**
+                *  return the orthographic settings.
+                */
         glm::vec4 getOrthoSettings()
         {
           return orthoSettings;
@@ -256,12 +270,16 @@ class Camera
         {
             this->pitch = -pitch;
         }
-
+        /**
+                *  Make the camera projection orthographic.
+                */
         void setOrthoCam()
         {
           orthographic = true;
         }
-
+         /**
+                *  Make the camera projection normal.
+                */
         void setProjCam()
         {
           orthographic = false;
