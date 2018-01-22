@@ -16,28 +16,28 @@ class ResourceManager
 {
     public:
       /**
-          *  Constructor
+          * Constructor
           */
         ResourceManager();
         /**
-            *  Destructor
+            * Destructor
             */
         virtual ~ResourceManager();
         /**
-            *  Update the shaders viewmatrix.
-            *  Takes in the shader you want to update
-            *  and the camera you want the viewmatrix from.
+            * Update the shaders viewmatrix
+            * Takes in the shader you want to update
+            * And the camera you want the viewmatrix from
             */
         void updateShaders(Shader* shader, Camera* camera);
         /**
-            *  Update the shaders projection matrix.
-            *  Takes in the shader you want to update
-            *  and the camera you want the projectionmatrix from.
+            * Update the shaders projection matrix
+            * Takes in the shader you want to update
+            * And the camera you want the projectionmatrix from
             */
         void setProjectionMatrix(Shader* shader, Camera* camera);
         /**
-            *  Remove lights still binded to the shader
-            *  Takes in the shader you want to update
+            * Remove lights still binded to the shader
+            * Takes in the shader you want to update
             */
         void removeLights(Shader* shader);
     private:
