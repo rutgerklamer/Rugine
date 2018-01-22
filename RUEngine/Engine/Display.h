@@ -18,27 +18,28 @@ class Display
 {
     public:
       /**
-              *  Constructor.
+              * Constructor
               */
         Display();
         /**
-                *  Destructor.
+                * Destructor
                 */
         virtual ~Display();
         /**
-                *  Initialize glfw.
+                * Initialize glfw
                 */
         void initGlfw();
         /**
-                *  Initialize glew (The OpenGL Extension Wrangler Library)
+                * Initialize glew (The OpenGL Extension Wrangler Library)
                 */
         void initGlew();
         /**
-                *  unlimited loop till we close the glfwWindow.
+                * unlimited loop till we close the glfwWindow
                 */
         void gameLoop();
         /**
-                *  Add a scene to the vector off scenes so we can run them.
+                * Add a scene to the vector off scenes so we can run them
+                * Takes in the scene you want to add
                 */
         void addScene(Superscene* scene);
         /**
@@ -46,7 +47,9 @@ class Display
                 */
         GLFWwindow* getWindow();
         /**
-                *  Checks what we should render
+                * Checks what we should render
+                * Takes in a glm::vec4 to send to the vertex shader to see what we dont need to render
+                * //TODO, make an overload function, we donT want to send the waterPlane every call
                 */
         void whatToRender(glm::vec4 waterPlane);
         Input* input;
