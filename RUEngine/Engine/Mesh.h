@@ -49,7 +49,7 @@ class Mesh
             */
         void Draw();
         /**
-            *  return the size of the VAO
+            * Return the size of the VAO
             */
         int getSize();
         /**
@@ -88,6 +88,7 @@ class Mesh
         void bind();
          /**
             * Set the shininess of this mesh
+            * Takes in a float you want the shininess to be
             */
         void setShininess(float s);
         /**
@@ -98,7 +99,7 @@ class Mesh
         GLuint getNormalMap();
         /**
             *  load an obj file, This will not load ANY obj files
-            *  this will take in the location of this file
+            *  This will take in the location of this file
             *  And if the model will use a normal map
             *  Because we don't want to send tangent space if we have no normal map
             *  /see OBJLoader::loadModel()
