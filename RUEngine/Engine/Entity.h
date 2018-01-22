@@ -24,7 +24,7 @@ class Entity : public Mesh
                 */
         virtual ~Entity();
         /**
-                * Called by the Superscene
+                * Called every frame by the Superscene
                 * Takes in a float deltaTime, this is the deltatime you probably want to use
                 */
         virtual void update(float deltaTime);
