@@ -8,9 +8,20 @@
 class Enemy : public Entity
 {
 public:
+    /**
+        * Constructor
+        * Takes in Entity* entity, this is the player you want the entity to shoot at
+        */
     Enemy(Entity* entity);
+    /** 
+        * Destructor
+        */
     ~Enemy();
-
+    
+    /** 
+        * Update, part of Rugine
+        * Takes in float deltaTime, you probably want to use this
+        */
     virtual void update(float deltaTime);
     std::vector<Bullet*> bullets;
 private:
