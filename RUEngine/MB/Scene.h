@@ -25,10 +25,28 @@
 class Scene : public Superscene
 {
     public:
+        /** 
+           * Scene, part of Rugine
+           * Takes in Input* ip, This is sent to the Superscene
+           */
         Scene(Input* ip);
+        /**
+           * Destructor
+           */
         virtual ~Scene();
+        /** 
+           * Update, part of Rugine
+           * Takes in float deltaTime, you probably want to use this
+           */
         void Update(float deltaTime);
+        /**
+            * Checks for collisions in the game and reacts to it
+            */
         void collisionManager();
+        /**
+            * Spawn an explosion of blocks
+            * Takes in glm::vec3 position, This is the position where you want to spawn the explosion
+            */
         void spawnExplosion(glm::vec3 position);
     private:
       Mirror* mirror;
@@ -46,7 +64,6 @@ class Scene : public Superscene
       std::vector<Enemy*> enemies;
       std::vector<float> speeds;
       Time time;
-
 };
 
 #endif // SCENE_H
