@@ -32,8 +32,8 @@ Then you can run the demo:
 
   Documentation
   -----
-    Make sure doxygen is installed
-    the use these commands
+   Make sure doxygen is installed
+   the use these commands
 
       doxygen Doxyfile
 
