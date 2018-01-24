@@ -3,17 +3,13 @@ Rugine
 
 Rugine is a framework using the rendering system of openGL.
 
+Rugine also provides a set of different demo's,
+those are still included here they will be getting their own repository later.
+
 Compiling
 ---------
 
 Use cmake to create your project files in a separate `build` directory.
-
-When changing I'd suggest making them in source directory and run CMake after you want to test, Otherwise CMake will write over the shaders in the build directory.
-
-Documentation
--------------
-
-Documentation will be added soon using doxygen.
 
 Building
 -----
@@ -26,7 +22,7 @@ Use those command to build:
 
 	mkdir build
 	cd build
-	cmake -Wno-dev ..
+	cmake ..
 	make
 
 Then you can run the demo:
@@ -56,7 +52,6 @@ Links
 License
 -------
 
-Copyright 2017 Rutger Klamer <rutger.klamer@gmail.com>
+Copyright 2018 Rutger Klamer <rutger.klamer@gmail.com>
 
-This project is provided as opensource. If you decide to use this projects I'd like to recieve some credits but it's not needed.
-#Rugine
+This project is provided as opensource. Do with it whatever you want.
