@@ -1,4 +1,5 @@
 #include "SceneManager.h"
+
 SceneManager::SceneManager(Input* input, ResourceManager* rm, Shader* s)
 {
   currentscene = 0;
@@ -34,15 +35,18 @@ void SceneManager::prevScene()
 
 void SceneManager::destroyScene()
 {
-  std::cout << "delete 1" << std::endl;
+  glfwSetWindowShouldClose(window, GL_TRUE);
   Superscene* temp = scenes[currentscene];
-  std::cout << "delete 2" << std::endl;
   scenes.erase(scenes.begin() + currentscene);
   delete temp;
-  std::cout << "delete 3" << std::endl;
   if (currentscene == scenes.size()) {
     currentscene--;
   }
+}
+
+void SceneManager::setWindow(GLFWwindow* _window)
+{
+	this->window = _window;
 }
 
 void SceneManager::checkState()

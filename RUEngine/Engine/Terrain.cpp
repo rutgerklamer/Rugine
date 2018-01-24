@@ -2,8 +2,6 @@
 
 Terrain::Terrain() : Entity()
 {
-  name = __PRETTY_FUNCTION__;
-  name.erase(name.length()/2 -2,name.length()/2 + 2);
   size = 10.0f;
 }
 

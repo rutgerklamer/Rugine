@@ -23,8 +23,8 @@ Display::Display()
   shaderTransparent = new Shader("Shaders/Transparent/shader.vert", "Shaders/Transparent/shader.frag","","","");
   waterShader = new Shader("Shaders/Water/shader.vert", "Shaders/Water/shader.frag","","","");
   shader2D = new Shader("Shaders/2D/shader.vert", "Shaders/2D/shader.frag","","","");
-  dtime = new Time();
   scenemanager = new SceneManager(input, resourcemanager, shader);
+  dtime = new Time();
   raycaster = new Raycast(&camera, input);
   std::cout << "Display initialized" << std::endl;
 
@@ -72,6 +72,7 @@ void Display::whatToRender(glm::vec4 waterPlane)
 
 void Display::gameLoop()
 {
+  scenemanager->setWindow(window);
   scenemanager->scenes[scenemanager->currentscene]->input->setCamera(scenemanager->scenes[scenemanager->currentscene]->camera);
   raycaster->setCamera(scenemanager->scenes[scenemanager->currentscene]->camera);
   resourcemanager->setProjectionMatrix(shaderNormals, scenemanager->scenes[scenemanager->currentscene]->camera);

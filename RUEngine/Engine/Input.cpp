@@ -22,7 +22,6 @@ Input::Input()
 
 Input::~Input()
 {
-  delete camera;
 }
 
 Camera* Input::getCamera()

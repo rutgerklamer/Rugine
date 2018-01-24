@@ -112,9 +112,9 @@ Scene::Scene(Input* input) : Superscene(input)
       //addFramebuffer("Shaders/Framebuffer/Pixelization/shader.vert", "Shaders/Framebuffer/Pixelization/shader.frag");
 			
 			// Give the path some points
-      rt->path.points = { {0,0}, {0,50}, {70,50}, {70,80}, {50,80}, {50,70}, {0,70}, {0,150}, {50,150}, {50,180}};
+	  rt->path.points = { {0,0}, {0,50}, {70,50}, {70,80}, {50,80}, {50,70}, {0,70}, {0,150}, {50,150}, {50,180}, {0,0}, {0,0} };
 		
-      for (unsigned int i = 0; i < rt->path.points.size()+1 ; i++) {
+      for (unsigned int i = 0; i < rt->path.points.size()-1 ; i++) {
 				// We need to put the the distance between the current and next point in a vector
 				// Because the RailTrack class uses time for the position on the track,
 				// If the distance between two points is extremely large the player would go super fast
@@ -133,7 +133,7 @@ Scene::Scene(Input* input) : Superscene(input)
         speeds[i] = largestInt + largestInt - speeds[i];
       }
 
-      for(unsigned int i = 1; i < rt->path.points.size();i++) {
+      for(unsigned int i = 1; i < rt->path.points.size()-2;i++) {
 				// Set white points along the defined points in path
         Entity* point = new Entity();
         point->LoadObject("Assets/untitled.obj", false);
@@ -143,7 +143,7 @@ Scene::Scene(Input* input) : Superscene(input)
         this->addChild(point);
       }
 
-      for (float j = 0.0f; j < rt->path.points.size()-2 ; j+= 0.025f)
+      for (float j = 0.0f; j < rt->path.points.size()-4 ; j+= 0.025f)
       {
 				// Set red points between all the points to simulate a path
         Entity* point = new Entity();
@@ -158,8 +158,6 @@ Scene::Scene(Input* input) : Superscene(input)
 Scene::~Scene()
 {
 	// cleanup
-  delete mesh;
-  delete light;
 }
 
 void Scene::Update(float deltaTime)
@@ -169,13 +167,13 @@ void Scene::Update(float deltaTime)
 			// Adjust the deltaTime to fix the speeds of the current point
       t+=(speeds[floor(t)] / 500.0f) * deltaTime;
     }
-    if (t >= rt->path.points.size()-2) {
+    if (t >= rt->path.points.size()-4) {
 				// At the end make a transition to 3D
     		camEffects->transition3D();
 				// Stay at this point
-    		t = rt->path.points.size()-2;
+    		t = rt->path.points.size()-4;
     }
-    if (camEffects->loadLevel() && t >= rt->path.points.size()-2) {
+    if (camEffects->loadLevel() && t >= rt->path.points.size()-4) {
 			// Switch to next level is camera is done and player still is at the end of the level
       sceneState = Superscene::NEXT;
     }
@@ -256,7 +254,7 @@ void Scene::collisionManager()
 
     }
 		
-		// If a bullet with the origin of a enemy hits the player, change our color
+		// If a bullet with the origin of a enemy hits the player, change spawn particle explosion, disable our players rendering and close the app after timer has expired
     if (Collision::intersectAABB(*it, mesh) && (*it)->origin == Bullet::ENEMY) {
         this->removeChild(*it);
         delete (*it);

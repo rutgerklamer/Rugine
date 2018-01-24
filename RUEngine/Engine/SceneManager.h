@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <vector>
+#include <GL/glew.h>
+#include "glfw3.h"
 
 #include "Engine/Superscene.h"
 #include "Engine/Input.h"
@@ -36,12 +38,18 @@ class SceneManager
             * Update loop called to check what the state of the current scene is
             */
         void checkState();
+		/**
+			* Set the pointer of window to the same as Display
+			* Takes in the window we created in Display
+			*/
+		void setWindow(GLFWwindow* _window);
         std::vector<Superscene*> scenes;
         int currentscene;
     private:
       Input* input;
       ResourceManager* resourcemanager;
       Shader* shader;
+	  GLFWwindow* window;
 };
 
 #endif // SCENEMANAGER_H

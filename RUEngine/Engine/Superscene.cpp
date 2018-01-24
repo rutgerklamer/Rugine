@@ -17,7 +17,6 @@ Superscene::Superscene(Input* input)
 
 Superscene::~Superscene()
 {
-  delete input;
   delete camera;
   for (unsigned int i = 0; i < entities.size(); i++)
   {

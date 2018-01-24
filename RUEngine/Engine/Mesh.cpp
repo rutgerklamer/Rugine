@@ -103,7 +103,7 @@ int Mesh::hasLighting()
 
 glm::mat4 Mesh::getModelMatrix()
 {
-
+	return glm::mat4(0);
 }
 
 void Mesh::setColor(glm::vec3 color)
@@ -119,7 +119,7 @@ glm::vec3 Mesh::getColor()
 
 glm::vec3 Mesh::getPosition()
 {
-
+	return glm::vec3(0);
 }
 
 void Mesh::bind()

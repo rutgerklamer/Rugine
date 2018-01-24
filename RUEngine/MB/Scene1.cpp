@@ -84,9 +84,9 @@ Scene1::Scene1(Input* input) : Superscene(input)
       this->addChild(enemy);
       enemies.push_back(enemy);
 
-      rt->path.points = { {0,0}, {-40,0}, {75,0}, {100,0}, {125,0}, {125,30},{100,50}, {75,30},{75,0}, {125,0}, {150,0}, {175,0}, {200,0}, {225,0}};
+	  rt->path.points = { {0,0}, {-40,0}, {75,0}, {100,0}, {125,0}, {125,30},{100,50}, {75,30},{75,0}, {125,0}, {150,0}, {175,0}, {200,0}, {225,0}, {0,0}, {0,0} };
 
-      for (unsigned int i = 0; i < rt->path.points.size()+1 ; i++) {
+      for (unsigned int i = 0; i < rt->path.points.size()-1 ; i++) {
         speeds.push_back(glm::length(glm::vec2(rt->path.points[i].x,rt->path.points[i].y) - glm::vec2(rt->path.points[i+1].x,rt->path.points[i+1].y)));
       }
       int largestInt = 0;
@@ -99,9 +99,7 @@ Scene1::Scene1(Input* input) : Superscene(input)
         speeds[i] = largestInt + largestInt - speeds[i];
       }
 
-
-      std::cout << rt->path.points.size() << std::endl;
-      for(unsigned int i = 1; i < rt->path.points.size();i++) {
+      for(unsigned int i = 1; i < rt->path.points.size()-2;i++) {
         Entity* point = new Entity();
         point->LoadObject("Assets/untitled.obj", false);
         point->setColor(glm::vec3(1,1,1));
@@ -110,7 +108,7 @@ Scene1::Scene1(Input* input) : Superscene(input)
         this->addChild(point);
       }
 
-      for (float j = 0.0f; j < rt->path.points.size()-2 ; j+= 0.025f)
+      for (float j = 0.0f; j < rt->path.points.size()-4 ; j+= 0.025f)
       {
         Entity* point = new Entity();
         point->LoadObject("Assets/untitled.obj", false);
@@ -123,8 +121,7 @@ Scene1::Scene1(Input* input) : Superscene(input)
 
 Scene1::~Scene1()
 {
-  delete mesh;
-  delete light;
+
 }
 
 void Scene1::Update(float deltaTime)
@@ -132,11 +129,11 @@ void Scene1::Update(float deltaTime)
   if (deltaTime < 1.0f && deltaTime > -1.0f && camEffects->getCanPlay()) {
       t+=(speeds[floor(t)] / 500.0f) * deltaTime;
     }
-      if (t >= rt->path.points.size()-2) {
+      if (t >= rt->path.points.size()-4) {
       camEffects->transition3D();
-      t = rt->path.points.size()-2;
+      t = rt->path.points.size()-4;
     }
-    if (camEffects->loadLevel() && t >= rt->path.points.size()-2) {
+    if (camEffects->loadLevel() && t >= rt->path.points.size()-4) {
       sceneState = Superscene::NEXT;
     }
 			mesh->position = glm::vec3(rt->path.GetSplinePoint(t, false).x, 0, rt->path.GetSplinePoint(t, false).y);

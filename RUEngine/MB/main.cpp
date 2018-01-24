@@ -29,9 +29,7 @@ int main()
   // Start the main gameloop
   display->gameLoop();
   // If the gameloop stops we can delete everything we created here
-  delete scene;
-  delete scene1;
-  delete startscene;
+
   delete display;
   std::cout << "Window closed" << std::endl;
   return 0;
