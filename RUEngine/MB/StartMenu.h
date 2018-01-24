@@ -18,8 +18,19 @@
 class StartMenu : public Superscene
 {
     public:
+        /**
+            * Constructor
+            * Takes in Input* ip, this is a Rugine future
+            */
         StartMenu(Input* ip);
+        /**
+            * Destructor
+            */
         virtual ~StartMenu();
+        /** 
+           * Update, part of Rugine
+           * Takes in float deltaTime, you probably want to use this
+           */
         void Update(float deltaTime);
     private:
       Entity* start, exit;
