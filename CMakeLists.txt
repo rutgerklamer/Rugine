@@ -1,4 +1,4 @@
-	# CMake entry point
+# CMake entry point
 cmake_minimum_required (VERSION 2.6)
 project (ruengine)
 
@@ -7,7 +7,7 @@ project (ruengine)
 OPTION(MAKE_DEMO "Create DEMO" ON)
 OPTION(MAKE_NMHD "Create NormalMap vs HighDetail" OFF)
 OPTION(MAKE_GOL "Create Game of Life" OFF)
-	OPTION(MAKE_LA "Create Langtons Ant" OFF)
+OPTION(MAKE_LA "Create Langtons Ant" OFF)
 OPTION(MAKE_BB "Create Brian's Brain" OFF)
 OPTION(MAKE_WW "Create Wire World" OFF)
 OPTION(MAKE_MAZE "Create Maze" OFF)
@@ -98,8 +98,7 @@ set(SOILSOURCE
   external/SOIL2/etc1_utils.c
   external/SOIL2/etc1_utils.h
   external/SOIL2/image_DXT.c
-  external/SOIL2/image_DXT.h
-  external/SOIL2/image_helper.c
+  external/SOIL2/image_DXT.h  external/SOIL2/image_helper.c
   external/SOIL2/image_helper.h
   external/SOIL2/jo_jpeg.h
   external/SOIL2/pkm_helper.h
@@ -139,8 +138,8 @@ set(RUGINESOURCE
     RUEngine/Engine/Framebuffer.cpp
     RUEngine/Engine/Raycast.cpp
     RUEngine/Engine/Water.cpp
-		RUEngine/Engine/Terrain.cpp
-		RUEngine/Maths/Collision.cpp
+    RUEngine/Engine/Terrain.cpp
+    RUEngine/Maths/Collision.cpp
   )
 
 ####################################################################
@@ -200,7 +199,7 @@ IF(MAKE_NMHD)
 ENDIF()
 
 ####################################################################
-# Rugine Normalmap vs High Detail                                  #
+# Rugine Game of life			                           #
 ####################################################################
 IF(MAKE_GOL)
   set(SOURCES
@@ -220,7 +219,7 @@ IF(MAKE_GOL)
 ENDIF()
 
 ####################################################################
-# Rugine Normalmap vs High Detail                                  #
+# Rugine Langtons ant		                                   #
 ####################################################################
 IF(MAKE_LA)
   set(SOURCES
@@ -240,7 +239,7 @@ IF(MAKE_LA)
 ENDIF()
 
 ####################################################################
-# Rugine Normalmap vs High Detail                                  #
+# Rugine Brians Brain		                                   #
 ####################################################################
 IF(MAKE_BB)
   set(SOURCES
@@ -260,7 +259,7 @@ IF(MAKE_BB)
 ENDIF()
 
 ####################################################################
-# Rugine Normalmap vs High Detail                                  #
+# Rugine Wireworld		                                   #
 ####################################################################
 IF(MAKE_WW)
   set(SOURCES
@@ -284,7 +283,7 @@ IF(MAKE_WW)
 ENDIF()
 
 ####################################################################
-# Rugine Normalmap vs High Detail                                  #
+# Rugine Maze generator + solver                                   #
 ####################################################################
 IF(MAKE_MAZE)
   set(SOURCES
@@ -304,7 +303,7 @@ IF(MAKE_MAZE)
 ENDIF()
 
 ####################################################################
-# Rugine Normalmap vs High Detail                                  #
+# Rugine Mustache bot		                                   #
 ####################################################################
 IF(MAKE_MB)
   set(SOURCES
