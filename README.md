@@ -1,4 +1,4 @@
-Rugine
+nRugine
 ====
 
 Rugine is a framework using the rendering system of openGL.
