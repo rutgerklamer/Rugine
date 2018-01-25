@@ -18,6 +18,7 @@ Scene::Scene(Input* input) : Superscene(input)
 			this->addSkybox(skybox);
 			// Start the timer
       time.timer.start();
+	  deathTimer.timer.init();
 	
 			// Make a entity
       mesh = new Entity();
@@ -162,6 +163,7 @@ Scene::~Scene()
 
 void Scene::Update(float deltaTime)
 {
+
 	// We don't want to add deltaTime if itS too large ( this can happen if loading a large OBJ or texture )
   if (deltaTime < 1.0f && deltaTime > -1.0f && camEffects->getCanPlay()) {
 			// Adjust the deltaTime to fix the speeds of the current point
@@ -205,11 +207,15 @@ void Scene::Update(float deltaTime)
       }
 			// Lastly check for all collisions
       collisionManager();
+
+	  if (deathTimer.timer.seconds() > 3.0f && mesh->enabled == false) {
+		  this->sceneState = Superscene::DESTROY;
+	  }
 }
 
 void Scene::spawnExplosion(glm::vec3 position)
 {
-  for (unsigned int i = 0; i < 500; i++) {
+  for (unsigned int i = 0; i < 50; i++) {
 		// Spawn bullets in 360 around the player ( x and z axis only )
     bullet = new Bullet(glm::vec3(sin(i) * 30.0f, 0 , cos(i)*30.0f), Bullet::PLAYER);
     bullets.push_back(bullet);
@@ -255,11 +261,15 @@ void Scene::collisionManager()
     }
 		
 		// If a bullet with the origin of a enemy hits the player, change spawn particle explosion, disable our players rendering and close the app after timer has expired
-    if (Collision::intersectAABB(*it, mesh) && (*it)->origin == Bullet::ENEMY) {
+	if (Collision::intersectAABB(*it, mesh) && (*it)->origin == Bullet::ENEMY && mesh->enabled == true) {
         this->removeChild(*it);
         delete (*it);
         it = bullets.erase(it);
-        mesh->setColor(glm::vec3(0,1,0));
+		mesh->enabled = false;
+		spawnExplosion(mesh->position);
+		camEffects->transition3D();
+		it = bullets.end();
+		deathTimer.timer.start();
     } else if ((*it)->time.timer.seconds() > 4.4f) {
       this->removeChild(*it);
       delete *it;
@@ -268,6 +278,7 @@ void Scene::collisionManager()
       ++it;
     }
     }
+
 
 	// If a bullet hits a mirror, Check if the mirrors orientation and change the direction of the bullet 
   for (unsigned int i = 0; i < bullets.size(); i++) {

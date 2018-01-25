@@ -12,6 +12,7 @@ Scene1::Scene1(Input* input) : Superscene(input)
       this->addSkybox(skybox);
       //Create a mesh
       time.timer.start();
+	  deathTimer.timer.init();
       mesh = new Entity();
       mesh->LoadObject("Assets/untitled.obj", false);
       mesh->scale  = glm::vec3(5.3,5.3,5.3);
@@ -157,11 +158,16 @@ void Scene1::Update(float deltaTime)
           }
       }
       collisionManager();
+
+
+	  if (deathTimer.timer.seconds() > 3.0f && mesh->enabled == false) {
+		  this->sceneState = Superscene::DESTROY;
+	  }
 }
 
 void Scene1::spawnExplosion(glm::vec3 position)
 {
-  for (unsigned int i = 0; i < 500; i++) {
+  for (unsigned int i = 0; i < 50; i++) {
     bullet = new Bullet(glm::vec3(sin(i) * 30.0f, 0 , cos(i)*30.0f), Bullet::PLAYER);
     bullets.push_back(bullet);
     bullet->setColor(glm::vec3(i/50.0f,0,0));
@@ -203,19 +209,25 @@ void Scene1::collisionManager()
       }
 
     }
-    if (Collision::intersectAABB(*it, mesh) && (*it)->origin == Bullet::ENEMY) {
-        this->removeChild(*it);
-        delete (*it);
-        it = bullets.erase(it);
-        mesh->setColor(glm::vec3(0,1,0));
-    } else if ((*it)->time.timer.seconds() > 4.4f) {
-      this->removeChild(*it);
-      delete *it;
-      it = bullets.erase(it);
-    } else {
-      ++it;
-    }
-    }
+	if (Collision::intersectAABB(*it, mesh) && (*it)->origin == Bullet::ENEMY && mesh->enabled == true) {
+		this->removeChild(*it);
+		delete (*it);
+		it = bullets.erase(it);
+		mesh->enabled = false;
+		spawnExplosion(mesh->position);
+		camEffects->transition3D();
+		it = bullets.end();
+		deathTimer.timer.start();
+	}
+	else if ((*it)->time.timer.seconds() > 4.4f) {
+		this->removeChild(*it);
+		delete *it;
+		it = bullets.erase(it);
+	}
+	else {
+		++it;
+	}
+  }
 
   for (unsigned int i = 0; i < bullets.size(); i++) {
     for (unsigned int j = 0; j < mirrors.size(); j++) {

@@ -13,6 +13,7 @@ class Time
         void update();
         struct Timer {
         public:
+		  void init() { timerStartTime = 0.0f; timerCurrentTime = 0.0f; }
           void start() { timerStartTime = glfwGetTime(); }
           void stop() { timerCurrentTime = 0.0f; }
           float seconds() { timerCurrentTime = glfwGetTime(); return timerCurrentTime - timerStartTime; }

@@ -64,6 +64,7 @@ class Scene1 : public Superscene
       std::vector<Enemy*> enemies;
       std::vector<float> speeds;
       Time time;
+	  Time deathTimer;
 
 };
 
